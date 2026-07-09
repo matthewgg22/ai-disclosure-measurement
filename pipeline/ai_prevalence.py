@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/ai_prevalence.py   # writes results to ../data/
 """
 Measure the rise of AI language in 10-K filings over time (2001-present) — CORRECTLY.
 
@@ -14,7 +15,7 @@ Pure standard library otherwise.
 """
 import urllib.request, urllib.parse, json, os, sys, time
 
-UA = {"User-Agent": "AI Washing Research (HKS PAE) YOUR_EMAIL@example.com"}
+UA = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 START_YEAR, END_YEAR = 2001, 2025
 TERMS = {

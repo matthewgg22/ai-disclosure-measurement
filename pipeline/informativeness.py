@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/informativeness.py   # writes results to ../data/
 """
 The declining-label-informativeness test — the lemons precondition (damages-design step 1).
 
@@ -18,7 +19,7 @@ Heavy step (cached/resumable): the full AI CIK list per year via FTS paging.
 """
 import json, os, sys, time, urllib.parse, urllib.request, statistics
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
-UA = {"User-Agent": "AI Washing Research (HKS PAE) YOUR_EMAIL@example.com"}
+UA = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 YEARS = [2015, 2018, 2021, 2024]   # pre / ramp / post-ChatGPT-onset / post
 
 def get(url, tries=8):

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/sector_premium.py   # writes results to ../data/
 """
 AI-mention return premium by industry sector (Russell 3000).
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/size_premium.py   # writes results to ../data/
 """
 Is the AI-mention return premium concentrated in the small-cap tail?
 

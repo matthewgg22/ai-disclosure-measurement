@@ -69,9 +69,11 @@ python pipeline/costume_rotation.py
 # ...see the script→claim map above
 ```
 
-**Before running:** set a real contact string in each script's EDGAR `User-Agent` (the SEC requires one). A placeholder `YOUR_EMAIL@example.com` marks where. Requests are rate-limited to stay within SEC fair-access limits.
+**Before running:** each script's EDGAR `User-Agent` declares a real contact (the SEC requires one). If you fork this repo, replace the `matthewgreergentis@gmail.com` contact string with your own before running. Requests are rate-limited to stay within SEC fair-access limits.
 
 Dependencies: standard library plus what's in `requirements.txt`. Market-data steps use free sources (yfinance/stooq) for prototyping; the event study reads Ken French factors (public).
+
+For construction details — data sources, population definitions, the estimating equations, and the disciplining nulls — see [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
 ---
 

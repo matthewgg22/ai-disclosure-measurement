@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/ai_sector.py   # writes results to ../data/
 """
 Sector segmentation of AI-mentioning 10-Ks (2001-2025): the "AI tourists" cut.
 
@@ -14,7 +15,7 @@ per year (a long tail of rare sectors may be omitted), so shares are of the top-
 import urllib.request, urllib.parse, json, os, sys, time
 from collections import defaultdict
 
-UA = {"User-Agent": "AI Washing Research (HKS PAE) YOUR_EMAIL@example.com"}
+UA = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 SIC_CACHE = os.path.join(DATA, "_cache_sic.json")
 START, END = 2001, 2025

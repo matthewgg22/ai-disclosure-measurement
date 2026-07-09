@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Usage: python3 pipeline/ai_sophistication.py [input.csv]   # default input russell3000_ai.csv; writes to ../data/
 """
 AI vocabulary sophistication classifier.
 
@@ -27,7 +28,7 @@ import csv, json, os, re, sys, time, urllib.request, urllib.error, html
 
 DATA   = os.path.join(os.path.dirname(__file__), "..", "data")
 FCACHE = os.path.join(DATA, "_cache_filings")
-UA     = {"User-Agent": "AI Washing Research (HKS PAE) YOUR_EMAIL@example.com"}
+UA     = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 
 # ── vocabulary taxonomy ──────────────────────────────────────────────────────
 

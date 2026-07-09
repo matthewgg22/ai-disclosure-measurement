@@ -1,10 +1,15 @@
-# Third-party packages used across the pipeline (standard library omitted).
-# Market-data and numerical steps:
-numpy
-pandas
-scipy
-scikit-learn
-statsmodels
-yfinance
-requests
-openpyxl
+# Third-party dependencies (Python standard library is used heavily and is not listed).
+#
+# Most of the label-measurement layer (edgar_fts, ai_prevalence, ai_lexicon, ai_sector,
+# and the EDGAR full-text-search / master-index scripts) is PURE standard library and
+# needs nothing here. The packages below are only needed for the numerical, market-data,
+# and spreadsheet-output steps. Version floors are the lowest tested; newer is fine.
+
+# Numerical / statistical (event study, premia, capital decomposition, classifier):
+numpy>=1.24
+pandas>=2.2       # >=2.2 for NumPy 2.x compatibility
+scipy>=1.10
+
+# Optional — imported lazily, only on specific paths:
+yfinance>=0.2.40  # event_study/returns.py, --source yfinance (default source is stooq, stdlib)
+openpyxl>=3.1     # ai_prevalence.py xlsx chart export (CSV is always written regardless)

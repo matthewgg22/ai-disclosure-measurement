@@ -27,7 +27,7 @@ MCACHE = os.path.join(DATA, "_cache_monthly")
 FCACHE = os.path.join(DATA, "_cache_factors.json")
 TOKEN = os.environ.get("TIINGO_TOKEN")
 BENCH = [2015, 2018, 2021, 2024]          # the AI-flag benchmark years we have
-UA = {"User-Agent": "AI Washing Research (HKS PAE) YOUR_EMAIL@example.com"}
+UA = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 
 # ---------- prices ----------
 def monthly_prices(ticker):
