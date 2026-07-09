@@ -60,6 +60,34 @@ For construction detail (denominators, phrase selection, identification), see
   `data/aggregates/ai_sector_by_year.csv`), an EDGAR FTS `sic_filter`
   aggregation rolled up to 2-digit SIC.
 
+## F4 — The label's link to real capability faded (a disciplining null)
+
+![F4](figures/f4_informativeness.png)
+
+- **Number:** measuring capability with **audited R&D** (hard to fake), as the AI
+  label spread from **37** 10-K filers (2015) to **~2,400** (2024): the share of
+  AI-labeled filers reporting *any* R&D fell to **42.4%** (2024), and their median
+  R&D-intensity premium over the market baseline compressed from **+0.036** (2018)
+  to **+0.022** (2021) to **+0.009** (2024) — toward zero.
+- **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059) — too
+  small to trust, drawn faded in the figure. The defensible reading is the
+  **post-2018 compression**, when the AI pool first exceeds a few hundred firms.
+- **Why it's a null, not a hot take:** the claim is not "AI is hype" — it is that
+  the label's *information content about real capability decayed* as it
+  proliferated (a lemons precondition). This is one of several disciplining nulls
+  the project keeps prominently (the return premium is large-cap only; enforcement
+  does not re-separate the cross-section; the "hollow = washer" gap is mostly a
+  size effect — see the README claim-map).
+- **Data script:** [`pipeline/informativeness.py`](../pipeline/informativeness.py)
+  → `data/informativeness.csv` (committed at
+  `data/aggregates/informativeness.csv`). Self-contained: it builds the AI-labeled
+  set per year from EDGAR full-text search and reads audited R&D / revenue from the
+  XBRL `frames` cross-section — no pre-built universe file, no API key.
+- **Note on the other nulls:** the market-data nulls (size/sector return premium,
+  FF5+momentum alpha, the size-controlled classifier) depend on issuer-level
+  universe and price data that is deliberately **not** in this public repo, so they
+  are documented in the claim-map but not reproduced here.
+
 ---
 
 ## Reproduce
@@ -76,6 +104,7 @@ User-Agent, see the README):
 python pipeline/ai_prevalence.py       # F1 data
 python pipeline/ai_lexicon.py          # F2 data (reuses ai_prevalence's denominator cache)
 python pipeline/ai_sector.py           # F3 data
+python pipeline/informativeness.py     # F4 data (heavier: pages the AI-filer set + XBRL R&D)
 ```
 
 Absolute counts drift as new filings arrive on EDGAR; the **shapes and ratios**

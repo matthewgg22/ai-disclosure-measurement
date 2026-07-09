@@ -150,14 +150,68 @@ def fig3_sector_diffusion(sector):
     _save(fig, "f3_sector_diffusion")
 
 
+def fig4_informativeness(info):
+    # Disciplining null (the "lemons" precondition): as the AI label proliferated,
+    # did AI-labeled filers still look like real R&D firms? Two panels — pool
+    # quality (share reporting any R&D) and the R&D-intensity premium vs the
+    # market. Only 4 benchmark years; 2015 is a small sample (few AI filers), so
+    # it is drawn faded and flagged.
+    yrs = [int(r["year"]) for r in info]
+    nfirms = [int(r["ai_firms"]) for r in info]
+    pct = [float(r["pct_ai_reporting_rnd"]) for r in info]
+    prem = [float(r["substance_premium"]) for r in info]
+    small = [n < 100 for n in nfirms]  # flag small-sample years (2015)
+    x = list(range(len(yrs)))
+    labels = [f"{y}\n(n={n})" for y, n in zip(yrs, nfirms)]
+
+    fig, (axA, axB) = plt.subplots(1, 2, figsize=(9.4, 4.5))
+
+    # Panel A: share reporting any R&D
+    barsA = axA.bar(x, pct, color=[MUTED if s else ADOPT for s in small], width=0.62)
+    for xi, v in zip(x, pct):
+        axA.text(xi, v + 1, f"{v:.0f}%", ha="center", fontsize=9, color=INK)
+    axA.set_ylim(0, max(pct) * 1.2)
+    axA.set_title("Share reporting any R&D", fontsize=10.5, color=INK, loc="left")
+    axA.set_ylabel("% of AI-labeled filers", fontsize=9, color=INK)
+
+    # Panel B: R&D-intensity premium over the market baseline
+    colors = [MUTED if s else (SUBST if v >= 0 else MARKET) for s, v in zip(small, prem)]
+    axB.bar(x, prem, color=colors, width=0.62)
+    axB.axhline(0, color=INK, linewidth=0.9)
+    for xi, v in zip(x, prem):
+        axB.text(xi, v + (0.004 if v >= 0 else -0.004), f"{v:+.3f}", ha="center",
+                 va="bottom" if v >= 0 else "top", fontsize=9, color=INK)
+    pad = max(abs(min(prem)), abs(max(prem))) * 1.35
+    axB.set_ylim(-pad, pad)
+    axB.set_title("R&D-intensity premium vs. the market", fontsize=10.5, color=INK, loc="left")
+    axB.set_ylabel("median R&D/revenue, AI minus baseline", fontsize=9, color=INK)
+
+    for ax in (axA, axB):
+        ax.set_xticks(x)
+        ax.set_xticklabels(labels, fontsize=8.5)
+        ax.grid(axis="y", color=GRID, linewidth=0.8)
+        ax.set_axisbelow(True)
+        ax.tick_params(colors=INK, labelsize=9)
+
+    fig.subplots_adjust(top=0.74, wspace=0.30)
+    fig.text(0.02, 0.98, "The label's link to real capability faded", fontsize=15,
+             fontweight="bold", color=INK, va="top", transform=fig.transFigure)
+    fig.text(0.02, 0.90, "Audited R&D among AI-labeled 10-K filers as the label spread from 37 to ~2,400 firms "
+             "(2015 faded: small sample)", fontsize=9.5, color=MUTED, va="top", transform=fig.transFigure)
+    _save(fig, "f4_informativeness")
+
+
 def main():
     prev = _read("ai_prevalence.csv")
     buckets = _read("ai_buckets_by_year.csv")
     sector = _read("ai_sector_by_year.csv")
+    info = _read("informativeness.csv")
     fig1_adoption(prev)
     fig2_marketing_vs_substance(buckets)
     fig3_sector_diffusion(sector)
-    print("[done] wrote docs/figures/ (f1_adoption, f2_marketing_vs_substance, f3_sector_diffusion)")
+    fig4_informativeness(info)
+    print("[done] wrote docs/figures/ (f1_adoption, f2_marketing_vs_substance, "
+          "f3_sector_diffusion, f4_informativeness)")
 
 
 if __name__ == "__main__":

@@ -27,6 +27,14 @@ Across 25 years of 10-K filings, the "AI" label **went everywhere, stayed hollow
 
 These three are the market-wide backbone; the disciplining nulls and the small-cap tail are below.
 
+### The disciplining null: the label's *information content* decayed
+
+The rigorous claim is not "AI is hype." It is that the label stopped carrying information about real capability. Measured with **audited R&D** (hard to fake): as the AI label spread from 37 to ~2,400 10-K filers, the share of AI-labeled filers reporting *any* R&D fell to **42%** (2024), and their R&D-intensity edge over the market **compressed toward zero** (+0.036 → +0.009 across 2018–2024). The 2015 point is a small sample (37 firms) and is flagged as such — the honest read is the post-2018 compression, not the noisy early year.
+
+![The label's link to real capability faded](docs/figures/f4_informativeness.png)
+
+This is one of several *disciplining nulls* the project keeps prominently (the AI return premium is a large-cap phenomenon; enforcement does not re-separate the cross-section; the "hollow = washer" gap is mostly a size effect). See the [Script → claim map](#script--claim-map) and [`docs/RESULTS.md`](docs/RESULTS.md).
+
 ---
 
 ## What it measures (headline results)

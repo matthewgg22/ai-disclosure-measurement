@@ -18,3 +18,4 @@ env/
 !data/aggregates/ai_prevalence.csv
 !data/aggregates/ai_buckets_by_year.csv
 !data/aggregates/ai_sector_by_year.csv
+!data/aggregates/informativeness.csv
