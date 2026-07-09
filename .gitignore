@@ -1,0 +1,10 @@
+data/
+*.json
+!requirements.json
+__pycache__/
+*.pyc
+.DS_Store
+*.xlsx
+*.csv
+.venv/
+env/

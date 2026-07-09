@@ -1,0 +1,10 @@
+# Third-party packages used across the pipeline (standard library omitted).
+# Market-data and numerical steps:
+numpy
+pandas
+scipy
+scikit-learn
+statsmodels
+yfinance
+requests
+openpyxl
