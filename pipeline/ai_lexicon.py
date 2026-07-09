@@ -113,13 +113,15 @@ def main():
                 s = sum(num.get(f"{y}|{p}", 0) for p in phrases)
                 cells.append(f"{100*s/d:.2f}")
             f.write(",".join(cells) + "\n")
-    # sector CSV (long format: year, sic, ai_mention_count)
-    with open(os.path.join(DATA, "ai_sector_by_year.csv"), "w") as f:
+    # sector CSV (long format: year, sic, ai_mention_count). Named distinctly so
+    # it does NOT clobber ai_sector.py's richer ai_sector_by_year.csv (which rolls
+    # up to 2-digit SIC and adds sector labels + share-of-mentions).
+    with open(os.path.join(DATA, "ai_lexicon_sector_by_year.csv"), "w") as f:
         f.write("year,sic,ai_mention_count\n")
         for y in range(START_YEAR, END_YEAR + 1):
             for s, c in sorted(sic.get(str(y), {}).items(), key=lambda x: -x[1]):
                 f.write(f"{y},{s},{c}\n")
-    print("\n[done] wrote ai_lexicon_by_year.csv, ai_buckets_by_year.csv, ai_sector_by_year.csv")
+    print("\n[done] wrote ai_lexicon_by_year.csv, ai_buckets_by_year.csv, ai_lexicon_sector_by_year.csv")
 
 if __name__ == "__main__":
     main()

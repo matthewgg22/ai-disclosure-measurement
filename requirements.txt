@@ -10,6 +10,9 @@ numpy>=1.24
 pandas>=2.2       # >=2.2 for NumPy 2.x compatibility
 scipy>=1.10
 
+# Figure generation (docs/figures/ for the README) — pipeline/make_figures.py only:
+matplotlib>=3.7
+
 # Optional — imported lazily, only on specific paths:
 yfinance>=0.2.40  # event_study/returns.py, --source yfinance (default source is stooq, stdlib)
 openpyxl>=3.1     # ai_prevalence.py xlsx chart export (CSV is always written regardless)

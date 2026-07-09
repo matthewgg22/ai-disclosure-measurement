@@ -1,8 +1,31 @@
 # AI Disclosure Measurement
 
+[![ci](https://github.com/matthewgg22/ai-disclosure-measurement/actions/workflows/ci.yml/badge.svg)](https://github.com/matthewgg22/ai-disclosure-measurement/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A reproducible pipeline for measuring the **information content of the "AI" label in U.S. securities filings** — how far the label has decoupled from substance, and what that decoupling looks like in the small-cap tail where it is most naked.
 
 Built over the EDGAR corpus and the Russell 3000. Every script produces a **cohort-level or market-level measurement**; the finding each one supports is listed below. This repository is the public *measurement layer* of a larger research project; lead-generation and enforcement-referral tooling is deliberately excluded (see [Scope](#scope--what-is-not-here)).
+
+---
+
+## The result, in three figures
+
+Across 25 years of 10-K filings, the "AI" label **went everywhere, stayed hollow, and left its home sector.** Every figure below is aggregate (no individual issuer), regenerated from committed data by [`pipeline/make_figures.py`](pipeline/make_figures.py). Full figure→script→number map in [`docs/RESULTS.md`](docs/RESULTS.md).
+
+**1. The label went everywhere** — "artificial intelligence" appeared in **0.8%** of 10-K filers in 2001 and **50.7%** in 2025.
+
+![AI label adoption in 10-K filings, 2001–2025](docs/figures/f1_adoption.png)
+
+**2. ...but the substance did not follow** — cheap *marketing* vocabulary ("AI-powered", "AI-driven") reached **14.6%** of filers while costly *build* vocabulary (LLM, training compute, fine-tuning) stayed pinned at **1.8%**. That gap is the washing fingerprint.
+
+![Marketing vs. substance vocabulary in 10-K filings](docs/figures/f2_marketing_vs_substance.png)
+
+**3. ...and it spread beyond software** — software's (SIC-73) share of all AI mentions peaked near **57%** in 2018 and fell to **27%** by 2025 as the label diffused into every sector.
+
+![Software's share of AI mentions over time](docs/figures/f3_sector_diffusion.png)
+
+These three are the market-wide backbone; the disciplining nulls and the small-cap tail are below.
 
 ---
 
@@ -57,7 +80,14 @@ All figures are reproducible from the named scripts. The unit of analysis is the
 
 ## Reproducibility
 
-Scripts are standalone Python 3 and pull directly from public SEC/market sources; each caches to a local `data/` directory (regenerated on first run, not checked in). Rough order:
+**Fastest path (60 seconds, no network):** the three headline figures regenerate from the committed aggregate CSVs in `data/aggregates/`:
+
+```
+pip install matplotlib
+python pipeline/make_figures.py      # reads data/aggregates/, writes docs/figures/
+```
+
+**Full pipeline:** scripts are standalone Python 3 and pull directly from public SEC/market sources; each caches to a local `data/` directory (regenerated on first run, not checked in). Rough order:
 
 ```
 python pipeline/edgar_fts.py         # full-text-search infrastructure + phrase/year counts

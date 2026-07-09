@@ -1,4 +1,4 @@
-data/
+data/*
 *.json
 !requirements.json
 __pycache__/
@@ -8,3 +8,13 @@ __pycache__/
 *.csv
 .venv/
 env/
+
+# --- Public, aggregate-only figure inputs (exact allowlist) ---
+# data/ is ignored above; re-include ONLY these per-year aggregate CSVs so the
+# README figures are reproducible from committed data. Every file here is
+# verified issuer-free by scripts/check_public_safe.py before commit.
+# Never broaden this to a directory glob — list files by exact path.
+!data/aggregates/
+!data/aggregates/ai_prevalence.csv
+!data/aggregates/ai_buckets_by_year.csv
+!data/aggregates/ai_sector_by_year.csv
