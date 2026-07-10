@@ -132,7 +132,7 @@ This pipeline was built with AI-assisted analysis and coding. The research desig
 
 ## Working paper
 
-A short, aggregate-only working paper — *The Decoupling of the "AI" Label from Substance in U.S. Securities Filings, 2001–2025* — is drafted from these results in [`paper/`](paper/). It reuses figures F1–F4 and every number is reproducible from this repo. Outline: [`paper/OUTLINE.md`](paper/OUTLINE.md); abstract: [`paper/abstract.md`](paper/abstract.md).
+A short, aggregate-only working paper — *The Decoupling of the "AI" Label from Substance in U.S. Securities Filings, 2001–2025* — is drafted from these results in [`paper/`](paper/). It reuses figures F1–F4 and every number is reproducible from this repo. Full draft: [`paper/PAPER.md`](paper/PAPER.md) (outline: [`paper/OUTLINE.md`](paper/OUTLINE.md); abstract: [`paper/abstract.md`](paper/abstract.md)).
 
 ## How to cite
 
