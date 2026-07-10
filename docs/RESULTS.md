@@ -70,10 +70,18 @@ For construction detail (denominators, phrase selection, identification), see
   R&D-intensity premium over the market baseline fell from **+0.036** (2018) to
   **+0.022** (2021) to **+0.009** (2024), toward zero.
 - **With 95% bootstrap CIs (2,000 resamples, error bars in the figure):** the 2018
-  premium is **+0.036 [0.013, 0.067]**, which excludes zero; by 2024 it is
-  **+0.009 [−0.013, 0.030]**, which includes zero. So the label carried a premium
+  premium is **+0.036 [0.014, 0.066]**, which excludes zero; by 2024 it is
+  **+0.009 [−0.014, 0.030]**, which includes zero. So the label carried a premium
   distinguishable from zero in 2018 and no longer does by 2024. 2021 is marginal
-  (**+0.022 [−0.002, 0.046]**).
+  (**+0.022 [−0.0, 0.046]**).
+- **Size control (diamonds in the figure):** recomputing the premium within total-assets
+  terciles (cut on the baseline) and averaging, so AI firms are compared only to non-AI
+  firms of similar size, gives **+0.067** (2018), **+0.043** (2021), **+0.031** (2024). It
+  is *higher* than the raw premium (large low-R&D firms were diluting the raw figure) and
+  still declines, so composition does not explain the fall. These are noisier: 95% CIs
+  **[−0.003, 0.130]** (2018), **[−0.015, 0.121]** (2021), **[−0.012, 0.158]** (2024) are
+  wide and mostly include zero, so the size-adjusted decline is directionally supportive but
+  not sharply identified. 2015 has too few AI firms with reported assets to stratify.
 - **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059) and its
   CI runs to **+2.3** (a few tiny-revenue firms with huge R&D ratios), so it is
   uninformative and drawn faded. The defensible reading is the 2018-to-2024 erosion.

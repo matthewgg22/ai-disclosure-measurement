@@ -51,10 +51,11 @@ technology (SEC, 2024). Those cases are issuer-specific and are not the subject 
 paper. This paper supplies the market-level backdrop against which such cases sit: how far,
 and in which direction, the language of AI in filings has moved relative to its substance.
 
-The contribution is a set of four aggregate measurements over the full 10-K corpus. Each is
-reproducible from public data with a single command, and each is reported with its own
-limitation. The unit of analysis is the filing corpus and named sectors, never an individual
-company.
+The contribution is a set of aggregate measurements over the full 10-K corpus: four that
+describe the label's spread and its relation to substance, and a placebo that checks whether
+the pattern is specific to AI. Each is reproducible from public data with a single command,
+and each is reported with its own limitation. The unit of analysis is the filing corpus and
+named sectors, never an individual company.
 
 ## 2. Data
 
@@ -122,9 +123,9 @@ baseline falls from +0.036 (2018) to +0.022 (2021) to +0.009 (2024). Over the sa
 AI-labeled pool grows from 37 firms (2015) to 278 (2018), 744 (2021), and 2,396 (2024).
 
 95% bootstrap confidence intervals (2,000 resamples, resampling each group with
-replacement) sharpen the reading. The 2018 premium is +0.036 with a CI of [0.013, 0.067],
-which excludes zero. By 2024 it is +0.009 with a CI of [−0.013, 0.030], which includes zero.
-The 2021 value (+0.022, CI [−0.002, 0.046]) is marginal. In words, AI-labeled firms carried
+replacement) sharpen the reading. The 2018 premium is +0.036 with a CI of [0.014, 0.066],
+which excludes zero. By 2024 it is +0.009 with a CI of [−0.014, 0.030], which includes zero.
+The 2021 value (+0.022, CI [−0.0, 0.046]) is marginal. In words, AI-labeled firms carried
 an R&D-intensity premium distinguishable from zero in 2018, and by 2024 they no longer do.
 The 2015 benchmark rests on only 37 firms, and its CI runs to +2.3 (a handful of
 tiny-revenue firms with very large R&D ratios), so it is uninformative and is treated as a
@@ -132,11 +133,19 @@ small sample. This before-and-after pattern is consistent with a lemons dynamic 
 1970): as a costless label spreads, the average quality of the firms carrying it converges
 toward the market, and the label's power to separate stronger firms from the rest weakens.
 
-One confound deserves emphasis, because the broader project documents it directly. As the
-pool grows it fills with larger and less R&D-intensive firms, so part of the premium's
-decline may reflect a change in the composition of AI-labeled firms rather than a change in
-what the label signals. A size- or sector-controlled version of this test is the natural next
-step and is left for future work.
+A composition confound deserves a direct check. As the pool grows it fills with larger and
+less R&D-intensive firms, so part of the premium's decline could reflect a change in the
+composition of AI-labeled firms rather than a change in what the label signals. To test this,
+the premium is recomputed within total-assets terciles (cut on the baseline) and averaged
+across terciles, which compares AI firms only to non-AI firms of similar size and holds the
+size mix fixed. The size-adjusted premium is higher than the raw premium in every year (0.067
+in 2018, 0.043 in 2021, 0.031 in 2024), which means the raw figure understated the label's
+association with R&D because large low-R&D firms diluted it, and it still declines over the
+window. So composition does not explain the fall. The size-adjusted estimates are noisier,
+however: their 95% bootstrap CIs (2018 [−0.003, 0.130], 2021 [−0.015, 0.121], 2024 [−0.012,
+0.158]) are wide and mostly include zero, because averaging tercile medians uses smaller
+per-cell samples. The size-adjusted decline is therefore directionally supportive but not
+sharply identified, and 2015 has too few AI firms with reported assets to stratify.
 
 ### 3.5 Is the decoupling specific to AI? (Figure 5)
 
@@ -153,7 +162,7 @@ and it locates the decoupling specifically in AI rather than in buzzwords genera
 
 ## 4. Interpretation
 
-Read together, the four measurements describe one movement. A label that once appeared almost
+Read together, these measurements describe one movement. A label that once appeared almost
 only in software firms, in a small number of filings, has become a majority phenomenon that
 appears across sectors. Its marketing register has run ahead of its build register, and its
 correlation with audited research capability has weakened. On average, the "AI" label carries

@@ -169,6 +169,12 @@ so its design is spelled out:
   lexicon, sector, and placebo figures are near-complete counts of filings, not
   samples, so they carry no sampling error; their uncertainty is in the phrase
   definitions, not in sampling, and no interval is drawn for them.
+- **Size control (F4).** To separate the premium's decline from a change in the size
+  mix of AI-labeled firms, the premium is also recomputed within total-assets terciles
+  (cut on the baseline, from the XBRL `Assets` instantaneous frame) and averaged across
+  terciles, comparing AI firms only to non-AI firms of similar size. It is reported with
+  its own stratified bootstrap CI. The size-adjusted premium is higher than the raw and
+  still declines, so composition does not explain the fall, though its CI is wider.
 - **Envelopes vs. point estimates.** Capital-destruction figures are explicitly
   order-of-magnitude envelopes with stated bounds, not precise damages estimates.
 - **Population framing.** Every cohort statistic is a property of a screened population.

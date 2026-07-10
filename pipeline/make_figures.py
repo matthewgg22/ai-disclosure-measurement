@@ -191,6 +191,17 @@ def fig4_informativeness(info):
         if h > 0.09:  # CI whisker off the top (2015)
             axB.annotate("CI to\n+%.1f" % h, (xi, 0.085), ha="center", va="top",
                          fontsize=7.5, color=MUTED)
+    # Overlay the size-adjusted premium (assets terciles) as points; its wider CIs are
+    # reported in the text, not drawn, to keep the axis readable.
+    def _num(v):
+        try: return float(v)
+        except (TypeError, ValueError): return None
+    sa = [(xi, _num(r.get("premium_size_adj"))) for xi, r in zip(x, info)]
+    sa = [(xi, v) for xi, v in sa if v is not None]
+    if sa:
+        axB.plot([p[0] for p in sa], [p[1] for p in sa], marker="D", ms=6, color=ADOPT,
+                 lw=1.2, ls="--", label="size-adjusted", zorder=5)
+        axB.legend(frameon=False, fontsize=8, loc="upper right")
     axB.set_title("R&D-intensity premium vs. market (95% CI)", fontsize=10.5, color=INK, loc="left")
     axB.set_ylabel("median R&D/revenue, AI minus baseline", fontsize=9, color=INK)
 

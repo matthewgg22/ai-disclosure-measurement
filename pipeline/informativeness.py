@@ -38,6 +38,39 @@ def premium_ci(ai_int, base_int, B=BOOT):
     diffs.sort()
     return (round(diffs[int(0.025 * B)], 3), round(diffs[int(0.975 * B)], 3))
 
+def size_adjusted_premium(ai_pairs, base_pairs, B=BOOT):
+    """Size-controlled premium: within total-assets terciles (cut on the baseline), take the
+    AI-minus-baseline median R&D-intensity, then average the tercile premiums (equal weight,
+    so the pool's size mix cannot drive the result). Returns (estimate, lo, hi) with a
+    stratified 95% bootstrap CI, or Nones if samples are too thin to stratify.
+    pairs are (r&d-intensity, total_assets)."""
+    if len(ai_pairs) < 15 or len(base_pairs) < 30:
+        return (None, None, None)
+    base_assets = sorted(a for _, a in base_pairs)
+    q1 = base_assets[len(base_assets) // 3]
+    q2 = base_assets[2 * len(base_assets) // 3]
+    bucket = lambda a: 0 if a <= q1 else (1 if a <= q2 else 2)
+    def point(ai, base):
+        prem = []
+        for b in (0, 1, 2):
+            ai_b = [i for i, a in ai if bucket(a) == b]
+            ba_b = [i for i, a in base if bucket(a) == b]
+            if len(ai_b) >= 5 and len(ba_b) >= 5:
+                prem.append(statistics.median(ai_b) - statistics.median(ba_b))
+        return statistics.mean(prem) if prem else None
+    est = point(ai_pairs, base_pairs)
+    if est is None:
+        return (None, None, None)
+    diffs = []
+    for _ in range(B):
+        v = point(_RNG.choices(ai_pairs, k=len(ai_pairs)), _RNG.choices(base_pairs, k=len(base_pairs)))
+        if v is not None:
+            diffs.append(v)
+    if len(diffs) < B // 2:
+        return (round(est, 3), None, None)
+    diffs.sort()
+    return (round(est, 3), round(diffs[int(0.025 * len(diffs))], 3), round(diffs[int(0.975 * len(diffs))], 3))
+
 def get(url, tries=8):
     for i in range(tries):
         try:
@@ -52,11 +85,15 @@ def load(name):
     return json.load(open(p)) if os.path.exists(p) else None
 def save(name, obj): json.dump(obj, open(cache_path(name), "w"))
 
-def frames(concept, year):
-    name = f"_cache_frames_{concept}_{year}.json"
+def frames(concept, year, instant=False):
+    # Flow concepts (R&D, Revenues) use the duration frame CY{year}; balance-sheet
+    # (instantaneous) concepts (Assets) use CY{year}Q4I. Cache name keeps the duration
+    # form unchanged so existing caches are reused.
+    frame = f"CY{year}Q4I" if instant else f"CY{year}"
+    name = f"_cache_frames_{concept}_{year}{'Q4I' if instant else ''}.json"
     c = load(name)
     if c is not None: return {int(k): v for k, v in c.items()}
-    raw = get(f"https://data.sec.gov/api/xbrl/frames/us-gaap/{concept}/USD/CY{year}.json")
+    raw = get(f"https://data.sec.gov/api/xbrl/frames/us-gaap/{concept}/USD/{frame}.json")
     if not raw: return {}
     d = json.loads(raw)
     out = {int(x["cik"]): x["val"] for x in d.get("data", [])}
@@ -104,6 +141,7 @@ def main():
         rev = frames("Revenues", y)
         for k, v in frames("RevenueFromContractWithCustomerExcludingAssessedTax", y).items():
             rev.setdefault(k, v)
+        assets = frames("Assets", y, instant=True)   # total assets (balance-sheet), the size control
         ai = ai_ciks(y)
         # baseline population = firms reporting R&D with positive revenue
         base_int = [rnd[c] / rev[c] for c in rnd if c in rev and rev[c] and rev[c] > 0 and rnd[c] >= 0]
@@ -111,6 +149,10 @@ def main():
         ai_n = len(ai)
         ai_with_rnd = [c for c in ai if c in rnd]
         ai_int = [rnd[c] / rev[c] for c in ai if c in rnd and c in rev and rev[c] and rev[c] > 0 and rnd[c] >= 0]
+        # (intensity, total assets) pairs for the size-controlled premium
+        def _ok(c): return c in rev and rev[c] and rev[c] > 0 and rnd[c] >= 0 and c in assets and assets[c] and assets[c] > 0
+        base_pairs = [(rnd[c] / rev[c], assets[c]) for c in rnd if _ok(c)]
+        ai_pairs = [(rnd[c] / rev[c], assets[c]) for c in ai if c in rnd and _ok(c)]
         rec = {"year": y, "ai_firms": ai_n,
                "pct_ai_reporting_rnd": round(100 * len(ai_with_rnd) / ai_n, 1) if ai_n else 0,
                "ai_median_rnd_intensity": round(statistics.median(ai_int), 3) if ai_int else None,
@@ -120,14 +162,16 @@ def main():
                                     if rec["ai_median_rnd_intensity"] and rec["baseline_median_rnd_intensity"] else None)
         lo, hi = premium_ci(ai_int, base_int)
         rec["premium_ci_lo"], rec["premium_ci_hi"] = lo, hi
+        sa, sal, sah = size_adjusted_premium(ai_pairs, base_pairs)
+        rec["premium_size_adj"], rec["premium_size_adj_lo"], rec["premium_size_adj_hi"] = sa, sal, sah
         rows.append(rec)
-        print(f"   {y}: AI firms={ai_n}  %reporting R&D={rec['pct_ai_reporting_rnd']}  "
-              f"AI med R&D/rev={rec['ai_median_rnd_intensity']}  baseline={rec['baseline_median_rnd_intensity']}  "
-              f"premium={rec['substance_premium']}  95% CI=[{lo}, {hi}]", flush=True)
+        print(f"   {y}: AI firms={ai_n}  %R&D={rec['pct_ai_reporting_rnd']}  "
+              f"premium={rec['substance_premium']} CI=[{lo}, {hi}]  "
+              f"size-adj={sa} CI=[{sal}, {sah}]", flush=True)
 
     cols = ["year","ai_firms","pct_ai_reporting_rnd","ai_median_rnd_intensity",
             "baseline_median_rnd_intensity","substance_premium","premium_ci_lo","premium_ci_hi",
-            "rnd_reporters_total"]
+            "premium_size_adj","premium_size_adj_lo","premium_size_adj_hi","rnd_reporters_total"]
     with open(os.path.join(DATA, "informativeness.csv"), "w") as f:
         f.write(",".join(cols) + "\n")
         for r in rows:
