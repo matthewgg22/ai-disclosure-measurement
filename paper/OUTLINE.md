@@ -52,8 +52,14 @@ skeleton. **Wall: market-level only, no individual issuer named or characterized
 - The 2015 benchmark (n=37) is a small sample, flagged; the defensible reading is the
   post-2018 compression.
 
+### 3.5 Is the decoupling specific to AI? (placebo)
+- **F5.** Same marketing template ("<term>-powered" / "<term>-driven") applied to AI and to
+  controls (blockchain, cloud, quantum). 2025 marketing-form share: AI 12.9% vs 0.18% /
+  0.09% / 0.03%. AI is ~70x the nearest control; bare mentions differ only ~3x. Only AI grew
+  a large marketing vocabulary, which locates the effect in AI, not buzzwords generally.
+
 ## 4. Interpretation
-- What the decoupling implies for disclosure quality, using **only** F1–F4.
+- What the decoupling implies for disclosure quality, using **only** F1–F5.
 - The honest boundary of the claim: it shows the label's *average* information content
   fell at the market level. It does **not** identify individual "washers", quantify
   investor harm, or establish causation.

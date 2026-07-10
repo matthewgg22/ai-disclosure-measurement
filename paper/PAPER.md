@@ -22,10 +22,13 @@ a roughly 57% (2018) peak share of AI mentions to 27% (2025) as the label appear
 more sectors. Measuring capability with audited R&D, the R&D-intensity premium of AI-labeled
 filers over the market fell across 2018–2024, from +0.036 to +0.009, as the AI-labeled pool
 grew from 37 firms (2015) to about 2,400 (2024). The 2015 benchmark is a small sample (n =
-37) and is reported with that caveat. Together these measurements describe a label whose
-correlation with real capability weakened as it spread, consistent with a lemons dynamic
-(Akerlof, 1970). The results are market-level statistics from public data and make no claim
-about any individual issuer.
+37) and is reported with that caveat. A placebo using the same marketing construction on
+control buzzwords finds the "AI-powered" form in 12.9% of filers in 2025, roughly seventy
+times the rate for blockchain, cloud, or quantum, which locates the effect in AI rather than
+in buzzwords generally. Together these measurements describe a label whose correlation with
+real capability weakened as it spread, consistent with a lemons dynamic (Akerlof, 1970). The
+results are market-level statistics from public data and make no claim about any individual
+issuer.
 
 **Keywords:** securities disclosure, AI washing, textual analysis, EDGAR, information content.
 
@@ -129,6 +132,19 @@ pool grows it fills with larger and less R&D-intensive firms, so part of the pre
 decline may reflect a change in the composition of AI-labeled firms rather than a change in
 what the label signals. A size- or sector-controlled version of this test is the natural next
 step and is left for future work.
+
+### 3.5 Is the decoupling specific to AI? (Figure 5)
+
+A natural objection is that every buzzword inflates, so the marketing-versus-substance gap
+in Section 3.2 may say nothing special about AI. Figure 5 tests this with a placebo. It
+applies the same marketing construction, "<term>-powered" and "<term>-driven", to AI and to
+three control buzzwords (blockchain, cloud computing, quantum computing), and measures the
+share of 10-K filers using each. In 2025 the AI form reached 12.9% of filers, against 0.18%
+for blockchain, 0.09% for cloud, and 0.03% for quantum. Bare mentions of the four terms
+differ by roughly a factor of three; the marketing form differs by roughly a factor of
+seventy. Using an identical template for every term, only AI produced a large marketing
+vocabulary. The near-absence of "-powered" language for the controls is itself the result,
+and it locates the decoupling specifically in AI rather than in buzzwords generally.
 
 ## 4. Interpretation
 

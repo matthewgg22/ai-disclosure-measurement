@@ -88,6 +88,22 @@ For construction detail (denominators, phrase selection, identification), see
   universe and price data that is deliberately **not** in this public repo, so they
   are documented in the claim-map but not reproduced here.
 
+## F5: Is the decoupling specific to AI? (placebo)
+
+![F5](figures/f5_placebo.png)
+
+- **Number:** applying the same marketing template ("<term>-powered" / "<term>-driven")
+  to AI and to control buzzwords, in 2025 the AI form reached **12.9%** of 10-K filers
+  versus **0.18%** (blockchain), **0.09%** (cloud), and **0.03%** (quantum). AI's
+  marketing form is roughly **70x** the nearest control, while bare mentions differ only
+  about 3x (AI 50.7%, cloud 15.2%, blockchain 7.2%, quantum 2.7%).
+- **Why it matters:** it answers the obvious objection that "every buzzword inflates."
+  Using an identical construction for every term, only AI produced a large marketing
+  vocabulary. The near-absence of "-powered" language for the controls is the finding.
+- **Data script:** [`pipeline/placebo_terms.py`](../pipeline/placebo_terms.py) →
+  `data/placebo_terms.csv` (committed at `data/aggregates/placebo_terms.csv`). Reuses the
+  committed 10-K denominator; pure EDGAR full-text search.
+
 ---
 
 ## Reproduce
@@ -105,6 +121,7 @@ python pipeline/ai_prevalence.py       # F1 data
 python pipeline/ai_lexicon.py          # F2 data (reuses ai_prevalence's denominator cache)
 python pipeline/ai_sector.py           # F3 data
 python pipeline/informativeness.py     # F4 data (heavier: pages the AI-filer set + XBRL R&D)
+python pipeline/placebo_terms.py       # F5 data (AI vs control buzzwords)
 ```
 
 Absolute counts drift as new filings arrive on EDGAR; the **shapes and ratios**

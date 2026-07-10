@@ -201,17 +201,52 @@ def fig4_informativeness(info):
     _save(fig, "f4_informativeness")
 
 
+def fig5_placebo(placebo):
+    # Placebo: apply the SAME "<term>-powered / <term>-driven" marketing template to AI and
+    # to control buzzwords. Only AI produces a large marketing vocabulary; the controls stay
+    # near zero. That is the decoupling being specific to AI, not a generic buzzword effect.
+    terms = ["AI", "blockchain", "cloud", "quantum"]
+    series = {t: {} for t in terms}
+    for r in placebo:
+        if r["term"] in series:
+            series[r["term"]][int(r["year"])] = float(r["marketing_pct"])
+    yrs = sorted(series["AI"])
+    styles = {  # AI bold and hot; controls muted
+        "AI":         dict(color=MARKET, lw=2.8, label='"AI-powered" / "AI-driven"'),
+        "blockchain": dict(color="#6a8caf", lw=1.6, label='"blockchain-…"'),
+        "cloud":      dict(color=MUTED, lw=1.6, label='"cloud-…"'),
+        "quantum":    dict(color="#b0a58f", lw=1.6, label='"quantum-…"'),
+    }
+    fig, ax = plt.subplots(figsize=(8, 4.6))
+    for t in terms:
+        ax.plot(yrs, [series[t][y] for y in yrs], **styles[t])
+    ai_last = series["AI"][yrs[-1]]
+    ax.set_ylim(0, ai_last * 1.15)
+    ax.annotate(f"{ai_last:.1f}%", (yrs[-1], ai_last), textcoords="offset points",
+                xytext=(-42, -2), fontsize=10, color=MARKET, fontweight="bold")
+    ctrl_max = max(series[t][yrs[-1]] for t in terms if t != "AI")
+    ax.text(0.02, 0.60, f"blockchain, cloud, quantum:\nall below {ctrl_max:.1f}% in {yrs[-1]}",
+            transform=ax.transAxes, fontsize=9, color=INK)
+    ax.legend(frameon=False, fontsize=9, loc="upper left")
+    _style(ax, "Only AI got the marketing treatment",
+           'Share of 10-K filers using the "<term>-powered" / "<term>-driven" form, same template for every term',
+           "% of 10-K filers")
+    _save(fig, "f5_placebo")
+
+
 def main():
     prev = _read("ai_prevalence.csv")
     buckets = _read("ai_buckets_by_year.csv")
     sector = _read("ai_sector_by_year.csv")
     info = _read("informativeness.csv")
+    placebo = _read("placebo_terms.csv")
     fig1_adoption(prev)
     fig2_marketing_vs_substance(buckets)
     fig3_sector_diffusion(sector)
     fig4_informativeness(info)
+    fig5_placebo(placebo)
     print("[done] wrote docs/figures/ (f1_adoption, f2_marketing_vs_substance, "
-          "f3_sector_diffusion, f4_informativeness)")
+          "f3_sector_diffusion, f4_informativeness, f5_placebo)")
 
 
 if __name__ == "__main__":

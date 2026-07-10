@@ -35,6 +35,12 @@ The claim is not "AI is hype." It is that the label stopped carrying information
 
 This is one of several *disciplining nulls* the project keeps prominently (the AI return premium is a large-cap phenomenon; enforcement does not re-separate the cross-section; the "hollow = washer" gap is mostly a size effect). See the [Script → claim map](#script--claim-map) and [`docs/RESULTS.md`](docs/RESULTS.md).
 
+### Is this just buzzword behavior? No.
+
+Applying the **same** marketing template ("<term>-powered" / "<term>-driven") to AI and to control buzzwords, in 2025 the AI form reached **12.9%** of 10-K filers versus **0.18%** (blockchain), **0.09%** (cloud), and **0.03%** (quantum). AI's marketing form is about **70x** the nearest control, while bare mentions differ only ~3x. Only AI produced a large marketing vocabulary (`placebo_terms.py`).
+
+![Only AI got the marketing treatment](docs/figures/f5_placebo.png)
+
 ---
 
 ## What it measures (headline results)
