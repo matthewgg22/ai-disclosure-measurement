@@ -22,3 +22,7 @@ env/
 !data/aggregates/placebo_terms.csv
 !data/aggregates/screen_signals.csv
 !data/aggregates/informativeness.csv
+
+# Generated paper artifacts (source is paper/PAPER.md + figures)
+*.docx
+*.pdf
