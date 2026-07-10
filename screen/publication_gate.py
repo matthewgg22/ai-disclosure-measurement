@@ -12,7 +12,7 @@ FORBIDDEN_COLS = {
     "name", "company", "companyname", "issuer", "issuername",
     "accession", "accession_no", "accessionnumber", "filer",
 }
-ALLOWED_COLS = {"year", "instrument", "signal_id", "n", "n_filers", "pct"}
+ALLOWED_COLS = {"year", "instrument", "signal_id", "n", "n_filers", "pct", "denom_source"}
 
 
 class PublicationError(Exception):

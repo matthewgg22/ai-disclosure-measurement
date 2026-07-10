@@ -27,13 +27,23 @@ def main():
     print(f"[screen] {len(specs)} extractable surfaces, {sum(len(s.fts_queries) for s in specs)} sub-signals")
     rows = aggregate.run_all(client, extractors, list(YEARS))
     aggregate.to_csv(rows, OUT)
-    # brief per-surface latest-year summary
-    latest = max(YEARS) - 1  # last full year that is well-populated
+    # per-surface summary at each surface's most recent year that actually has data
     for s in specs:
-        vals = [r for r in rows if r.signal_id.startswith(s.id + ".") and r.year == max(YEARS)]
+        s_rows = [r for r in rows if r.signal_id.startswith(s.id + ".")]
+        if not s_rows:
+            print(f"  [{s.instrument}] {s.id}: (no data)")
+            continue
+        latest = max(r.year for r in s_rows)
+        vals = [r for r in s_rows if r.year == latest]
         summary = "  ".join(f"{r.signal_id.split('.')[1]}={r.pct}%" for r in vals)
-        print(f"  [{s.instrument}] {s.id}: {summary}")
+        print(f"  [{s.instrument}] {s.id} ({latest}): {summary}")
     print(f"[done] {len(rows)} rows -> {os.path.relpath(OUT, _ROOT)}")
+    # Loud on fetch failures: a transient EDGAR error must not silently become a data gap.
+    if client.failures:
+        print(f"\n[WARN] {len(client.failures)} fetch(es) failed after retries (data gaps):")
+        for kind, key in client.failures[:20]:
+            print(f"    {kind}: {key}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

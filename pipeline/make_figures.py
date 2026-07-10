@@ -256,10 +256,18 @@ def fig5_placebo(placebo):
 def fig6_extraction(screen):
     # The capital-extraction instrument spreading through filings: the pre-funded warrant,
     # the ownership blocker, and the paired structure that routes dilution around Section 16.
-    yrs = [int(r["year"]) for r in screen]
-    pfw = [float(r["pct_prefunded_warrant"]) for r in screen]
-    blk = [float(r["pct_ownership_blocker"]) for r in screen]
-    both = [float(r["pct_paired_structure"]) for r in screen]
+    # Reads the engine's long-format output (screen_registry.csv); the sec16_evasion surface
+    # is the single source of truth for these three sub-signals.
+    def series(signal_id):
+        d = {int(r["year"]): float(r["pct"]) for r in screen if r["signal_id"] == signal_id}
+        return d
+    pfw_d = series("sec16_evasion.prefunded_warrant")
+    blk_d = series("sec16_evasion.ownership_blocker")
+    both_d = series("sec16_evasion.paired")
+    yrs = sorted(pfw_d)
+    pfw = [pfw_d[y] for y in yrs]
+    blk = [blk_d.get(y, 0.0) for y in yrs]
+    both = [both_d.get(y, 0.0) for y in yrs]
     fig, ax = plt.subplots(figsize=(8, 4.6))
     ax.plot(yrs, pfw, color="#6a8caf", lw=2.0, label='"pre-funded warrant"')
     ax.plot(yrs, blk, color=MUTED, lw=2.0, label='"beneficial ownership limitation" (blocker)')
@@ -284,7 +292,7 @@ def main():
     sector = _read("ai_sector_by_year.csv")
     info = _read("informativeness.csv")
     placebo = _read("placebo_terms.csv")
-    screen = _read("screen_signals.csv")
+    screen = _read("screen_registry.csv")
     fig1_adoption(prev)
     fig2_marketing_vs_substance(buckets)
     fig3_sector_diffusion(sector)

@@ -117,6 +117,26 @@ def check_aggregate_schema():
     return fails
 
 
+def check_tracked_data():
+    """No file under data/ may be tracked except the allowlisted data/aggregates/ CSVs. Catches
+    a .gitignore regression that would publish an issuer-level cache (e.g. _cache_*.json). Uses
+    git; if git is unavailable this check is skipped (best-effort)."""
+    import subprocess
+    try:
+        out = subprocess.run(["git", "-C", ROOT, "ls-files", "data/"],
+                             capture_output=True, text=True, timeout=15)
+    except (OSError, subprocess.SubprocessError):
+        return []
+    if out.returncode != 0:
+        return []
+    fails = []
+    for path in out.stdout.splitlines():
+        path = path.strip()
+        if path and not path.startswith("data/aggregates/"):
+            fails.append(f"{path}: tracked under data/ but not in the aggregates allowlist")
+    return fails
+
+
 def load_denylist():
     path = os.environ.get("AI_WASH_DENYLIST") or os.path.expanduser(
         "~/.config/ai-washing/denylist.txt"
@@ -154,6 +174,8 @@ def main():
 
     schema = check_aggregate_schema()
     all_fails += [f"[schema] {x}" for x in schema]
+
+    all_fails += [f"[tracked-data] {x}" for x in check_tracked_data()]
 
     tokens, dl_path = load_denylist()
     if tokens is None:

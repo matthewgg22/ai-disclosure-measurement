@@ -4,7 +4,7 @@ import os
 
 from . import publication_gate as gate
 
-HEADER = ["year", "instrument", "signal_id", "n", "n_filers", "pct"]
+HEADER = ["year", "instrument", "signal_id", "n", "n_filers", "pct", "denom_source"]
 
 
 def run_all(client, extractors, years):
@@ -25,5 +25,5 @@ def to_csv(rows, path):
         w = csv.writer(f)
         w.writerow(HEADER)
         for r in rows:
-            w.writerow([r.year, r.instrument, r.signal_id, r.n, r.n_filers, r.pct])
+            w.writerow([r.year, r.instrument, r.signal_id, r.n, r.n_filers, r.pct, r.denom_source])
     return path

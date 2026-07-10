@@ -133,10 +133,11 @@ For construction detail (denominators, phrase selection, identification), see
   **screening input, not a finding of fraud**. The fraud-relevant object is the co-occurrence
   of many red-flags at one small-cap issuer, which is issuer-level and out of scope for this
   public repo. See [`docs/SCREEN.md`](SCREEN.md) for the full method and validation design.
-- **Data script:** [`pipeline/screen_signals.py`](../pipeline/screen_signals.py) →
-  `data/screen_signals.csv` (committed at `data/aggregates/screen_signals.csv`). Reuses the
-  committed 10-K denominator; pure EDGAR full-text search (space-separated quoted phrases are
-  AND-ed, which gives the co-occurrence count).
+- **Data source:** the engine, [`python -m screen.run`](../screen/) (the `sec16_evasion`
+  surface) → `data/aggregates/screen_registry.csv`. Reuses the committed 10-K denominator;
+  pure EDGAR full-text search (space-separated quoted phrases are AND-ed, which gives the
+  co-occurrence count). This figure is the single-source engine output; see
+  [`docs/SCREEN.md`](SCREEN.md).
 
 ---
 
@@ -156,7 +157,7 @@ python pipeline/ai_lexicon.py          # F2 data (reuses ai_prevalence's denomin
 python pipeline/ai_sector.py           # F3 data
 python pipeline/informativeness.py     # F4 data (heavier: pages the AI-filer set + XBRL R&D)
 python pipeline/placebo_terms.py       # F5 data (AI vs control buzzwords)
-python pipeline/screen_signals.py      # F6 data (extraction-instrument prevalence)
+python -m screen.run                   # F6 data (the engine: sec16_evasion + all surfaces)
 ```
 
 Absolute counts drift as new filings arrive on EDGAR; the **shapes and ratios**

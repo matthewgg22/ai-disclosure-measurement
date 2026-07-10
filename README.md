@@ -43,7 +43,7 @@ Applying the **same** marketing template ("<term>-powered" / "<term>-driven") to
 
 ### The mechanism: detecting the extraction structure
 
-The AI label is the wrapper. The value is pulled out through a specific, measurable structure: **pre-funded warrants** (a nominal-price dilution instrument) paired with an **ownership blocker** ("beneficial ownership limitation" language) that keeps a holder below the Section 16 / 5% reporting threshold, so large economic positions avoid insider disclosure. Using the same full-text-search method, the pre-funded-warrant instrument went from near zero before 2016 to **8.6%** of 10-K filers by 2025, and the **paired** structure (both in one filing, routing dilution around Section 16) went from ~0 to **2.0%**, almost all of it since 2020 (`screen_signals.py`).
+The AI label is the wrapper. The value is pulled out through a specific, measurable structure: **pre-funded warrants** (a nominal-price dilution instrument) paired with an **ownership blocker** ("beneficial ownership limitation" language) that keeps a holder below the Section 16 / 5% reporting threshold, so large economic positions avoid insider disclosure. Using the same full-text-search method, the pre-funded-warrant instrument went from near zero before 2016 to **8.6%** of 10-K filers by 2025, and the **paired** structure (both in one filing, routing dilution around Section 16) went from ~0 to **2.0%**, almost all of it since 2020 (the `screen/` engine, `python -m screen.run`).
 
 ![The extraction instrument spread through filings](docs/figures/f6_extraction.png)
 

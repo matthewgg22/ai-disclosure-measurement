@@ -5,6 +5,7 @@ run with no network.
 import csv
 import json
 import os
+import socket
 import time
 import urllib.error
 import urllib.parse
@@ -14,6 +15,11 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _DEFAULT_CACHE = os.path.join(_ROOT, "data", "_cache_screen_engine.json")
 _DENOM_CSV = os.path.join(_ROOT, "data", "aggregates", "ai_prevalence.csv")
 _FTS_URL = "https://efts.sec.gov/LATEST/search-index?"
+
+# The only errors we treat as transient/expected fetch failures. Anything else (a bug like
+# KeyError, a bad response shape) propagates loudly instead of masquerading as "no data".
+_NET_ERRORS = (urllib.error.URLError, socket.timeout, TimeoutError,
+               ConnectionError, json.JSONDecodeError)
 
 
 class EdgarClient:
@@ -26,8 +32,13 @@ class EdgarClient:
         self.throttle = throttle
         self.timeout = timeout
         self._last = 0.0
-        self._cache = json.load(open(cache_path)) if os.path.exists(cache_path) else {}
+        if os.path.exists(cache_path):
+            with open(cache_path) as fh:
+                self._cache = json.load(fh)
+        else:
+            self._cache = {}
         self._denom = None
+        self.failures = []   # (kind, key) for fetches that exhausted retries; run.py checks this
 
     def _sleep(self):
         dt = time.time() - self._last
@@ -36,8 +47,12 @@ class EdgarClient:
         self._last = time.time()
 
     def _save(self):
+        # atomic: write a temp file then rename, so a crash mid-write cannot corrupt the cache
         os.makedirs(os.path.dirname(self.cache_path), exist_ok=True)
-        json.dump(self._cache, open(self.cache_path, "w"))
+        tmp = self.cache_path + ".tmp"
+        with open(tmp, "w") as fh:
+            json.dump(self._cache, fh)
+        os.replace(tmp, self.cache_path)
 
     def fts_count(self, query, year, forms="10-K"):
         """Number of `forms` filings matching a full-text query in a calendar year. Cached.
@@ -57,8 +72,9 @@ class EdgarClient:
                 self._cache[key] = n
                 self._save()
                 return n
-            except Exception:
+            except _NET_ERRORS:
                 time.sleep(2.0 * (i + 1))
+        self.failures.append(("fts", key))   # a real fetch failure, not a real 0
         return None
 
     def xbrl_frames_instant(self, concept, year, unit="shares"):
@@ -83,13 +99,14 @@ class EdgarClient:
                 self._save()
                 return out
             except urllib.error.HTTPError as e:
-                if e.code == 404:  # no such frame that quarter
+                if e.code == 404:  # no such frame that quarter: a real absence, not a failure
                     self._cache[cache_key] = {}
                     self._save()
                     return {}
                 time.sleep(2.0 * (i + 1))
-            except Exception:
+            except _NET_ERRORS:
                 time.sleep(2.0 * (i + 1))
+        self.failures.append(("xbrl", cache_key))
         return {}
 
     def denominator(self, year):
@@ -97,6 +114,7 @@ class EdgarClient:
         if self._denom is None:
             self._denom = {}
             if os.path.exists(_DENOM_CSV):
-                for r in csv.DictReader(open(_DENOM_CSV)):
-                    self._denom[int(r["year"])] = int(r["n_10k_filers"])
+                with open(_DENOM_CSV) as fh:
+                    for r in csv.DictReader(fh):
+                        self._denom[int(r["year"])] = int(r["n_10k_filers"])
         return self._denom.get(int(year))

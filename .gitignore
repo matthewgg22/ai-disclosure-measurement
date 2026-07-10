@@ -20,10 +20,8 @@ env/
 !data/aggregates/ai_sector_by_year.csv
 !data/aggregates/informativeness.csv
 !data/aggregates/placebo_terms.csv
-!data/aggregates/screen_signals.csv
-!data/aggregates/informativeness.csv
+!data/aggregates/screen_registry.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx
 *.pdf
-!data/aggregates/screen_registry.csv

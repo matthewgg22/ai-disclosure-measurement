@@ -6,7 +6,8 @@ lives here; the client is the only I/O surface, so tests pass a fake client. Any
 with FTS queries is handled generically by FtsExtractor, so adding an extractable surface to
 the registry needs no new code here.
 """
-from .signal import YearAggregate
+from .signal import (YearAggregate, DENOM_10K_FILERS, DENOM_FILING_OVER_10K,
+                     DENOM_XBRL_Q4)
 
 
 class FtsExtractor:
@@ -19,6 +20,9 @@ class FtsExtractor:
         self.spec = spec
 
     def signals(self, client, years):
+        # A 10-K phrase is ~one match per filer (comparable to the filer base); a non-10-K
+        # form (8-K, NT 10-K) is a raw filing count over the same base, a different unit.
+        denom_source = DENOM_10K_FILERS if self.spec.forms == "10-K" else DENOM_FILING_OVER_10K
         rows = []
         for year in years:
             denom = client.denominator(year)
@@ -26,7 +30,7 @@ class FtsExtractor:
                 continue
             for label, query in self.spec.fts_queries.items():
                 n = client.fts_count(query, year, forms=self.spec.forms)
-                if n is None:
+                if n is None:   # fetch failed (distinct from a real 0); recorded by run_all
                     continue
                 rows.append(YearAggregate(
                     year=int(year),
@@ -34,6 +38,7 @@ class FtsExtractor:
                     signal_id=f"{self.spec.id}.{label}",
                     n=int(n),
                     n_filers=int(denom),
+                    denom_source=denom_source,
                 ))
         return rows
 
@@ -70,6 +75,7 @@ class XbrlExtractor:
                     signal_id=f"{self.spec.id}.pct_over_{int(t)}x",
                     n=int(n),
                     n_filers=int(n_filers),
+                    denom_source=DENOM_XBRL_Q4,
                 ))
         return rows
 
@@ -82,11 +88,5 @@ def extractor_for(spec):
 
 
 def extractors_for(specs):
-    """Build the right extractor for each extractable surface."""
-    out = []
-    for s in specs:
-        if s.source == "fts" and s.fts_queries:
-            out.append(FtsExtractor(s))
-        elif s.source == "xbrl" and s.xbrl_concept:
-            out.append(XbrlExtractor(s))
-    return out
+    """Build the right extractor for each surface (pass extractable() specs)."""
+    return [extractor_for(s) for s in specs]

@@ -55,7 +55,8 @@ frames, and the financial-statement data sets). Grouped by what they capture:
   disclosure.
 - The **paired structure** (both in the same filing), which routes dilution around Section 16.
 - Dilution magnitude (share-count growth, reverse-split frequency as the post-dilution reset).
-- Measured market-wide and over time in **F6** (`screen_signals.py`); the issuer-level triad
+- Measured market-wide and over time in **F6** (the engine's `sec16_evasion` surface,
+  `python -m screen.run`); the issuer-level triad
   detector is `dilution_evasion.py`.
 
 **B. Gatekeeper distress (who signs off).**
