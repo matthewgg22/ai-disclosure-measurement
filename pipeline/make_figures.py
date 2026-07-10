@@ -174,16 +174,24 @@ def fig4_informativeness(info):
     axA.set_title("Share reporting any R&D", fontsize=10.5, color=INK, loc="left")
     axA.set_ylabel("% of AI-labeled filers", fontsize=9, color=INK)
 
-    # Panel B: R&D-intensity premium over the market baseline
+    # Panel B: R&D-intensity premium over the market baseline, with 95% bootstrap CIs.
+    lo = [float(r["premium_ci_lo"]) for r in info]
+    hi = [float(r["premium_ci_hi"]) for r in info]
     colors = [MUTED if s else (SUBST if v >= 0 else MARKET) for s, v in zip(small, prem)]
     axB.bar(x, prem, color=colors, width=0.62)
     axB.axhline(0, color=INK, linewidth=0.9)
-    for xi, v in zip(x, prem):
-        axB.text(xi, v + (0.004 if v >= 0 else -0.004), f"{v:+.3f}", ha="center",
-                 va="bottom" if v >= 0 else "top", fontsize=9, color=INK)
-    pad = max(abs(min(prem)), abs(max(prem))) * 1.35
-    axB.set_ylim(-pad, pad)
-    axB.set_title("R&D-intensity premium vs. the market", fontsize=10.5, color=INK, loc="left")
+    yerr = [[p - l for p, l in zip(prem, lo)], [h - p for h, p in zip(hi, prem)]]
+    axB.errorbar(x, prem, yerr=yerr, fmt="none", ecolor=INK, elinewidth=1.1, capsize=4)
+    # Fixed, readable window; the 2015 small-sample CI runs far off-scale and is annotated.
+    axB.set_ylim(-0.16, 0.09)
+    for xi, v, s in zip(x, prem, small):
+        axB.text(xi, -0.15, f"{v:+.3f}", ha="center", va="bottom", fontsize=8.5,
+                 color=MUTED if s else INK)
+    for xi, s, h in zip(x, small, hi):
+        if h > 0.09:  # CI whisker off the top (2015)
+            axB.annotate("CI to\n+%.1f" % h, (xi, 0.085), ha="center", va="top",
+                         fontsize=7.5, color=MUTED)
+    axB.set_title("R&D-intensity premium vs. market (95% CI)", fontsize=10.5, color=INK, loc="left")
     axB.set_ylabel("median R&D/revenue, AI minus baseline", fontsize=9, color=INK)
 
     for ax in (axA, axB):

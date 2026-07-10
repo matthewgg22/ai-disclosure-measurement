@@ -121,11 +121,16 @@ median R&D-intensity (R&D over revenue) premium of AI-labeled firms over the all
 baseline falls from +0.036 (2018) to +0.022 (2021) to +0.009 (2024). Over the same window the
 AI-labeled pool grows from 37 firms (2015) to 278 (2018), 744 (2021), and 2,396 (2024).
 
-The 2015 benchmark rests on only 37 firms and its negative point estimate (−0.059) is not
-reliable, so it is treated as a small sample, and the defensible reading is the decline
-across 2018–2024. That decline is consistent with a lemons dynamic (Akerlof, 1970): as a
-costless label spreads, the average quality of the firms carrying it converges toward the
-market, and the label's power to separate stronger firms from the rest weakens.
+95% bootstrap confidence intervals (2,000 resamples, resampling each group with
+replacement) sharpen the reading. The 2018 premium is +0.036 with a CI of [0.013, 0.067],
+which excludes zero. By 2024 it is +0.009 with a CI of [−0.013, 0.030], which includes zero.
+The 2021 value (+0.022, CI [−0.002, 0.046]) is marginal. In words, AI-labeled firms carried
+an R&D-intensity premium distinguishable from zero in 2018, and by 2024 they no longer do.
+The 2015 benchmark rests on only 37 firms, and its CI runs to +2.3 (a handful of
+tiny-revenue firms with very large R&D ratios), so it is uninformative and is treated as a
+small sample. This before-and-after pattern is consistent with a lemons dynamic (Akerlof,
+1970): as a costless label spreads, the average quality of the firms carrying it converges
+toward the market, and the label's power to separate stronger firms from the rest weakens.
 
 One confound deserves emphasis, because the broader project documents it directly. As the
 pool grows it fills with larger and less R&D-intensive firms, so part of the premium's
@@ -177,9 +182,12 @@ build buckets are summed upper bounds, so their levels overstate and only the di
 interpreted. Sector shares in the early 2000s rest on small samples. The informativeness test
 uses four benchmark years and audited R&D, which not all firms report, and the 2015 point in
 particular is a small sample; it is also subject to the composition confound noted in Section
-3.4. No confidence intervals are reported, so the series should be read as descriptive point
-estimates rather than tested differences. Because EDGAR accrues filings continuously,
-absolute counts drift even as the reported shapes hold.
+3.4. The informativeness premium (Section 3.4) is reported with 95% bootstrap confidence
+intervals, since it is a statistic of a firm-level sample. The prevalence, lexicon, sector,
+and placebo figures (Sections 3.1, 3.2, 3.3, 3.5) are near-complete counts of filings rather
+than samples, so they carry no sampling error and no interval is reported for them; their
+uncertainty is in the phrase definitions, not in sampling. Because EDGAR accrues filings
+continuously, absolute counts drift even as the reported shapes hold.
 
 ## 6. Conclusion
 

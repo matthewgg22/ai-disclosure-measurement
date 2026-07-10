@@ -163,6 +163,12 @@ so its design is spelled out:
   study; coverage gaps in free sources are a known limitation and are handled by the
   matched-control design rather than assumed away. A CRSP path exists for users with a
   license.
+- **Uncertainty.** The one figure computed from a firm-level sample, the
+  informativeness R&D-intensity premium (`informativeness.py`, F4), is reported with
+  95% bootstrap confidence intervals (2,000 resamples, fixed seed). The prevalence,
+  lexicon, sector, and placebo figures are near-complete counts of filings, not
+  samples, so they carry no sampling error; their uncertainty is in the phrase
+  definitions, not in sampling, and no interval is drawn for them.
 - **Envelopes vs. point estimates.** Capital-destruction figures are explicitly
   order-of-magnitude envelopes with stated bounds, not precise damages estimates.
 - **Population framing.** Every cohort statistic is a property of a screened population.

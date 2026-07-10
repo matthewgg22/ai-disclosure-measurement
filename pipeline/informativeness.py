@@ -17,10 +17,26 @@ Lemons signature: % falls, intensity falls, premium compresses over time.
 
 Heavy step (cached/resumable): the full AI CIK list per year via FTS paging.
 """
-import json, os, sys, time, urllib.parse, urllib.request, statistics
+import json, os, sys, time, urllib.parse, urllib.request, statistics, random
 DATA = os.path.join(os.path.dirname(__file__), "..", "data")
 UA = {"User-Agent": "AI Washing Research (HKS PAE) matthewgreergentis@gmail.com"}
 YEARS = [2015, 2018, 2021, 2024]   # pre / ramp / post-ChatGPT-onset / post
+
+# Deterministic bootstrap for the premium's 95% CI (fixed seed -> reproducible).
+BOOT = 2000
+_RNG = random.Random(20260709)
+def premium_ci(ai_int, base_int, B=BOOT):
+    """95% bootstrap CI for (median AI R&D-intensity - median baseline). Resamples each
+    group with replacement. Returns (lo, hi) rounded, or (None, None) if a group is empty."""
+    if not ai_int or not base_int:
+        return (None, None)
+    diffs = []
+    for _ in range(B):
+        a = statistics.median(_RNG.choices(ai_int, k=len(ai_int)))
+        b = statistics.median(_RNG.choices(base_int, k=len(base_int)))
+        diffs.append(a - b)
+    diffs.sort()
+    return (round(diffs[int(0.025 * B)], 3), round(diffs[int(0.975 * B)], 3))
 
 def get(url, tries=8):
     for i in range(tries):
@@ -102,13 +118,16 @@ def main():
                "rnd_reporters_total": len(rnd)}
         rec["substance_premium"] = (round(rec["ai_median_rnd_intensity"] - rec["baseline_median_rnd_intensity"], 3)
                                     if rec["ai_median_rnd_intensity"] and rec["baseline_median_rnd_intensity"] else None)
+        lo, hi = premium_ci(ai_int, base_int)
+        rec["premium_ci_lo"], rec["premium_ci_hi"] = lo, hi
         rows.append(rec)
         print(f"   {y}: AI firms={ai_n}  %reporting R&D={rec['pct_ai_reporting_rnd']}  "
               f"AI med R&D/rev={rec['ai_median_rnd_intensity']}  baseline={rec['baseline_median_rnd_intensity']}  "
-              f"premium={rec['substance_premium']}", flush=True)
+              f"premium={rec['substance_premium']}  95% CI=[{lo}, {hi}]", flush=True)
 
     cols = ["year","ai_firms","pct_ai_reporting_rnd","ai_median_rnd_intensity",
-            "baseline_median_rnd_intensity","substance_premium","rnd_reporters_total"]
+            "baseline_median_rnd_intensity","substance_premium","premium_ci_lo","premium_ci_hi",
+            "rnd_reporters_total"]
     with open(os.path.join(DATA, "informativeness.csv"), "w") as f:
         f.write(",".join(cols) + "\n")
         for r in rows:

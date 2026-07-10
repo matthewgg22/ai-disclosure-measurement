@@ -67,11 +67,16 @@ For construction detail (denominators, phrase selection, identification), see
 - **Number:** measuring capability with **audited R&D** (hard to fake), as the AI
   label spread from **37** 10-K filers (2015) to **~2,400** (2024): the share of
   AI-labeled filers reporting *any* R&D fell to **42.4%** (2024), and their median
-  R&D-intensity premium over the market baseline compressed from **+0.036** (2018)
-  to **+0.022** (2021) to **+0.009** (2024), toward zero.
-- **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059), too
-  small to trust, drawn faded in the figure. The defensible reading is the
-  **post-2018 compression**, when the AI pool first exceeds a few hundred firms.
+  R&D-intensity premium over the market baseline fell from **+0.036** (2018) to
+  **+0.022** (2021) to **+0.009** (2024), toward zero.
+- **With 95% bootstrap CIs (2,000 resamples, error bars in the figure):** the 2018
+  premium is **+0.036 [0.013, 0.067]**, which excludes zero; by 2024 it is
+  **+0.009 [−0.013, 0.030]**, which includes zero. So the label carried a premium
+  distinguishable from zero in 2018 and no longer does by 2024. 2021 is marginal
+  (**+0.022 [−0.002, 0.046]**).
+- **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059) and its
+  CI runs to **+2.3** (a few tiny-revenue firms with huge R&D ratios), so it is
+  uninformative and drawn faded. The defensible reading is the 2018-to-2024 erosion.
 - **Why it's a null, not a hot take:** the claim is not "AI is hype"; it is that
   the label's *information content about real capability decayed* as it
   proliferated (a lemons precondition). This is one of several disciplining nulls
