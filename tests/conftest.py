@@ -3,12 +3,14 @@ import pytest
 
 
 class FakeClient:
-    """Implements the two methods extractors depend on, from preset dicts."""
+    """Implements the methods extractors depend on, from preset dicts."""
 
-    def __init__(self, counts, denom):
-        # counts: {(query, year, forms): n}; denom: {year: n_filers}
+    def __init__(self, counts, denom, frames=None):
+        # counts: {(query, year, forms): n}; denom: {year: n_filers};
+        # frames: {(concept, year): {cik: shares}}
         self._counts = counts
         self._denom = denom
+        self._frames = frames or {}
         self.calls = []
 
     def fts_count(self, query, year, forms="10-K"):
@@ -17,6 +19,9 @@ class FakeClient:
 
     def denominator(self, year):
         return self._denom.get(int(year))
+
+    def xbrl_frames_instant(self, concept, year, unit="shares"):
+        return self._frames.get((concept, int(year)), {})
 
 
 @pytest.fixture

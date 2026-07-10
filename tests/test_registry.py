@@ -21,11 +21,15 @@ def test_all_six_instruments_covered():
     assert covered == set(INSTRUMENTS), f"missing instruments: {set(INSTRUMENTS) - covered}"
 
 
-def test_extractable_have_queries():
+def test_extractable_have_a_source():
     for s in extractable():
-        assert s.fts_queries, f"{s.id} in extractable() but has no queries"
-    # and at least the extraction instrument is extractable now
-    assert any(s.id == "sec16_evasion" for s in extractable())
+        if s.source == "fts":
+            assert s.fts_queries, f"{s.id} fts but no queries"
+        elif s.source == "xbrl":
+            assert s.xbrl_concept, f"{s.id} xbrl but no concept"
+    # the FTS extraction instrument and the XBRL share-explosion are both extractable now
+    ids = {s.id for s in extractable()}
+    assert "sec16_evasion" in ids and "share_explosion" in ids
 
 
 def test_bad_instrument_rejected():

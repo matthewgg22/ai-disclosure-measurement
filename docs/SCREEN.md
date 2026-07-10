@@ -20,9 +20,14 @@ same issuer* is what carries signal. Any single feature is a screening input, ne
 
 The screen is an engine, not a pile of scripts. The registry of regulatory surfaces and the
 extractors that measure them live in [`../screen/`](../screen/): each SEC surface is a
-declarative `SurfaceSpec` (rule citation, instrument group, description, and the full-text
-query when it is FTS-measurable), and a generic extractor turns any extractable surface into
-per-year aggregate prevalence through one shared, cached EDGAR client. A publication gate
+declarative `SurfaceSpec` (rule citation, instrument group, description, and either a full-text
+query or an XBRL concept), and the matching extractor turns it into per-year aggregate
+prevalence through one shared, cached EDGAR client. Two extractor types exist: `FtsExtractor`
+(phrase prevalence) and `XbrlExtractor`, which reads structured facts. The first XBRL signal,
+`share_explosion`, reports the share of filers whose common-shares-outstanding count grew past
+2x / 5x / 10x year-over-year (the dilution mechanism as a hard number, not a phrase; XBRL
+coverage begins around 2010, and the denominator is the set of filers reporting shares in the
+Q4 instant frame in both years). A publication gate
 guarantees only aggregate, issuer-free rows leave the engine, and a pytest suite drives the
 extractors offline with recorded fixtures. Run it with `python3 -m screen.run`; the aggregate
 output is `data/aggregates/screen_registry.csv`. See [`../screen/README.md`](../screen/README.md).

@@ -11,7 +11,8 @@ screen/
   registry.py          the breadth: SurfaceSpec per SEC rule/form/item (groups A-F)
   signal.py            SurfaceSpec + YearAggregate data types; INSTRUMENTS
   edgar.py             one shared throttled/cached EDGAR full-text-search client
-  extractors.py        FtsExtractor: SurfaceSpec -> per-year YearAggregate (pure fn of the client)
+  extractors.py        FtsExtractor (phrase prevalence) + XbrlExtractor (structured share
+                       dilution); SurfaceSpec -> per-year YearAggregate, pure fn of the client
   aggregate.py         run_all + to_csv (through the publication gate)
   publication_gate.py  refuses any issuer-level column; only aggregates leave the engine
   validation.py        size-controlled OOS AUC / lift on a labeled table (no issuer identity)
@@ -27,10 +28,12 @@ python3 -m pytest -q                      # the test suite (no network; recorded
 
 ## Design
 
-- **Registry-driven.** Adding a regulatory surface = adding one `SurfaceSpec` to
-  `registry.py`. If it is measurable from full-text search, that is all it takes: the generic
-  `FtsExtractor` picks it up. Structured-data and per-issuer surfaces are documented in the
-  registry now and get their own extractors in later phases.
+- **Registry-driven, multi-source.** Adding a regulatory surface = adding one `SurfaceSpec` to
+  `registry.py` with a `source` (`fts` | `xbrl`). FTS surfaces (a phrase query) are picked up by
+  `FtsExtractor`; XBRL surfaces (a concept, e.g. `share_explosion` reading
+  `dei:EntityCommonStockSharesOutstanding`) by `XbrlExtractor`, which reads structured facts
+  instead of guessing phrases. Per-issuer and full-index surfaces are documented in the registry
+  and get their own extractors in later phases.
 - **Extractors are pure functions of the client.** No network lives in an extractor, so the
   test suite drives them with a fake client and runs offline.
 - **The wall is architecture, not a promise.** `YearAggregate` has no issuer field, and

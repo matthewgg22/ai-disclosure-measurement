@@ -28,13 +28,19 @@ class SurfaceSpec:
     instrument: str            # key into INSTRUMENTS
     citation: str              # the SEC rule / form / item this surface sits on
     description: str           # what the fingerprint is and why fraud produces it
-    fts_queries: dict          # {sub_signal_label: fts_query_string}
+    fts_queries: dict          # {sub_signal_label: fts_query_string} (source="fts")
     forms: str = "10-K"        # EDGAR form filter for the FTS queries
     publishable: bool = True   # aggregate output may be published (always True here)
+    source: str = "fts"        # which extractor drives this surface: fts | xbrl | index
+    xbrl_concept: str = ""     # e.g. "dei:EntityCommonStockSharesOutstanding" (source="xbrl")
+    thresholds: tuple = (2.0, 5.0, 10.0)   # year-over-year growth cut points (source="xbrl")
+    index_form: str = ""       # EDGAR full-index form-type string, e.g. "NT 10-K" (source="index")
 
     def __post_init__(self):
         if self.instrument not in INSTRUMENTS:
             raise ValueError(f"{self.id}: unknown instrument {self.instrument!r}")
+        if self.source not in ("fts", "xbrl", "index"):
+            raise ValueError(f"{self.id}: unknown source {self.source!r}")
 
 
 @dataclass(frozen=True)

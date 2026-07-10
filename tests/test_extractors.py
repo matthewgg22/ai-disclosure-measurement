@@ -45,4 +45,5 @@ def test_non_extractable_surface_rejected():
 def test_extractors_for_only_builds_extractable():
     exs = extractors_for(extractable())
     assert len(exs) == len(extractable())
-    assert all(e.spec.fts_queries for e in exs)
+    # each built extractor's spec is genuinely extractable (fts queries or xbrl concept)
+    assert all(e.spec.fts_queries or e.spec.xbrl_concept for e in exs)

@@ -92,9 +92,15 @@ REGISTRY = [
     SurfaceSpec(
         id="share_explosion",
         instrument="D",
-        citation="Reg S-X; XBRL (shares outstanding)",
-        description="Shares-outstanding growth multiple. Computed from XBRL per issuer; deferred.",
+        citation="Reg S-X; XBRL dei:EntityCommonStockSharesOutstanding",
+        description=(
+            "Year-over-year shares-outstanding growth: the dilution mechanism as a hard number. "
+            "Reads the Q4 instant frame for year and year-1, joins on the CIK intersection, and "
+            "reports the share of filers whose count grew past 2x / 5x / 10x."),
         fts_queries={},
+        source="xbrl",
+        xbrl_concept="dei:EntityCommonStockSharesOutstanding",
+        thresholds=(2.0, 5.0, 10.0),
     ),
     # --- E. Trigger events ---
     SurfaceSpec(
@@ -134,8 +140,15 @@ REGISTRY = [
 
 
 def extractable():
-    """Surfaces that can be measured now from FTS alone (have queries)."""
-    return [s for s in REGISTRY if s.fts_queries]
+    """Surfaces that can be measured now: FTS surfaces with queries, or XBRL surfaces with a
+    concept."""
+    out = []
+    for s in REGISTRY:
+        if s.source == "fts" and s.fts_queries:
+            out.append(s)
+        elif s.source == "xbrl" and s.xbrl_concept:
+            out.append(s)
+    return out
 
 
 def by_id(surface_id):

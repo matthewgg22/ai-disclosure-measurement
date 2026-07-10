@@ -6,6 +6,7 @@ import csv
 import json
 import os
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -59,6 +60,37 @@ class EdgarClient:
             except Exception:
                 time.sleep(2.0 * (i + 1))
         return None
+
+    def xbrl_frames_instant(self, concept, year, unit="shares"):
+        """A balance-sheet (instantaneous) XBRL concept as a {cik: value} map for the Q4
+        instant frame CY{year}Q4I. `concept` may carry a taxonomy prefix ("dei:Foo");
+        default taxonomy is us-gaap. Returns the Q4-end cross-section (not literally every
+        filer; only those reporting as of that quarter-end). Cached to disk (issuer-level;
+        lives under the git-ignored data/ tree)."""
+        tax, name = ("dei", concept.split(":", 1)[1]) if concept.startswith("dei:") \
+            else ("us-gaap", concept.split(":", 1)[-1])
+        cache_key = f"frames|{tax}|{name}|{unit}|CY{year}Q4I"
+        if cache_key in self._cache:
+            return {int(k): v for k, v in self._cache[cache_key].items()}
+        self._sleep()
+        url = f"https://data.sec.gov/api/xbrl/frames/{tax}/{name}/{unit}/CY{year}Q4I.json"
+        for i in range(6):
+            try:
+                d = json.load(urllib.request.urlopen(
+                    urllib.request.Request(url, headers=self.ua), timeout=self.timeout))
+                out = {int(x["cik"]): x["val"] for x in d.get("data", [])}
+                self._cache[cache_key] = out
+                self._save()
+                return out
+            except urllib.error.HTTPError as e:
+                if e.code == 404:  # no such frame that quarter
+                    self._cache[cache_key] = {}
+                    self._save()
+                    return {}
+                time.sleep(2.0 * (i + 1))
+            except Exception:
+                time.sleep(2.0 * (i + 1))
+        return {}
 
     def denominator(self, year):
         """Distinct 10-K filers in a year, from the committed aggregate (ai_prevalence.csv)."""
