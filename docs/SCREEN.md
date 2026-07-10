@@ -99,8 +99,18 @@ design, which is the standard the project holds itself to:
 - **Predictor:** the red-flag score described above.
 - **Control:** firm size. Small firms fail more often for reasons unrelated to extraction, so
   the screen must add predictive power **after** conditioning on size.
-- **Estimation:** out-of-sample (cross-validated) area under the ROC curve, lift by score
-  decile, and precision/recall, reported as **aggregate statistics** (`gap_classifier.py`).
+- **Estimation:** out-of-sample area under the ROC curve, lift by score decile, and
+  calibration, reported as **aggregate statistics**.
+
+**The harness is built.** [`../screen/validation.py`](../screen/validation.py) implements this:
+a transparent-score AUC (rank-based, no model fit), a size-adjusted AUC (mean AUC within
+size terciles, so the score must clear 0.5 *after* the size control), lift by decile, and a
+fixed-seed bootstrap CI. It operates on an abstract labeled table (score, size, outcome) and
+holds no issuer identity, so it lives here and is unit-tested on synthetic data (it recovers a
+planted signal, shows the size-only baseline is weaker, and returns ~0.5 on noise). Producing
+*real* numbers means running it over the issuer universe with delisting / drawdown outcomes:
+that is issuer-level, so it is the private Phase 3 step, and only the aggregate AUC / lift it
+returns would ever be published here.
 
 **A disciplining result the project keeps in front, not buried:** the naive "hollow firm =
 washer" resource gap is **mostly a size effect**. A size-controlled classifier on that feature

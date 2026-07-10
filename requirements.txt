@@ -13,7 +13,8 @@ scipy>=1.10
 # Figure generation (docs/figures/ for the README) — pipeline/make_figures.py only:
 matplotlib>=3.7
 
-# The screen/ engine is pure standard library. Tests only:
+# The screen/ engine registry + extractors are standard library; screen/validation.py uses
+# numpy (already required above). Tests:
 pytest>=7         # dev only: python -m pytest (the screen/ engine test suite)
 
 # Optional — imported lazily, only on specific paths:

@@ -14,6 +14,7 @@ screen/
   extractors.py        FtsExtractor: SurfaceSpec -> per-year YearAggregate (pure fn of the client)
   aggregate.py         run_all + to_csv (through the publication gate)
   publication_gate.py  refuses any issuer-level column; only aggregates leave the engine
+  validation.py        size-controlled OOS AUC / lift on a labeled table (no issuer identity)
   run.py               entry point -> data/aggregates/screen_registry.csv
 ```
 
@@ -43,6 +44,9 @@ In: the registry, the shared client, the FTS extractors for the surfaces measura
 (Section 16 evasion, going concern, material weakness, toxic dilution / ATM, reverse-split
 reset, 8-K restatement and delisting triggers), the publication gate, and the test suite.
 
+Also in: the size-controlled validation harness (`validation.py`), as tested code that
+operates on an abstract labeled table and holds no issuer identity.
+
 Out (later phases, mostly private): the per-issuer signal store, per-issuer scoring, the
-learned-score benchmark, and the size-controlled out-of-sample validation harness against
-market outcomes (delisting / drawdown).
+learned-score benchmark, and *running* the validation harness over the real issuer universe
+with delisting / drawdown outcomes (issuer-level; only its aggregate AUC / lift would publish).
