@@ -117,6 +117,27 @@ For construction detail (denominators, phrase selection, identification), see
   `data/placebo_terms.csv` (committed at `data/aggregates/placebo_terms.csv`). Reuses the
   committed 10-K denominator; pure EDGAR full-text search.
 
+## F6: The extraction instrument spread through filings
+
+![F6](figures/f6_extraction.png)
+
+- **Number:** the pre-funded-warrant dilution instrument went from near zero before 2016 to
+  **8.6%** of 10-K filers in 2025; the ownership blocker ("beneficial ownership limitation",
+  which keeps a holder below the Section 16 / 5% threshold) reached **5.6%**; and the
+  **paired structure** (both in the same filing, which routes dilution around Section 16
+  insider disclosure) went from ~0 to **2.0%**, almost all of it since 2020.
+- **Why it matters:** this is the detection layer pointed at the fraud *mechanism*, not the
+  AI wrapper. It shows the capital-extraction toolkit spreading through public filings, and
+  it is measurable market-wide from public data.
+- **Honest boundary:** all three phrases have legitimate uses, so their prevalence is a
+  **screening input, not a finding of fraud**. The fraud-relevant object is the co-occurrence
+  of many red-flags at one small-cap issuer, which is issuer-level and out of scope for this
+  public repo. See [`docs/SCREEN.md`](SCREEN.md) for the full method and validation design.
+- **Data script:** [`pipeline/screen_signals.py`](../pipeline/screen_signals.py) →
+  `data/screen_signals.csv` (committed at `data/aggregates/screen_signals.csv`). Reuses the
+  committed 10-K denominator; pure EDGAR full-text search (space-separated quoted phrases are
+  AND-ed, which gives the co-occurrence count).
+
 ---
 
 ## Reproduce
@@ -135,6 +156,7 @@ python pipeline/ai_lexicon.py          # F2 data (reuses ai_prevalence's denomin
 python pipeline/ai_sector.py           # F3 data
 python pipeline/informativeness.py     # F4 data (heavier: pages the AI-filer set + XBRL R&D)
 python pipeline/placebo_terms.py       # F5 data (AI vs control buzzwords)
+python pipeline/screen_signals.py      # F6 data (extraction-instrument prevalence)
 ```
 
 Absolute counts drift as new filings arrive on EDGAR; the **shapes and ratios**

@@ -3,9 +3,9 @@
 [![ci](https://github.com/matthewgg22/ai-disclosure-measurement/actions/workflows/ci.yml/badge.svg)](https://github.com/matthewgg22/ai-disclosure-measurement/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-A reproducible pipeline for measuring the **information content of the "AI" label in U.S. securities filings**: how far the label has decoupled from substance, and what that decoupling looks like in the small-cap tail where it is most exposed.
+A reproducible screen for the **capital-extraction structures that recur in nano, micro, and small-cap securities fraud**, built from public SEC filings. The "AI" label is one narrative *wrapper* the screen sits under: this repo measures how far that label has decoupled from substance (F1 to F5), and, at the level that matters more, tracks the extraction *mechanism* the wrapper hides, the pre-funded-warrant and ownership-blocker structure that routes dilution around Section 16 (F6, [`docs/SCREEN.md`](docs/SCREEN.md)).
 
-Built over the EDGAR corpus and the Russell 3000. Every script produces a **cohort-level or market-level measurement**; the finding each one supports is listed below. This repository is the public *measurement layer* of a larger research project; lead-generation and enforcement-referral tooling is deliberately excluded (see [Scope](#scope-what-is-not-here)).
+Built over the EDGAR corpus and the Russell 3000. Everything here is **aggregate and reproducible**; no individual issuer is named or ranked. This repository is the public *measurement layer* of a larger research project; issuer-level scoring, the §16(b) matcher, lead-generation, network mapping, and case files are deliberately excluded and kept private (see [Scope](#scope-what-is-not-here)).
 
 ---
 
@@ -40,6 +40,14 @@ This is one of several *disciplining nulls* the project keeps prominently (the A
 Applying the **same** marketing template ("<term>-powered" / "<term>-driven") to AI and to control buzzwords, in 2025 the AI form reached **12.9%** of 10-K filers versus **0.18%** (blockchain), **0.09%** (cloud), and **0.03%** (quantum). AI's marketing form is about **70x** the nearest control, while bare mentions differ only ~3x. Only AI produced a large marketing vocabulary (`placebo_terms.py`).
 
 ![Only AI got the marketing treatment](docs/figures/f5_placebo.png)
+
+### The mechanism: detecting the extraction structure
+
+The AI label is the wrapper. The value is pulled out through a specific, measurable structure: **pre-funded warrants** (a nominal-price dilution instrument) paired with an **ownership blocker** ("beneficial ownership limitation" language) that keeps a holder below the Section 16 / 5% reporting threshold, so large economic positions avoid insider disclosure. Using the same full-text-search method, the pre-funded-warrant instrument went from near zero before 2016 to **8.6%** of 10-K filers by 2025, and the **paired** structure (both in one filing, routing dilution around Section 16) went from ~0 to **2.0%**, almost all of it since 2020 (`screen_signals.py`).
+
+![The extraction instrument spread through filings](docs/figures/f6_extraction.png)
+
+These phrases have legitimate uses, so their prevalence is a **screening input, not a finding of fraud**. The detection method combines this with gatekeeper distress, financier concentration, shell lineage, and cross-border structure; the full feature set, scoring, and out-of-sample validation design are in [`docs/SCREEN.md`](docs/SCREEN.md). Issuer-level scoring stays private, by design.
 
 ---
 

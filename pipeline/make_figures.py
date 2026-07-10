@@ -253,19 +253,46 @@ def fig5_placebo(placebo):
     _save(fig, "f5_placebo")
 
 
+def fig6_extraction(screen):
+    # The capital-extraction instrument spreading through filings: the pre-funded warrant,
+    # the ownership blocker, and the paired structure that routes dilution around Section 16.
+    yrs = [int(r["year"]) for r in screen]
+    pfw = [float(r["pct_prefunded_warrant"]) for r in screen]
+    blk = [float(r["pct_ownership_blocker"]) for r in screen]
+    both = [float(r["pct_paired_structure"]) for r in screen]
+    fig, ax = plt.subplots(figsize=(8, 4.6))
+    ax.plot(yrs, pfw, color="#6a8caf", lw=2.0, label='"pre-funded warrant"')
+    ax.plot(yrs, blk, color=MUTED, lw=2.0, label='"beneficial ownership limitation" (blocker)')
+    ax.plot(yrs, both, color=MARKET, lw=2.8, label="both in the same filing (Section 16 evasion)")
+    ax.fill_between(yrs, both, color=MARKET, alpha=0.07)
+    ax.set_ylim(0, max(pfw) * 1.15)
+    ax.annotate(f"{pfw[-1]:.1f}%", (yrs[-1], pfw[-1]), textcoords="offset points",
+                xytext=(-40, 2), fontsize=9, color="#6a8caf", fontweight="bold")
+    ax.annotate(f"{both[-1]:.1f}%", (yrs[-1], both[-1]), textcoords="offset points",
+                xytext=(-34, -4), fontsize=9, color=MARKET, fontweight="bold")
+    ax.legend(frameon=False, fontsize=8.5, loc="upper left")
+    _style(ax, "The extraction instrument spread through filings",
+           "Share of 10-K filers disclosing the pre-funded-warrant / ownership-blocker structure "
+           "that routes dilution around Section 16",
+           "% of 10-K filers")
+    _save(fig, "f6_extraction")
+
+
 def main():
     prev = _read("ai_prevalence.csv")
     buckets = _read("ai_buckets_by_year.csv")
     sector = _read("ai_sector_by_year.csv")
     info = _read("informativeness.csv")
     placebo = _read("placebo_terms.csv")
+    screen = _read("screen_signals.csv")
     fig1_adoption(prev)
     fig2_marketing_vs_substance(buckets)
     fig3_sector_diffusion(sector)
     fig4_informativeness(info)
     fig5_placebo(placebo)
+    fig6_extraction(screen)
     print("[done] wrote docs/figures/ (f1_adoption, f2_marketing_vs_substance, "
-          "f3_sector_diffusion, f4_informativeness, f5_placebo)")
+          "f3_sector_diffusion, f4_informativeness, f5_placebo, f6_extraction)")
 
 
 if __name__ == "__main__":
