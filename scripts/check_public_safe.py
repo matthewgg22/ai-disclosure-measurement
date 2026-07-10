@@ -47,7 +47,7 @@ MAX_AGG_ROWS = 1000  # per-year (± per-sector) aggregates; a company list would
                      # larger AND caught by the issuer-column check below
 
 # File extensions we scan for developer paths / entity tokens.
-TEXT_EXTS = {".py", ".md", ".txt", ".csv", ".json", ".yml", ".yaml", ".cfg", ".ini"}
+TEXT_EXTS = {".py", ".md", ".txt", ".csv", ".json", ".yml", ".yaml", ".cfg", ".ini", ".cff"}
 
 # Directories to skip while walking.
 SKIP_DIRS = {".git", "__pycache__", ".venv", "env", "node_modules"}

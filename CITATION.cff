@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite it as below."
+title: "AI Disclosure Measurement"
+abstract: >-
+  A reproducible pipeline measuring the information content of the "AI" label in
+  US securities filings (EDGAR + Russell 3000). Aggregate, market-level
+  measurements of how far the label has decoupled from substance, reproducible
+  from public SEC and market data.
+type: software
+authors:
+  - family-names: Greer-Gentis
+    given-names: Matthew
+repository-code: "https://github.com/matthewgg22/ai-disclosure-measurement"
+url: "https://github.com/matthewgg22/ai-disclosure-measurement"
+license: MIT
+version: 0.1.0
+date-released: "2026-07-09"
+keywords:
+  - securities disclosure
+  - EDGAR
+  - SEC filings
+  - artificial intelligence
+  - AI washing
+  - reproducible research
+  - natural language processing
+# After the first Zenodo release, add the minted DOI as a value (not a badge):
+# doi: 10.5281/zenodo.XXXXXXX

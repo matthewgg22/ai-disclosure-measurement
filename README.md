@@ -130,6 +130,18 @@ Nothing here names or targets an individual company as a fraud suspect. The coho
 
 This pipeline was built with AI-assisted analysis and coding. The research design, the measurement choices, the interpretation, and the verification are the author's; AI was used as a coding and large-scale-review tool. All results are reproducible from the code and public data.
 
+## Working paper
+
+A short, aggregate-only working paper — *The Decoupling of the "AI" Label from Substance in U.S. Securities Filings, 2001–2025* — is drafted from these results in [`paper/`](paper/). It reuses figures F1–F4 and every number is reproducible from this repo. Outline: [`paper/OUTLINE.md`](paper/OUTLINE.md); abstract: [`paper/abstract.md`](paper/abstract.md).
+
+## How to cite
+
+If you use this work, please cite it. GitHub renders a "Cite this repository" button from [`CITATION.cff`](CITATION.cff). A permanent DOI badge will appear here once the first release is archived on Zenodo.
+
+```
+Greer-Gentis, M. (2026). AI Disclosure Measurement. https://github.com/matthewgg22/ai-disclosure-measurement
+```
+
 ## Author & license
 
 Matthew Greer-Gentis · Harvard Kennedy School (MPP) · research advised by Hal Scott and Daniel Tarullo.
