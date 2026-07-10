@@ -8,7 +8,7 @@ the registry needs no new code here.
 """
 from collections import Counter
 
-from .pcaob import is_big4
+from .pcaob import is_big4, firm_key
 from .signal import (YearAggregate, DENOM_10K_FILERS, DENOM_FILING_OVER_10K,
                      DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS)
 
@@ -122,12 +122,63 @@ class PcaobExtractor:
         return rows
 
 
+class AuditorChurnExtractor:
+    """Auditor churn and backstop recurrence from PCAOB Form AP, aggregate only. Building each
+    issuer's auditor across years in memory, then for each year Y over the issuers audited in
+    BOTH Y-1 and Y (continuing issuers) it emits:
+      change_rate          share that switched to a different audit firm (Big-4 network name
+                           variants collapse via firm_key, so they do not read as a change)
+      big4_to_nonbig4      of continuing issuers that had a Big-4 in Y-1, the share now on a
+                           non-Big-4 firm (the 'auditor downgrade' that often precedes distress)
+      backstop_top{N}_share of the issuers that switched to a non-Big-4 firm, the share whose
+                           new firm is one of the N busiest incoming small firms that year
+    Per-issuer histories never leave; only the yearly shares are emitted."""
+
+    def __init__(self, spec, min_pairs=100, top_n=10):
+        if spec.source != "pcaob" or spec.id != "auditor_churn":
+            raise ValueError(f"{spec.id}: not the auditor_churn surface")
+        self.spec = spec
+        self.min_pairs = min_pairs   # skip years with too few continuing issuers
+        self.top_n = top_n
+
+    def signals(self, client, years):
+        by_year = {}   # year -> {cik: (firm_key, firm_name)}
+        for year, firm, cik, _rtype in client.audits():
+            by_year.setdefault(year, {})[cik] = (firm_key(firm), firm)
+        inst, sid = self.spec.instrument, self.spec.id
+        rows = []
+        for year in sorted({int(y) for y in years}):
+            cur, prev = by_year.get(year), by_year.get(year - 1)
+            if not cur or not prev:
+                continue
+            pairs = [(prev[cik], cur[cik]) for cik in cur if cik in prev]  # (prev, cur) per issuer
+            n_cont = len(pairs)
+            if n_cont < self.min_pairs:
+                continue
+            switched = [(p, c) for p, c in pairs if p[0] != c[0]]
+            rows.append(YearAggregate(year, inst, f"{sid}.change_rate",
+                                      len(switched), n_cont, denom_source=DENOM_PCAOB_AUDITS))
+            had_big4 = [(p, c) for p, c in pairs if is_big4(p[1])]
+            if had_big4:
+                down = sum(1 for _, c in had_big4 if not is_big4(c[1]))
+                rows.append(YearAggregate(year, inst, f"{sid}.big4_to_nonbig4",
+                                          down, len(had_big4), denom_source=DENOM_PCAOB_AUDITS))
+            incoming = Counter(c[0] for _, c in switched if not is_big4(c[1]))
+            nb_switched = sum(incoming.values())
+            if nb_switched:
+                top = sum(k for _, k in incoming.most_common(self.top_n))
+                rows.append(YearAggregate(year, inst, f"{sid}.backstop_top{self.top_n}_share",
+                                          top, nb_switched, denom_source=DENOM_PCAOB_AUDITS))
+        rows.sort(key=lambda r: (r.signal_id, r.year))
+        return rows
+
+
 def extractor_for(spec):
-    """Return the extractor that drives a surface, by its source."""
+    """Return the extractor that drives a surface, by its source (and, for PCAOB, its id)."""
     if spec.source == "xbrl":
         return XbrlExtractor(spec)
     if spec.source == "pcaob":
-        return PcaobExtractor(spec)
+        return AuditorChurnExtractor(spec) if spec.id == "auditor_churn" else PcaobExtractor(spec)
     return FtsExtractor(spec)  # source == "fts" (index source is a later phase)
 
 

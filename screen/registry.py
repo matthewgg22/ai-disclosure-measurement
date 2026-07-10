@@ -72,15 +72,6 @@ REGISTRY = [
     ),
     # --- C. Auditor & gatekeeper ---
     SurfaceSpec(
-        id="auditor_churn",
-        instrument="C",
-        citation="Exchange Act Form 8-K Item 4.01 (changes in registrant's certifying accountant)",
-        description=(
-            "Frequency and direction of auditor changes and disclosed disagreements. Best from "
-            "the structured 8-K item index; per-issuer, deferred."),
-        fts_queries={},
-    ),
-    SurfaceSpec(
         id="auditor_market",
         instrument="C",
         citation="PCAOB Form AP (auditor reporting); Sarbanes-Oxley Section 102",
@@ -89,6 +80,19 @@ REGISTRY = [
             "non-Big-4 firms, and how concentrated the non-Big-4 book is in the ten busiest small "
             "firms (the 'backstop auditor' pattern). Small-cap fraud clusters at marginal and "
             "concentrated auditors. Form AP coverage begins ~2016."),
+        fts_queries={},
+        source="pcaob",
+    ),
+    SurfaceSpec(
+        id="auditor_churn",
+        instrument="C",
+        citation="PCAOB Form AP (auditor reporting); Sarbanes-Oxley Section 102",
+        description=(
+            "Auditor churn and backstop recurrence from PCAOB Form AP, year over year: the share "
+            "of continuing issuers that switched audit firms, the share that dismissed a Big-4 for "
+            "a non-Big-4 firm (the 'auditor downgrade' that often precedes distress), and how far "
+            "the switches concentrate into the ten busiest incoming small firms. Aggregate only; "
+            "the per-issuer auditor history stays in memory."),
         fts_queries={},
         source="pcaob",
     ),

@@ -159,6 +159,25 @@ For construction detail (denominators, phrase selection, identification), see
 - **Data source:** the engine, [`python -m screen.run`](../screen/) (the `auditor_market`
   surface, PCAOB Form AP under Sarbanes-Oxley Section 102) → `data/aggregates/screen_registry.csv`.
 
+## Auditor churn and the backstop firms
+
+- **Number:** year over year, the share of continuing issuers that switch audit firms rose from
+  **8.4%** (2017) to **~12%** (2023-2025). The fraud-relevant direction, dismissing a Big-4 for
+  a non-Big-4 firm, runs a steady **1.1-2.2%** of Big-4 clients per year. And of the issuers
+  that switch to a non-Big-4 firm, **35-53%** land at just the ten busiest incoming small firms:
+  a small set of firms absorbs much of the churn, which is the "backstop auditor" pattern as an
+  aggregate.
+- **Why it matters:** an auditor downgrade and a concentrated backstop are two of the clearest
+  gatekeeper-distress markers in the small-cap fraud literature. Measuring them market-wide, from
+  the same Form AP source, shows the phenomenon exists at scale before any single issuer is named.
+- **Honest boundary:** switching or downgrading an auditor is common and usually benign (cost,
+  a merger, a clean disagreement). These are **market-structure rates**, not issuer verdicts. The
+  identity comparison collapses Big-4 network name variants so they do not read as false switches;
+  small-firm identity is by normalized name, which is transparent but imperfect across firm
+  mergers. Which specific issuers cycle through which backstop firms is issuer-level and private.
+- **Data source:** the engine, [`python -m screen.run`](../screen/) (the `auditor_churn` surface,
+  PCAOB Form AP) → `data/aggregates/screen_registry.csv`.
+
 ---
 
 ## Reproduce

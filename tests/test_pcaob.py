@@ -1,7 +1,7 @@
 """PCAOB auditor-market extractor + Big-4 classification, offline."""
 from conftest import FakePcaobClient
-from screen.extractors import PcaobExtractor, extractor_for
-from screen.pcaob import is_big4
+from screen.extractors import AuditorChurnExtractor, PcaobExtractor, extractor_for
+from screen.pcaob import firm_key, is_big4
 from screen.registry import by_id
 from screen.signal import DENOM_PCAOB_AUDITS, YearAggregate
 import pytest
@@ -15,6 +15,13 @@ def test_is_big4():
     assert not is_big4("Marcum LLP")
     assert not is_big4("BF Borgers CPA PC")
     assert not is_big4("")
+
+
+def test_firm_key_collapses_big4_variants():
+    # network name variants collapse to one identity; small firms key off their own name
+    assert firm_key("Deloitte & Touche LLP") == firm_key("Deloitte LLP")
+    assert firm_key("Marcum LLP") != firm_key("BDO USA, P.C.")
+    assert firm_key("Marcum LLP") == firm_key("marcum llp")
 
 
 def _client():
@@ -61,3 +68,47 @@ def test_dedup_one_auditor_per_issuer_year():
 
 def test_factory_picks_pcaob():
     assert isinstance(extractor_for(by_id("auditor_market")), PcaobExtractor)
+    assert isinstance(extractor_for(by_id("auditor_churn")), AuditorChurnExtractor)
+
+
+def _churn_client():
+    # cik 1: Deloitte -> Deloitte (name variant, NOT a change)
+    # cik 2: Deloitte -> Marcum      (Big-4 downgrade + a switch)
+    # cik 3: Marcum   -> WWC         (switch, non-Big-4 -> non-Big-4)
+    # cik 4: KPMG     -> KPMG        (no change)
+    # cik 5: new issuer in 2024 only (no prior year -> not a continuing pair)
+    recs = [
+        (2023, "Deloitte & Touche LLP", 1, "Issuer"),
+        (2023, "Deloitte & Touche LLP", 2, "Issuer"),
+        (2023, "Marcum LLP", 3, "Issuer"),
+        (2023, "KPMG LLP", 4, "Issuer"),
+        (2024, "Deloitte LLP", 1, "Issuer"),
+        (2024, "Marcum LLP", 2, "Issuer"),
+        (2024, "WWC, P.C.", 3, "Issuer"),
+        (2024, "KPMG LLP", 4, "Issuer"),
+        (2024, "BF Borgers CPA PC", 5, "Issuer"),
+    ]
+    return FakePcaobClient(recs)
+
+
+def test_auditor_churn_rates():
+    ex = AuditorChurnExtractor(by_id("auditor_churn"), min_pairs=1, top_n=10)
+    rows = {r.signal_id: r for r in ex.signals(_churn_client(), [2024])}
+    # continuing issuers (in both years): ciks 1,2,3,4 -> 4 pairs; cik 5 excluded
+    ch = rows["auditor_churn.change_rate"]
+    assert ch.n == 2 and ch.n_filers == 4        # ciks 2 and 3 switched; 1 (variant) and 4 did not
+    assert ch.denom_source == DENOM_PCAOB_AUDITS
+    dg = rows["auditor_churn.big4_to_nonbig4"]
+    assert dg.n == 1 and dg.n_filers == 3        # Big-4-in-2023 = ciks 1,2,4; only cik 2 downgraded
+    bk = rows["auditor_churn.backstop_top10_share"]
+    assert bk.n == 2 and bk.n_filers == 2        # 2 non-Big-4-inbound switches (Marcum, WWC), both in top-10
+
+
+def test_auditor_churn_min_pairs_guard():
+    ex = AuditorChurnExtractor(by_id("auditor_churn"), min_pairs=100)
+    assert ex.signals(_churn_client(), [2024]) == []   # only 4 continuing pairs < 100
+
+
+def test_auditor_churn_rejects_wrong_surface():
+    with pytest.raises(ValueError):
+        AuditorChurnExtractor(by_id("auditor_market"))   # wrong id for this extractor

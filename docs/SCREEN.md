@@ -32,7 +32,12 @@ reads Form AP (the auditor-of-record filing that Sarbanes-Oxley Section 102 requ
 issuer audit) and reports, per year, the share of operating-issuer audits performed by non-Big-4
 firms and the share of that non-Big-4 tail concentrated in the ten busiest small firms; the
 denominator is every operating-issuer audit that year (Investment Company and Employee Benefit
-Plan filings excluded). A publication gate
+Plan filings excluded). A companion PCAOB surface, `auditor_churn`, reads the same Form AP data
+across consecutive years and reports the aggregate rate at which continuing issuers switch audit
+firms, the rate at which they downgrade from a Big-4 to a non-Big-4 firm (the direction that
+tends to precede distress), and how far those switches concentrate into the ten busiest incoming
+small firms; the per-issuer auditor history is built in memory and never emitted. A publication
+gate
 guarantees only aggregate, issuer-free rows leave the engine, and a pytest suite drives the
 extractors offline with recorded fixtures. Run it with `python3 -m screen.run`; the aggregate
 output is `data/aggregates/screen_registry.csv`. See [`../screen/README.md`](../screen/README.md).

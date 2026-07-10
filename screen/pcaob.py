@@ -26,12 +26,25 @@ def is_big4(firm_name):
     return any(m in f for m in BIG4_MARKERS)
 
 
+def firm_key(firm_name):
+    """A stable identity for churn comparison. Big-4 network variants (e.g. 'Deloitte & Touche
+    LLP' vs 'Deloitte LLP') collapse to one marker so they do not read as an auditor change;
+    every other firm keys off its own normalized name."""
+    f = (firm_name or "").strip().lower()
+    for m in BIG4_MARKERS:
+        if m in f:
+            return m
+    return f
+
+
 class PcaobClient:
     def __init__(self, contact, cache_zip=_CACHE_ZIP, timeout=180):
         self.ua = {"User-Agent": f"AI Washing Research (HKS PAE) {contact}"}
         self.cache_zip = cache_zip
         self.timeout = timeout
         self.failures = []
+        self._parsed = {}  # operating_only -> materialized records, so multiple extractors
+        #                    (auditor_market, auditor_churn) share one parse of the 93MB CSV
 
     def _ensure(self):
         if os.path.exists(self.cache_zip):
@@ -59,7 +72,12 @@ class PcaobClient:
         """Yield (fiscal_year:int, firm_name:str, issuer_cik:int, report_type:str) for the
         latest Form AP filing of each audit. `operating_only` keeps only operating-company
         issuers (dropping Investment Company funds and Employee Benefit Plans), which are the
-        fraud-relevant population."""
+        fraud-relevant population. The parse is materialized and cached, so a second extractor
+        over the same population does not re-read the file."""
+        key = bool(operating_only)
+        if key in self._parsed:
+            yield from self._parsed[key]
+            return
         if not self._ensure():
             return
         with zipfile.ZipFile(self.cache_zip) as z:
@@ -68,6 +86,7 @@ class PcaobClient:
                 self.failures.append(("pcaob", "no CSV in FirmFilings.zip"))
                 return
             text = z.read(name).decode("utf-8", "replace")
+        recs = []
         for r in csv.DictReader(io.StringIO(text)):
             if r.get("Latest Form AP Filing") != "1":
                 continue
@@ -83,6 +102,8 @@ class PcaobClient:
             if len(parts) != 3 or not parts[2].isdigit():
                 continue
             try:
-                yield (int(parts[2]), firm, int(cik), rtype)
+                recs.append((int(parts[2]), firm, int(cik), rtype))
             except ValueError:
                 continue
+        self._parsed[key] = recs
+        yield from recs
