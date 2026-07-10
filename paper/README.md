@@ -2,14 +2,14 @@
 
 This directory holds a short, **aggregate-only** working paper that the repository
 reproduces end to end. Scope matches the rest of this repo: market-level,
-statistical, and reproducible from public SEC data — **no individual issuer is
+statistical, and reproducible from public SEC data. **No individual issuer is
 named or characterized.**
 
-- [`PAPER.md`](PAPER.md) — the full draft (AI-assisted; for the author to revise into
+- [`PAPER.md`](PAPER.md): the full draft (AI-assisted; for the author to revise into
   their own voice). Every number is verified against the committed aggregate data.
-- [`OUTLINE.md`](OUTLINE.md) — section-by-section structure, with every results
+- [`OUTLINE.md`](OUTLINE.md): section-by-section structure, with every results
   claim mapped to its exact figure (F1–F4) and number.
-- [`abstract.md`](abstract.md) — draft abstract.
+- [`abstract.md`](abstract.md): draft abstract.
 
 Every figure and number regenerates from committed aggregate data via
 [`../pipeline/make_figures.py`](../pipeline/make_figures.py); the figure → script →

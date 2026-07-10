@@ -1,8 +1,8 @@
-# Results — figure → script → number
+# Results: figure → script → number
 
 The three README figures are the market-wide backbone of the project: the "AI"
 label **went everywhere, stayed hollow, and left its home sector.** Every number
-here is aggregate (one row per year, or per year × sector) — no individual
+here is aggregate (one row per year, or per year × sector), no individual
 issuer. All are regenerated from committed data under `data/aggregates/` by
 [`pipeline/make_figures.py`](../pipeline/make_figures.py) (no network, no SEC
 calls). The data itself is produced by the pure-standard-library scripts named
@@ -13,21 +13,21 @@ For construction detail (denominators, phrase selection, identification), see
 
 ---
 
-## F1 — The label went everywhere
+## F1: The label went everywhere
 
 ![F1](figures/f1_adoption.png)
 
 - **Number:** "artificial intelligence" appeared in **0.79%** of 10-K filers in
   2001 and **50.69%** in 2025. "generative AI" went from **0%** (through 2022) to
-  **13.37%** in 2025 — the vocabulary itself churns.
+  **13.37%** in 2025, the vocabulary itself churns.
 - **Data script:** [`pipeline/ai_prevalence.py`](../pipeline/ai_prevalence.py) →
   `data/ai_prevalence.csv` (committed at `data/aggregates/ai_prevalence.csv`).
 - **Numerator:** 10-Ks matching a quoted AI phrase per year (EDGAR full-text
   search). **Denominator:** distinct 10-K filers per year from the EDGAR master
-  index — the complete filing-level population, not the FTS total (which caps at
+  index, the complete filing-level population, not the FTS total (which caps at
   10,000). This denominator fix is the key correctness step.
 
-## F2 — ...but the substance did not follow
+## F2: ...but the substance did not follow
 
 ![F2](figures/f2_marketing_vs_substance.png)
 
@@ -47,7 +47,7 @@ For construction detail (denominators, phrase selection, identification), see
   individual filing. The per-filing version of this test lives in
   [`pipeline/cooccurrence.py`](../pipeline/cooccurrence.py); see METHODOLOGY §2.
 
-## F3 — ...and it spread beyond software
+## F3: ...and it spread beyond software
 
 ![F3](figures/f3_sector_diffusion.png)
 
@@ -60,7 +60,7 @@ For construction detail (denominators, phrase selection, identification), see
   `data/aggregates/ai_sector_by_year.csv`), an EDGAR FTS `sic_filter`
   aggregation rolled up to 2-digit SIC.
 
-## F4 — The label's link to real capability faded (a disciplining null)
+## F4: The label's link to real capability faded (a disciplining null)
 
 ![F4](figures/f4_informativeness.png)
 
@@ -68,21 +68,21 @@ For construction detail (denominators, phrase selection, identification), see
   label spread from **37** 10-K filers (2015) to **~2,400** (2024): the share of
   AI-labeled filers reporting *any* R&D fell to **42.4%** (2024), and their median
   R&D-intensity premium over the market baseline compressed from **+0.036** (2018)
-  to **+0.022** (2021) to **+0.009** (2024) — toward zero.
-- **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059) — too
+  to **+0.022** (2021) to **+0.009** (2024), toward zero.
+- **Honesty flag:** the **2015** benchmark is only 37 firms (premium −0.059), too
   small to trust, drawn faded in the figure. The defensible reading is the
   **post-2018 compression**, when the AI pool first exceeds a few hundred firms.
-- **Why it's a null, not a hot take:** the claim is not "AI is hype" — it is that
+- **Why it's a null, not a hot take:** the claim is not "AI is hype"; it is that
   the label's *information content about real capability decayed* as it
   proliferated (a lemons precondition). This is one of several disciplining nulls
   the project keeps prominently (the return premium is large-cap only; enforcement
   does not re-separate the cross-section; the "hollow = washer" gap is mostly a
-  size effect — see the README claim-map).
+  size effect, see the README claim-map).
 - **Data script:** [`pipeline/informativeness.py`](../pipeline/informativeness.py)
   → `data/informativeness.csv` (committed at
   `data/aggregates/informativeness.csv`). Self-contained: it builds the AI-labeled
   set per year from EDGAR full-text search and reads audited R&D / revenue from the
-  XBRL `frames` cross-section — no pre-built universe file, no API key.
+  XBRL `frames` cross-section, no pre-built universe file, no API key.
 - **Note on the other nulls:** the market-data nulls (size/sector return premium,
   FF5+momentum alpha, the size-controlled classifier) depend on issuer-level
   universe and price data that is deliberately **not** in this public repo, so they

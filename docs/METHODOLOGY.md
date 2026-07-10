@@ -1,8 +1,8 @@
 # Methodology
 
 This document expands the [README](../README.md)'s methodology. It describes **how each
-measurement is constructed** — the data sources, the population definitions, the
-statistical objects, and the caveats — at the level of the filing corpus and screened
+measurement is constructed**, the data sources, the population definitions, the
+statistical objects, and the caveats, at the level of the filing corpus and screened
 cohorts. Consistent with the project's scope, nothing here names or characterizes an
 individual issuer; every quantity is a count, share, distribution, or regression
 coefficient over a population.
@@ -27,7 +27,7 @@ resumable if a source throttles. No source requires an API key.
 
 **A note on FTS caps.** EDGAR FTS returns a capped total (`hits.total.value`, relation
 `gte` at the cap). Where an exact filer count matters (e.g., the prevalence denominator),
-the pipeline uses the **master index** — the complete filing-level population — rather
+the pipeline uses the **master index**, the complete filing-level population, rather
 than the FTS total. This is the single most important correctness fix in the label-
 measurement layer.
 
@@ -49,7 +49,7 @@ over the full corpus:
   ("AI-powered", "AI-driven"), *substance/build* vocabulary ("large language model",
   "training compute", "fine-tuning"), *aspirational*, *governance*, and *new-hype*
   phrases. The **marketing:substance ratio** is the washing fingerprint at the population
-  level — cheap marketing language diffuses while costly build vocabulary stays pinned.
+  level, cheap marketing language diffuses while costly build vocabulary stays pinned.
 
 - **Sector diffusion** (`ai_sector.py`). FTS `sic_filter` aggregation for the core AI
   phrase, by year. The measurement is the **share of AI mentions originating in SIC-73
@@ -62,8 +62,8 @@ over the full corpus:
 
 **Ecological-inference guard** (`cooccurrence.py`). Population ratios cannot classify an
 individual filing (that would be an ecological-inference error). The per-*filing*
-statistic — among filings that use marketing AI language, what share contain **zero**
-technical-substance language in the same document — is computed separately and validated
+statistic, among filings that use marketing AI language, what share contain **zero**
+technical-substance language in the same document, is computed separately and validated
 on a labeled set, so the discriminating claim is made at the level where it is identified.
 
 ---
@@ -71,7 +71,7 @@ on a labeled set, so the discriminating claim is made at the level where it is i
 ## 3. Cohort construction (the nano/micro-cap tail)
 
 The "naked decoupling" lives in the small-cap tail. The cohort is built by a transparent,
-reproducible screen — **not** by selecting individual names:
+reproducible screen, **not** by selecting individual names:
 
 1. **Theme-pivot screen** (`nano_pivot_screen.py`). Surfaces candidate filers whose
    disclosure pivots into a hot narrative, from FTS + submission history.
@@ -83,7 +83,7 @@ reproducible screen — **not** by selecting individual names:
 
 All thresholds are parameters in the scripts; the cohort is the *output of the screen*,
 reproducible from public data, and is treated throughout as a **population** whose
-properties (shares, rates, distributions) are reported — never as a roster of suspects.
+properties (shares, rates, distributions) are reported, never as a roster of suspects.
 
 ---
 
@@ -103,7 +103,7 @@ Each of these is a rate or distribution over the screened population:
 - **Capital decomposition** (`capture_decomp.py`, `value_destroyed.py`). Aggregate raised,
   placement fees, post-raise drawdown distribution, dilution multiples, and an
   order-of-magnitude **envelope** of peak market value destroyed. Envelope, not a
-  point estimate — bounds are stated in the script.
+  point estimate; bounds are stated in the script.
 - **Cross-border structure** (`foreign_control_census.py`, `foreign_control_refine.py`,
   `costume_rotation.py`, `exfil_conduit.py`). A foreign-control census share, a
   narrative-rotation rate (issuers wearing ≥2 hot themes), and a cohort-level screen of
@@ -129,7 +129,7 @@ Good measurement reports what it **fails** to find. These nulls are first-class 
   shows no gradient.
 - **Severity is not the cross-border margin** (`foreign_control_census.py`). Foreign-
   controlled shells show the **same** drawdown as domestic ones; the difference is
-  *recoverability*, not harm magnitude — a disciplined severity null.
+  *recoverability*, not harm magnitude, a disciplined severity null.
 
 ---
 
@@ -146,7 +146,7 @@ so its design is spelled out:
   average event reaction.
 - **Matched controls** (`event_study/matching.py`). For each event firm, K "clean" peers
   that did not make an AI capability claim, matched on industry (2-digit SIC), size, and
-  price — a Cooper–Dimitrov–Rau-style counterfactual for the name/label effect.
+  price, a Cooper–Dimitrov–Rau-style counterfactual for the name/label effect.
 - **Placebos.** Non-AI firms (no gradient expected) and a pre-event window `[-5,-2]`
   (no gradient expected). Both are reported alongside the main estimate.
 
