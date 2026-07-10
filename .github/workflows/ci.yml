@@ -22,10 +22,13 @@ jobs:
           python-version: "3.11"
 
       - name: Compile every script
-        run: python -m py_compile pipeline/*.py pipeline/event_study/*.py scripts/*.py
+        run: python -m py_compile pipeline/*.py pipeline/event_study/*.py scripts/*.py screen/*.py
 
-      - name: Install matplotlib (figure rendering only)
-        run: python -m pip install "matplotlib>=3.7"
+      - name: Install matplotlib + pytest
+        run: python -m pip install "matplotlib>=3.7" "pytest>=7"
+
+      - name: Run the engine test suite (no network; recorded fixtures)
+        run: python -m pytest -q
 
       - name: Regenerate README figures from committed aggregates
         run: python pipeline/make_figures.py

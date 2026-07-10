@@ -13,6 +13,9 @@ scipy>=1.10
 # Figure generation (docs/figures/ for the README) — pipeline/make_figures.py only:
 matplotlib>=3.7
 
+# The screen/ engine is pure standard library. Tests only:
+pytest>=7         # dev only: python -m pytest (the screen/ engine test suite)
+
 # Optional — imported lazily, only on specific paths:
 yfinance>=0.2.40  # event_study/returns.py, --source yfinance (default source is stooq, stdlib)
 openpyxl>=3.1     # ai_prevalence.py xlsx chart export (CSV is always written regardless)

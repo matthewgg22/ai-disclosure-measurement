@@ -16,6 +16,26 @@ pre-funded warrant, a going-concern opinion, or a small auditor is not fraud. Th
 premise is that *the co-occurrence of many of these features, in the small-cap tail, at the
 same issuer* is what carries signal. Any single feature is a screening input, never a finding.
 
+## Implementation
+
+The screen is an engine, not a pile of scripts. The registry of regulatory surfaces and the
+extractors that measure them live in [`../screen/`](../screen/): each SEC surface is a
+declarative `SurfaceSpec` (rule citation, instrument group, description, and the full-text
+query when it is FTS-measurable), and a generic extractor turns any extractable surface into
+per-year aggregate prevalence through one shared, cached EDGAR client. A publication gate
+guarantees only aggregate, issuer-free rows leave the engine, and a pytest suite drives the
+extractors offline with recorded fixtures. Run it with `python3 -m screen.run`; the aggregate
+output is `data/aggregates/screen_registry.csv`. See [`../screen/README.md`](../screen/README.md).
+
+**Signal calibration (honest caveat).** The FTS signals are raw phrase-prevalence and their
+specificity varies. Some are sharp (the paired pre-funded-warrant + ownership-blocker
+structure); others are deliberately narrow and under-inclusive (the exact phrase "variable
+rate convertible" catches only a fraction of toxic-convertible language), and a few phrase
+choices were tightened after a first run inflated them with boilerplate ("identified a
+material weakness", not the bare phrase; "regain compliance", not generic "listing"). The
+engine's value is the framework and the sharp signals; per-signal calibration is ongoing, and
+the raw prevalences are screening inputs, not calibrated fraud rates.
+
 ---
 
 ## 1. The feature set
