@@ -7,10 +7,14 @@ from . import publication_gate as gate
 HEADER = ["year", "instrument", "signal_id", "n", "n_filers", "pct", "denom_source"]
 
 
-def run_all(client, extractors, years):
-    """Collect YearAggregate rows from every extractor, sorted for stable output."""
+def run_all(clients, extractors, years):
+    """Collect YearAggregate rows from every extractor, sorted for stable output.
+
+    `clients` may be a single client (used for every extractor) or a dict keyed by source
+    ('fts'/'xbrl' -> the EDGAR client, 'pcaob' -> the PCAOB client)."""
     rows = []
     for ex in extractors:
+        client = clients[ex.spec.source] if isinstance(clients, dict) else clients
         rows.extend(ex.signals(client, years))
     rows.sort(key=lambda r: (r.signal_id, r.year))
     gate.assert_rows_safe(rows)

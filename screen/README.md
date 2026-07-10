@@ -12,7 +12,9 @@ screen/
   signal.py            SurfaceSpec + YearAggregate data types; INSTRUMENTS
   edgar.py             one shared throttled/cached EDGAR full-text-search client
   extractors.py        FtsExtractor (phrase prevalence) + XbrlExtractor (structured share
-                       dilution); SurfaceSpec -> per-year YearAggregate, pure fn of the client
+                       dilution) + PcaobExtractor (auditor market structure); SurfaceSpec ->
+                       per-year YearAggregate, pure fn of the client
+  pcaob.py             PcaobClient: caches PCAOB Form AP bulk data; is_big4 classifier
   aggregate.py         run_all + to_csv (through the publication gate)
   publication_gate.py  refuses any issuer-level column; only aggregates leave the engine
   validation.py        size-controlled OOS AUC / lift on a labeled table (no issuer identity)
@@ -29,10 +31,12 @@ python3 -m pytest -q                      # the test suite (no network; recorded
 ## Design
 
 - **Registry-driven, multi-source.** Adding a regulatory surface = adding one `SurfaceSpec` to
-  `registry.py` with a `source` (`fts` | `xbrl`). FTS surfaces (a phrase query) are picked up by
-  `FtsExtractor`; XBRL surfaces (a concept, e.g. `share_explosion` reading
+  `registry.py` with a `source` (`fts` | `xbrl` | `pcaob`). FTS surfaces (a phrase query) are
+  picked up by `FtsExtractor`; XBRL surfaces (a concept, e.g. `share_explosion` reading
   `dei:EntityCommonStockSharesOutstanding`) by `XbrlExtractor`, which reads structured facts
-  instead of guessing phrases. Per-issuer and full-index surfaces are documented in the registry
+  instead of guessing phrases; the `pcaob` surface (`auditor_market`) by `PcaobExtractor`, which
+  reads PCAOB Form AP to measure how far issuer audits have moved off the Big-4 and into a
+  concentrated small-firm tail. Per-issuer and full-index surfaces are documented in the registry
   and get their own extractors in later phases.
 - **Extractors are pure functions of the client.** No network lives in an extractor, so the
   test suite drives them with a fake client and runs offline.
@@ -43,9 +47,10 @@ python3 -m pytest -q                      # the test suite (no network; recorded
 
 ## Scope (Phase 1+2)
 
-In: the registry, the shared client, the FTS extractors for the surfaces measurable now
-(Section 16 evasion, going concern, material weakness, toxic dilution / ATM, reverse-split
-reset, 8-K restatement and delisting triggers), the publication gate, and the test suite.
+In: the registry, the shared clients, and the extractors for the surfaces measurable now:
+FTS (Section 16 evasion, going concern, material weakness, late filing, toxic dilution / ATM,
+reverse-split reset, 8-K restatement and delisting triggers), XBRL (share explosion), and PCAOB
+Form AP (auditor market structure); the publication gate; and the test suite.
 
 Also in: the size-controlled validation harness (`validation.py`), as tested code that
 operates on an abstract labeled table and holds no issuer identity.

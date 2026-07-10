@@ -12,6 +12,7 @@ import sys
 from . import aggregate
 from .edgar import EdgarClient
 from .extractors import extractors_for
+from .pcaob import PcaobClient
 from .registry import extractable
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +22,12 @@ YEARS = range(2001, 2026)
 
 def main():
     contact = sys.argv[1] if len(sys.argv) > 1 else "matthewgreergentis@gmail.com"
-    client = EdgarClient(contact)
+    edgar, pcaob = EdgarClient(contact), PcaobClient(contact)
+    clients = {"fts": edgar, "xbrl": edgar, "pcaob": pcaob}
     specs = extractable()
     extractors = extractors_for(specs)
-    print(f"[screen] {len(specs)} extractable surfaces, {sum(len(s.fts_queries) for s in specs)} sub-signals")
-    rows = aggregate.run_all(client, extractors, list(YEARS))
+    print(f"[screen] {len(specs)} extractable surfaces across sources {sorted({s.source for s in specs})}")
+    rows = aggregate.run_all(clients, extractors, list(YEARS))
     aggregate.to_csv(rows, OUT)
     # per-surface summary at each surface's most recent year that actually has data
     for s in specs:
@@ -38,10 +40,11 @@ def main():
         summary = "  ".join(f"{r.signal_id.split('.')[1]}={r.pct}%" for r in vals)
         print(f"  [{s.instrument}] {s.id} ({latest}): {summary}")
     print(f"[done] {len(rows)} rows -> {os.path.relpath(OUT, _ROOT)}")
-    # Loud on fetch failures: a transient EDGAR error must not silently become a data gap.
-    if client.failures:
-        print(f"\n[WARN] {len(client.failures)} fetch(es) failed after retries (data gaps):")
-        for kind, key in client.failures[:20]:
+    # Loud on fetch failures: a transient error must not silently become a data gap.
+    failures = edgar.failures + pcaob.failures
+    if failures:
+        print(f"\n[WARN] {len(failures)} fetch(es) failed after retries (data gaps):")
+        for kind, key in failures[:20]:
             print(f"    {kind}: {key}")
         sys.exit(1)
 

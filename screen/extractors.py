@@ -6,8 +6,11 @@ lives here; the client is the only I/O surface, so tests pass a fake client. Any
 with FTS queries is handled generically by FtsExtractor, so adding an extractable surface to
 the registry needs no new code here.
 """
+from collections import Counter
+
+from .pcaob import is_big4
 from .signal import (YearAggregate, DENOM_10K_FILERS, DENOM_FILING_OVER_10K,
-                     DENOM_XBRL_Q4)
+                     DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS)
 
 
 class FtsExtractor:
@@ -80,10 +83,51 @@ class XbrlExtractor:
         return rows
 
 
+class PcaobExtractor:
+    """Auditor-market structure from PCAOB Form AP. For each year: the share of issuer-audits
+    done by non-Big-4 firms, and how concentrated the non-Big-4 audits are in the ten busiest
+    small firms (the 'backstop auditor' pattern). Issuer<->auditor pairs stay in the client's
+    ignored cache; only the yearly shares are emitted."""
+
+    def __init__(self, spec, min_audits=100, top_n=10):
+        if spec.source != "pcaob":
+            raise ValueError(f"{spec.id}: not a pcaob surface")
+        self.spec = spec
+        self.min_audits = min_audits   # skip thin early Form AP years
+        self.top_n = top_n
+
+    def signals(self, client, years):
+        # one auditor per (year, issuer); the client already yields the latest Form AP filing
+        by_year = {}
+        for year, firm, cik, _rtype in client.audits():
+            by_year.setdefault(year, {})[cik] = firm
+        rows, want = [], set(int(y) for y in years)
+        for year, firm_by_cik in by_year.items():
+            if year not in want:
+                continue
+            total = len(firm_by_cik)
+            if total < self.min_audits:
+                continue
+            nonbig4 = [f for f in firm_by_cik.values() if not is_big4(f)]
+            nb = len(nonbig4)
+            rows.append(YearAggregate(year, self.spec.instrument,
+                                      f"{self.spec.id}.nonbig4_share", nb, total,
+                                      denom_source=DENOM_PCAOB_AUDITS))
+            if nb:
+                top = sum(c for _, c in Counter(nonbig4).most_common(self.top_n))
+                rows.append(YearAggregate(year, self.spec.instrument,
+                                          f"{self.spec.id}.top{self.top_n}_nonbig4_share", top, nb,
+                                          denom_source=DENOM_PCAOB_AUDITS))
+        rows.sort(key=lambda r: (r.signal_id, r.year))
+        return rows
+
+
 def extractor_for(spec):
     """Return the extractor that drives a surface, by its source."""
     if spec.source == "xbrl":
         return XbrlExtractor(spec)
+    if spec.source == "pcaob":
+        return PcaobExtractor(spec)
     return FtsExtractor(spec)  # source == "fts" (index source is a later phase)
 
 

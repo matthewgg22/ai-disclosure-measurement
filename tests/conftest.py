@@ -24,6 +24,19 @@ class FakeClient:
         return self._frames.get((concept, int(year)), {})
 
 
+class FakePcaobClient:
+    """Yields preset Form AP audit records, no download."""
+
+    def __init__(self, records):
+        # records: list of (fiscal_year, firm_name, issuer_cik, report_type)
+        self._records = records
+        self.failures = []
+
+    def audits(self, operating_only=True):
+        for rec in self._records:
+            yield rec
+
+
 @pytest.fixture
 def fake_client():
     # Key the preset counts off the registry's current query strings so the fixture cannot

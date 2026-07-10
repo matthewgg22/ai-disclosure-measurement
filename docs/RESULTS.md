@@ -139,6 +139,26 @@ For construction detail (denominators, phrase selection, identification), see
   co-occurrence count). This figure is the single-source engine output; see
   [`docs/SCREEN.md`](SCREEN.md).
 
+## The auditor market: how far issuer audits have moved off the Big-4
+
+- **Number:** across every operating-issuer audit in PCAOB Form AP, the non-Big-4 share rose
+  from **45.9%** (2016) to a **52.8%** peak (2021) and now sits near **49%** (2025). Of that
+  non-Big-4 tail, the ten busiest small firms concentrate **35-49%** of the audits, so a small
+  set of firms audits a large slice of the off-Big-4 market. Denominator: ~6,000-8,600
+  operating-issuer audits per year (Investment Company and Employee Benefit Plan filings
+  excluded).
+- **Why it matters:** the gatekeeper is where small-cap fraud is caught or missed. A market in
+  which roughly half of issuer audits sit outside the Big-4, and a concentrated group of small
+  firms backstops much of that half, is exactly the auditor-market structure fraud research
+  cares about. This is a second regulatory source (PCAOB, not EDGAR full-text), which is the
+  point: the engine measures the breadth of the regulatory surface, not one API.
+- **Honest boundary:** a small auditor is not fraud; most non-Big-4 firms audit clean small
+  companies. The prevalence is a **market-structure input**, not an issuer verdict. The
+  fraud-relevant object (a specific issuer with a distressed backstop auditor plus other
+  red-flags) is issuer-level and stays out of this public repo.
+- **Data source:** the engine, [`python -m screen.run`](../screen/) (the `auditor_market`
+  surface, PCAOB Form AP under Sarbanes-Oxley Section 102) → `data/aggregates/screen_registry.csv`.
+
 ---
 
 ## Reproduce

@@ -80,6 +80,18 @@ REGISTRY = [
             "the structured 8-K item index; per-issuer, deferred."),
         fts_queries={},
     ),
+    SurfaceSpec(
+        id="auditor_market",
+        instrument="C",
+        citation="PCAOB Form AP (auditor reporting); Sarbanes-Oxley Section 102",
+        description=(
+            "Auditor-market structure from PCAOB Form AP: the share of issuer-audits done by "
+            "non-Big-4 firms, and how concentrated the non-Big-4 book is in the ten busiest small "
+            "firms (the 'backstop auditor' pattern). Small-cap fraud clusters at marginal and "
+            "concentrated auditors. Form AP coverage begins ~2016."),
+        fts_queries={},
+        source="pcaob",
+    ),
     # --- D. Capital formation ---
     SurfaceSpec(
         id="toxic_dilution",
@@ -162,6 +174,8 @@ def extractable():
         if s.source == "fts" and s.fts_queries:
             out.append(s)
         elif s.source == "xbrl" and s.xbrl_concept:
+            out.append(s)
+        elif s.source == "pcaob":
             out.append(s)
     return out
 

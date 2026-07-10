@@ -39,7 +39,7 @@ class SurfaceSpec:
     def __post_init__(self):
         if self.instrument not in INSTRUMENTS:
             raise ValueError(f"{self.id}: unknown instrument {self.instrument!r}")
-        if self.source not in ("fts", "xbrl", "index"):
+        if self.source not in ("fts", "xbrl", "index", "pcaob"):
             raise ValueError(f"{self.id}: unknown source {self.source!r}")
 
 
@@ -47,7 +47,8 @@ class SurfaceSpec:
 DENOM_10K_FILERS = "10k_filers"            # n = filings matching the phrase; base = distinct 10-K filers
 DENOM_FILING_OVER_10K = "filing_count_over_10k"  # n = count of a DIFFERENT form's filings; base = 10-K filers
 DENOM_XBRL_Q4 = "xbrl_q4_intersection"     # n = filers over a growth threshold; base = the Q4-frame intersection
-DENOM_SOURCES = {DENOM_10K_FILERS, DENOM_FILING_OVER_10K, DENOM_XBRL_Q4}
+DENOM_PCAOB_AUDITS = "pcaob_audit_engagements"   # base = issuer audits (PCAOB Form AP) that year
+DENOM_SOURCES = {DENOM_10K_FILERS, DENOM_FILING_OVER_10K, DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS}
 
 
 @dataclass(frozen=True)
