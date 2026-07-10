@@ -37,6 +37,22 @@ def test_none_count_skipped(fake_client):
     assert all(r.year == 2024 for r in rows)
 
 
+def test_late_filing_empty_query_form_count(fake_client):
+    # empty query + forms="NT 10-K" counts all NT 10-K filings that year
+    rows = FtsExtractor(by_id("late_filing")).signals(fake_client, [2024])
+    r = next(r for r in rows if r.signal_id == "late_filing.nt_10k")
+    assert r.n == 978 and r.n_filers == 6768
+    assert r.instrument == "B"
+    assert fake_client.calls[-1] == ("", 2024, "NT 10-K")  # queried the NT 10-K form
+
+
+def test_restatement_precise_8k_item(fake_client):
+    rows = FtsExtractor(by_id("restatement")).signals(fake_client, [2024])
+    r = next(r for r in rows if r.signal_id == "restatement.item_4_02")
+    assert r.n == 280
+    assert fake_client.calls[-1] == ('"Item 4.02"', 2024, "8-K")  # 8-K form, item phrase
+
+
 def test_non_extractable_surface_rejected():
     with pytest.raises(ValueError):
         FtsExtractor(by_id("insider_no_skin"))  # no fts_queries

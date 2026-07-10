@@ -32,6 +32,8 @@ def fake_client():
     q_rev = by_id("dilution_reset").fts_queries["reverse_split"]
     q_gc = by_id("going_concern").fts_queries["going_concern"]
     q_mw = by_id("material_weakness").fts_queries["material_weakness"]
+    q_nt = by_id("late_filing").fts_queries["nt_10k"]        # "" (empty = form count)
+    q_r = by_id("restatement").fts_queries["item_4_02"]       # '"Item 4.02"' on 8-K
     counts = {
         (q_rev, 2024, "10-K"): 1675,
         (q_rev, 2025, "10-K"): 1500,
@@ -39,6 +41,9 @@ def fake_client():
         (q_gc, 2025, "10-K"): 800,
         (q_mw, 2024, "10-K"): 300,
         (q_mw, 2025, "10-K"): 280,
+        (q_nt, 2024, "NT 10-K"): 978,   # late-filing form count (empty query, NT 10-K form)
+        (q_nt, 2025, "NT 10-K"): 900,
+        (q_r, 2024, "8-K"): 280,        # precise 8-K Item 4.02 restatement count
     }
     denom = {2024: 6768, 2025: 6558}
     return FakeClient(counts, denom)

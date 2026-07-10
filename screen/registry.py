@@ -51,6 +51,17 @@ REGISTRY = [
         fts_queries={"material_weakness": '"identified a material weakness"'},
     ),
     SurfaceSpec(
+        id="late_filing",
+        instrument="B",
+        citation="Exchange Act Rule 12b-25; Form NT 10-K",
+        description=(
+            "Late-filing notifications: the count of Form NT 10-K filings (a filer telling the SEC "
+            "it cannot file its 10-K on time) per year, as a share of 10-K filers. A structured "
+            "form-type count (empty full-text query, filtered to the NT 10-K form), not a phrase."),
+        fts_queries={"nt_10k": ""},   # empty query = count all filings of the `forms` type
+        forms="NT 10-K",
+    ),
+    SurfaceSpec(
         id="resource_mismatch",
         instrument="B",
         citation="Reg S-X (financial statements); XBRL frames",
@@ -108,9 +119,13 @@ REGISTRY = [
         instrument="E",
         citation="Form 8-K Item 4.02 (non-reliance on previously issued financials)",
         description=(
-            "Non-reliance / restatement language: prior financials can no longer be relied upon. "
-            "Measured in the 10-K to keep the filer denominator consistent with the other signals."),
-        fts_queries={"non_reliance": '"should no longer be relied upon"'},
+            "Count of 8-K filings citing Item 4.02, the actual non-reliance / restatement "
+            "announcement form, per year. This is the precise trigger on the correct form (it "
+            "matches the count from the non-reliance language, ~280 in 2024), replacing the older "
+            "10-K text proxy. Denominator is the 10-K filer base, so the rate is per public "
+            "company per year."),
+        fts_queries={"item_4_02": '"Item 4.02"'},
+        forms="8-K",
     ),
     SurfaceSpec(
         id="delist_notice",
