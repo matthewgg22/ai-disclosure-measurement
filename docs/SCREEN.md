@@ -64,7 +64,13 @@ frames, and the financial-statement data sets). Grouped by what they capture:
   the Section 16 / 5% reporting threshold, so large economic positions avoid insider
   disclosure.
 - The **paired structure** (both in the same filing), which routes dilution around Section 16.
-- Dilution magnitude (share-count growth, reverse-split frequency as the post-dilution reset).
+- Sub-threshold structuring of a control block ("parking"): a large issuance split across
+  recipients each allocated just under the 5% reporting line, so no Schedule 13D or Form 3
+  ever surfaces the transfer (registry surface `ownership_parking`, per-issuer, deferred).
+- Dilution magnitude (share-count growth, reverse-split frequency as the post-dilution reset),
+  plus the standing drip-dilution machinery: at-the-market facilities, standby equity purchase
+  agreements, and equity lines of credit (the engine's `toxic_dilution` surface; the standby
+  equity phrase grew roughly 75x from 2021 to 2025).
 - Measured market-wide and over time in **F6** (the engine's `sec16_evasion` surface,
   `python -m screen.run`); the issuer-level triad
   detector is `dilution_evasion.py`.
@@ -73,6 +79,12 @@ frames, and the financial-statement data sets). Grouped by what they capture:
 - Small non-Big-4 auditor; auditor churn; "backstop" auditors that recur after serial
   turnover; going-concern opinions; material-weakness disclosures; Item 4.01 auditor-change
   direction. Scripts: `gatekeeper_screen.py`, `auditor_opinions.py`, `auditor_4_01_direction.py`.
+- The going-concern reversal: substantial doubt that disappears the same year the auditor is
+  replaced, without the finances improving (registry surface `gc_reversal`, a cross-source
+  join of the going-concern hit set with the Form AP auditor-change set; deferred).
+- Balance-sheet integrity: an asset carried far above the stock given for it, with the gap
+  booked as a related-party non-cash contribution (ASC 845 / SAB Topic 5:G; registry surface
+  `manufactured_asset`, XBRL path deferred).
 
 **C. Financier concentration (who funds it).**
 - A bipartite fund-to-issuer incidence: a small set of financiers touching many issuers.
@@ -84,12 +96,19 @@ frames, and the financial-statement data sets). Grouped by what they capture:
 
 **E. Narrative wrapper (what it claims to be now).**
 - Theme-pivot into a hot narrative (AI, crypto, quantum, nuclear); simultaneous multi-theme
-  claims; serial name changes. Scripts: `nano_pivot_screen.py`, `costume_rotation.py`;
+  claims; serial name changes (the EDGAR former-names record and a SIC code left stale across
+  pivots are the structured trail). Scripts: `nano_pivot_screen.py`, `costume_rotation.py`;
   the AI-specific decoupling is F1 to F5.
+- The digital-asset-treasury pivot: announcing that holding cryptocurrency IS the business,
+  with fair-value accounting able to manufacture headline profit in an up quarter (the
+  engine's `crypto_treasury` surface; near zero before 2024, then 5-6.7% of 8-K text in 2025).
 
 **F. Cross-border structure (where the cash goes).**
 - Genuine foreign control; offshore counterparty structure for low-substance "assets".
   Scripts: `foreign_control_census.py`, `foreign_control_refine.py`, `exfil_conduit.py`.
+- CFIUS surfacing in current reports (the engine's `foreign_control` surface): the CFIUS
+  docket itself is confidential by statute, so the issuer's own 8-K disclosure is the only
+  public surface; steady 2-3.4% of 8-K filings mention it.
 
 ---
 

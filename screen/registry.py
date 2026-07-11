@@ -30,8 +30,22 @@ REGISTRY = [
         citation="Exchange Act Section 16(a); Form 4",
         description=(
             "A capital raise with near-zero insider open-market Form 4 purchases: insiders take "
-            "cash via warrants rather than buying equity. Needs per-issuer Form 4 parsing."),
+            "cash via warrants rather than buying equity. A companion measure is Section 16(a) "
+            "delinquency itself: Form 4s filed far past the two-business-day deadline, or never, "
+            "while the 10-K certifies compliance. Needs per-issuer Form 4 parsing."),
         fts_queries={},  # per-issuer, deferred
+    ),
+    SurfaceSpec(
+        id="ownership_parking",
+        instrument="A",
+        citation="Exchange Act Section 13(d); Schedule 13D; Item 403 ownership tables",
+        description=(
+            "A control block issued to many recipients each allocated just under the 5% "
+            "reporting threshold, so no Schedule 13D, Form 3, or ownership-table line ever "
+            "surfaces the transfer: sub-threshold structuring of beneficial ownership "
+            "('parking'). Detection needs exhibit-level allocation schedules read against the "
+            "issuer's share count; per-issuer, deferred."),
+        fts_queries={},
     ),
     # --- B. Periodic disclosure quality ---
     SurfaceSpec(
@@ -70,6 +84,20 @@ REGISTRY = [
             "test). Computed from XBRL, not FTS; see pipeline/informativeness.py."),
         fts_queries={},  # XBRL-based, handled by the informativeness path
     ),
+    SurfaceSpec(
+        id="manufactured_asset",
+        instrument="B",
+        citation="ASC 845 (nonmonetary transactions); SEC SAB Topic 5:G; Reg S-X",
+        description=(
+            "A balance sheet built by related-party non-cash entries: an asset acquired from "
+            "related sellers in an all-stock exchange, carried far above the value of the stock "
+            "given, with the gap booked as a related-party capital contribution for which no "
+            "consideration was paid. SAB Topic 5:G's historical-cost principle is the yardstick. "
+            "The structured trail is the equity statement and the non-cash section of the cash "
+            "flow statement; XBRL extraction deferred (exact phrases are too issuer-specific "
+            "for full-text search, measured prevalence ~0)."),
+        fts_queries={},
+    ),
     # --- C. Auditor & gatekeeper ---
     SurfaceSpec(
         id="auditor_market",
@@ -96,6 +124,18 @@ REGISTRY = [
         fts_queries={},
         source="pcaob",
     ),
+    SurfaceSpec(
+        id="gc_reversal",
+        instrument="C",
+        citation="PCAOB AS 2415 (going concern); Form 8-K Item 4.01; PCAOB Form AP",
+        description=(
+            "A going-concern doubt that disappears in the same year the auditor is replaced, "
+            "without the finances improving: the doubt is shed with the opinion-giver, not "
+            "resolved. Measurable as an aggregate by joining the going-concern full-text hit "
+            "set with the Form AP auditor-change set per year; cross-source extractor "
+            "deferred."),
+        fts_queries={},
+    ),
     # --- D. Capital formation ---
     SurfaceSpec(
         id="toxic_dilution",
@@ -107,6 +147,10 @@ REGISTRY = [
         fts_queries={
             "atm_facility": '"at-the-market offering"',
             "variable_rate_convertible": '"variable rate convertible"',
+            # Standby equity purchase agreements / equity lines: a financier commits to buy
+            # shares on demand at a discount to market, the nano-cap drip-dilution machine.
+            "standby_equity": '"standby equity purchase agreement"',
+            "equity_line": '"equity line of credit"',
         },
     ),
     SurfaceSpec(
@@ -156,16 +200,45 @@ REGISTRY = [
     SurfaceSpec(
         id="theme_pivot",
         instrument="F",
-        citation="Reg S-K Item 101 (business description); former-name history",
-        description="Narrative rotation into a hot theme (AI/crypto/quantum). See F1-F5 for the AI cut.",
+        citation="Reg S-K Item 101 (business description); EDGAR former-names record; SIC codes",
+        description=(
+            "Narrative rotation into a hot theme (AI/crypto/quantum). The structured trail is "
+            "the EDGAR former-names record (one CIK, serial renamings tracking each theme) and "
+            "a SIC code left stale across pivots; the submissions API exposes both per issuer. "
+            "See F1-F5 for the AI cut; the former-names census is deferred (needs a per-CIK "
+            "submissions sweep)."),
         fts_queries={},  # covered by the AI-label pipeline; other themes deferred
+    ),
+    SurfaceSpec(
+        id="crypto_treasury",
+        instrument="F",
+        citation="Form 8-K; ASU 2023-08 (crypto assets at fair value); Reg S-K Item 101",
+        description=(
+            "The digital-asset-treasury pivot: an issuer announces that holding cryptocurrency "
+            "IS the business. Fair-value accounting under ASU 2023-08 lets a coin position "
+            "manufacture headline profit in an up quarter, and an unverifiable or offshore "
+            "holding can prop a listing while equity is sold against it. Phrase prevalence on "
+            "8-K announcements; the wave is new (near zero before 2024)."),
+        fts_queries={
+            "bitcoin_treasury": '"bitcoin treasury"',
+            "digital_asset_treasury": '"digital asset treasury"',
+        },
+        forms="8-K",
     ),
     SurfaceSpec(
         id="foreign_control",
         instrument="F",
-        citation="Forms 20-F / 6-K; Reg S-K Item 101",
-        description="Genuine foreign control and offshore counterparty structure. Per-issuer; deferred.",
-        fts_queries={},
+        citation="DPA Section 721 (CFIUS); FIRRMA; Forms 20-F / 6-K; Reg S-K Item 101",
+        description=(
+            "Foreign control and national-security review surfacing in current reports: the "
+            "share of 8-K filings that mention CFIUS (deals conditioned on, cleared by, or "
+            "risk-disclosing a CFIUS review). CFIUS's own docket is confidential by statute, so "
+            "the issuer's disclosure is the only public surface. A screening input: most "
+            "mentions are routine deal conditions; the fraud-relevant case is a "
+            "CFIUS-conditioned counterparty with no filing ever disclosed, which is per-issuer "
+            "and out of scope here."),
+        fts_queries={"cfius": '"CFIUS"'},
+        forms="8-K",
     ),
 ]
 
