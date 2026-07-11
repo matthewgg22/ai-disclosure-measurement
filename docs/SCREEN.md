@@ -96,13 +96,14 @@ frames, and the financial-statement data sets). Grouped by what they capture:
   agreements, and equity lines of credit (the engine's `toxic_dilution` surface; the standby
   equity phrase grew roughly 75x from 2021 to 2025).
 - Measured market-wide and over time in **F6** (the engine's `sec16_evasion` surface,
-  `python -m screen.run`); the issuer-level triad
-  detector is `dilution_evasion.py`.
+  `python -m screen.run`); the issuer-level triad detector is part of the private pipeline
+  (excluded per Scope).
 
 **B. Gatekeeper distress (who signs off).**
 - Small non-Big-4 auditor; auditor churn; "backstop" auditors that recur after serial
   turnover; going-concern opinions; material-weakness disclosures; Item 4.01 auditor-change
-  direction. Scripts: `gatekeeper_screen.py`, `auditor_opinions.py`, `auditor_4_01_direction.py`.
+  direction. The market-wide version ships here (the engine's `auditor_market` / `auditor_churn`
+  surfaces); the issuer-level gatekeeper detectors are private (excluded per Scope).
 - The going-concern reversal: substantial doubt that disappears the same year the auditor is
   replaced, without the finances improving (registry surface `gc_reversal`, a cross-source
   join of the going-concern hit set with the Form AP auditor-change set; deferred).
@@ -128,24 +129,24 @@ frames, and the financial-statement data sets). Grouped by what they capture:
 
 **C. Financier concentration (who funds it).**
 - A bipartite fund-to-issuer incidence: a small set of financiers touching many issuers.
-  Scripts: `name_funds.py`, `financier_book.py`.
+  Issuer-level financier mapping is private (excluded per Scope).
 
 **D. Shell lineage (what the vehicle used to be).**
 - Repainted dead operating companies, de-SPAC lineage, non-SPAC shells; vehicle vintage.
-  Scripts: `nonspac_shells.py`, `spac_census.py`, `spac_vintage.py`.
+  Issuer-level shell-lineage detectors are private (excluded per Scope).
 
 **E. Narrative wrapper (what it claims to be now).**
 - Theme-pivot into a hot narrative (AI, crypto, quantum, nuclear); simultaneous multi-theme
   claims; serial name changes (the EDGAR former-names record and a SIC code left stale across
-  pivots are the structured trail). Scripts: `nano_pivot_screen.py`, `costume_rotation.py`;
-  the AI-specific decoupling is F1 to F5.
+  pivots are the structured trail). The issuer-level pivot/costume detectors are private
+  (excluded per Scope); the AI-specific decoupling is F1 to F5.
 - The digital-asset-treasury pivot: announcing that holding cryptocurrency IS the business,
   with fair-value accounting able to manufacture headline profit in an up quarter (the
   engine's `crypto_treasury` surface; near zero before 2024, then 5-6.7% of 8-K text in 2025).
 
 **F. Cross-border structure (where the cash goes).**
 - Genuine foreign control; offshore counterparty structure for low-substance "assets".
-  Scripts: `foreign_control_census.py`, `foreign_control_refine.py`, `exfil_conduit.py`.
+  Issuer-level foreign-control / offshore-counterparty mapping is private (excluded per Scope).
 - CFIUS surfacing in current reports (the engine's `foreign_control` surface): the CFIUS
   docket itself is confidential by statute, so the issuer's own 8-K disclosure is the only
   public surface; steady 2-3.4% of 8-K filings mention it.

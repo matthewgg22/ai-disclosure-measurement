@@ -20,7 +20,7 @@ Scores each company:
   soph_score    : tech / total  (0.0 = all generic, 1.0 = all technical)
   tier          : NONE / GENERIC / MIXED / TECHNICAL  (based on thresholds)
 
-Downloads the most recent 10-K for each ticker via EDGAR (same pattern as extract_claims.py).
+Downloads the most recent 10-K for each ticker via EDGAR.
 Caches raw filing text to data/_cache_filings/{cik}.txt so re-runs are free.
 Outputs data/russell3000_soph.csv  (symbol, cik, generic_hits, tech_hits, soph_score, tier)
 """

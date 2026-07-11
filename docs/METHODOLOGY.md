@@ -60,7 +60,7 @@ over the full corpus:
   label still predicts firm capability. A declining series means each marginal use of the
   label carries less information than it did the year before.
 
-**Ecological-inference guard** (`cooccurrence.py`). Population ratios cannot classify an
+**Ecological-inference guard** *(per-filing version private)*. Population ratios cannot classify an
 individual filing (that would be an ecological-inference error). The per-*filing*
 statistic, among filings that use marketing AI language, what share contain **zero**
 technical-substance language in the same document, is computed separately and validated
@@ -70,19 +70,21 @@ on a labeled set, so the discriminating claim is made at the level where it is i
 
 ## 3. Cohort construction (the nano/micro-cap tail)
 
-The "naked decoupling" lives in the small-cap tail. The cohort is built by a transparent,
-reproducible screen, **not** by selecting individual names:
+The "naked decoupling" lives in the small-cap tail. The cohort is built by a transparent
+screen, **not** by selecting individual names. The cohort-construction and structural-measure
+code below is the **private issuer-level pipeline** (excluded from this repo per the
+[Scope](../README.md#scope-what-is-not-here) section); the descriptions are kept here because the
+*method* is not secret and the *findings* are aggregate, but the scripts and any per-issuer
+output stay private:
 
-1. **Theme-pivot screen** (`nano_pivot_screen.py`). Surfaces candidate filers whose
-   disclosure pivots into a hot narrative, from FTS + submission history.
-2. **Cleaning filter** (`nano_clean.py`). Applies market-cap and prior-collapse
-   thresholds to reduce the candidate set to a clean nano/micro-cap population.
-3. **Shell-source attribution** (`nonspac_shells.py`, `spac_census.py`,
-   `spac_vintage.py`). Classifies each cohort member's lineage (repainted operating
-   company vs. de-SPAC vs. non-SPAC shell) and dates the vintage.
+1. **Theme-pivot screen** *(private)*. Surfaces candidate filers whose disclosure pivots into a
+   hot narrative, from FTS + submission history.
+2. **Cleaning filter** *(private)*. Applies market-cap and prior-collapse thresholds to reduce
+   the candidate set to a clean nano/micro-cap population.
+3. **Shell-source attribution** *(private)*. Classifies each cohort member's lineage (repainted
+   operating company vs. de-SPAC vs. non-SPAC shell) and dates the vintage.
 
-All thresholds are parameters in the scripts; the cohort is the *output of the screen*,
-reproducible from public data, and is treated throughout as a **population** whose
+The cohort is the *output of the screen* and is treated throughout as a **population** whose
 properties (shares, rates, distributions) are reported, never as a roster of suspects.
 
 ---
@@ -91,23 +93,21 @@ properties (shares, rates, distributions) are reported, never as a roster of sus
 
 Each of these is a rate or distribution over the screened population:
 
-- **Dilution / disclosure-routing instrument** (`dilution_evasion.py`). The share of the
-  cohort carrying the pre-funded-warrant + ownership-blocker + high-dilution combination.
-  Measured from filing text and capital-structure disclosures.
-- **Financier concentration** (`name_funds.py`, `financier_book.py`). A bipartite
-  fund↔issuer incidence count; the headline is a concentration statistic (few funds
-  touching many issuers), not a named list.
-- **Gatekeeper concentration** (`gatekeeper_screen.py`, `auditor_opinions.py`,
-  `auditor_4_01_direction.py`). Auditor-size skew, going-concern / material-weakness
+- **Dilution / disclosure-routing instrument** *(private; market-wide version ships in
+  `screen/` as `sec16_evasion`)*. The share of the cohort carrying the pre-funded-warrant +
+  ownership-blocker + high-dilution combination, from filing text and capital-structure
+  disclosures.
+- **Financier concentration** *(private)*. A bipartite fund↔issuer incidence count; the headline
+  is a concentration statistic (few funds touching many issuers), not a named list.
+- **Gatekeeper concentration** *(private; market-wide version ships in `screen/` as
+  `auditor_market` / `auditor_churn`)*. Auditor-size skew, going-concern / material-weakness
   rates, and the **direction** of auditor churn (Item 4.01), as population rates.
-- **Capital decomposition** (`capture_decomp.py`, `value_destroyed.py`). Aggregate raised,
-  placement fees, post-raise drawdown distribution, dilution multiples, and an
-  order-of-magnitude **envelope** of peak market value destroyed. Envelope, not a
-  point estimate; bounds are stated in the script.
-- **Cross-border structure** (`foreign_control_census.py`, `foreign_control_refine.py`,
-  `costume_rotation.py`, `exfil_conduit.py`). A foreign-control census share, a
-  narrative-rotation rate (issuers wearing ≥2 hot themes), and a cohort-level screen of
-  offshore counterparty structure.
+- **Capital decomposition** *(private)*. Aggregate raised, placement fees, post-raise drawdown
+  distribution, dilution multiples, and an order-of-magnitude **envelope** of peak market value
+  destroyed. Envelope, not a point estimate.
+- **Cross-border structure** *(private; market-wide CFIUS/foreign version ships in `screen/` as
+  `foreign_control`)*. A foreign-control census share, a narrative-rotation rate (issuers wearing
+  ≥2 hot themes), and a cohort-level screen of offshore counterparty structure.
 
 ---
 
@@ -115,10 +115,10 @@ Each of these is a rate or distribution over the screened population:
 
 Good measurement reports what it **fails** to find. These nulls are first-class results:
 
-- **Size, not "hollowness"** (`gap_classifier.py`, `composite_prep.py`). The apparent
-  "hollow firm = washer" resource gap is largely a **size effect**: a size-controlled
-  classifier adds only ~+0.01 AUC. Public data resolves the washing signal only in the
-  extreme small-cap tail; it does not separate mid/large caps.
+- **Size, not "hollowness"** *(private)*. The apparent "hollow firm = washer" resource gap is
+  largely a **size effect**: a size-controlled classifier adds only ~+0.01 AUC. Public data
+  resolves the washing signal only in the extreme small-cap tail; it does not separate mid/large
+  caps.
 - **The premium is a large-cap phenomenon** (`sector_premium.py`, `size_premium.py`,
   `ff_alpha.py`). The sustained AI return premium is concentrated in large/mega caps
   (sector-neutral, positive); small-cap AI-mentioners earn **negative** abnormal returns.
@@ -127,9 +127,9 @@ Good measurement reports what it **fails** to find. These nulls are first-class 
   whether AI-washing enforcement news restores a substance gradient in returns. It does
   not, with clean placebos: (a) non-AI firms show no gradient; (b) the pre-event window
   shows no gradient.
-- **Severity is not the cross-border margin** (`foreign_control_census.py`). Foreign-
-  controlled shells show the **same** drawdown as domestic ones; the difference is
-  *recoverability*, not harm magnitude, a disciplined severity null.
+- **Severity is not the cross-border margin** *(private)*. Foreign-controlled shells show the
+  **same** drawdown as domestic ones; the difference is *recoverability*, not harm magnitude, a
+  disciplined severity null.
 
 ---
 

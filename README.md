@@ -61,42 +61,45 @@ All figures are reproducible from the named scripts. The unit of analysis is the
 - The label diffused *out* of software: SIC-73's share of AI mentions fell **57% → 27%** (`ai_sector.py`).
 - Year-over-year, the label's incremental information about firm capability **declines** (`informativeness.py`).
 
-**The extraction cohort (the tail where the decoupling is naked):**
-- A theme-pivot screen surfaces 456 candidates → a market-cap/prior-collapse filter yields **244 clean nano/micro shells** (`nano_pivot_screen.py`, `nano_clean.py`).
-- **~82%** are repainted dead operating companies; **~21%** are de-SPAC lineage (`nonspac_shells.py`, `spac_census.py`, `spac_vintage.py`).
-- **41%** of clawback-tier pivots carry the full pre-funded-warrant + ownership-blocker + ≥5× dilution triad that routes extraction around §16 insider disclosure (`dilution_evasion.py`).
-- A concentrated financier layer: **7 funds touch 265 issuers** (`name_funds.py`, `financier_book.py`).
-- **71%** of the cohort is audited by small non-Big-4 firms; the sharpest recur as terminal "backstop" auditors after serial churn (`gatekeeper_screen.py`, `auditor_opinions.py`, `auditor_4_01_direction.py`).
-- Capital: **~$3.04B raised / ~$213M placement fees / median −95% post-raise drawdown / median ~567× dilution**; **~$24.3B** peak market value destroyed (envelope) (`capture_decomp.py`, `value_destroyed.py`).
+**The extraction cohort (the tail where the decoupling is naked).** These cohort-level figures are reported from the **private issuer-level pipeline** (excluded here per [Scope](#scope-what-is-not-here)); they are aggregate and name no issuer, but they are not reproducible from this public repo, which ships the market-wide aggregates and the screen engine:
+- A theme-pivot screen surfaces 456 candidates → a market-cap/prior-collapse filter yields **244 clean nano/micro shells**.
+- **~82%** are repainted dead operating companies; **~21%** are de-SPAC lineage.
+- **41%** of clawback-tier pivots carry the full pre-funded-warrant + ownership-blocker + ≥5× dilution triad that routes extraction around §16 insider disclosure. *(The market-wide version of this triad IS reproducible here: the engine's `sec16_evasion` surface, F6.)*
+- A concentrated financier layer: **7 funds touch 265 issuers**.
+- **71%** of the cohort is audited by small non-Big-4 firms; the sharpest recur as terminal "backstop" auditors after serial churn. *(Market-wide auditor structure is reproducible here: the engine's `auditor_market` / `auditor_churn` surfaces.)*
+- Capital: **~$3.04B raised / ~$213M placement fees / median −95% post-raise drawdown / median ~567× dilution**; **~$24.3B** peak market value destroyed (envelope).
 
 **Disciplining nulls (kept prominently):**
-- The "hollow = washer" resource gap is **mostly a size effect**: a size-controlled classifier gains only ~+0.01 AUC (`gap_classifier.py`).
+- The "hollow = washer" resource gap is **mostly a size effect**: a size-controlled classifier gains only ~+0.01 AUC.
 - The sustained AI return premium is a **large/mega-cap** phenomenon (~+7.5% sector-neutral); small-cap AI-mentioners earn **negative** annual returns (`sector_premium.py`, `size_premium.py`, `ff_alpha.py`).
-- Provable nano shells are **absent from AI ETFs**: the tail is not the ETF channel's harm (`etf_intersect.py`).
+- Provable nano shells are **absent from AI ETFs**: the tail is not the ETF channel's harm.
 - Securities-enforcement events **do not re-separate** the AI cross-section (a well-identified null with clean placebos) (`event_study/`).
 
-**Cross-border structure (measured, not asserted):**
-- A foreign-control census finds **~26%** of the cohort is genuinely foreign-controlled, but with a **disciplined severity null**: foreign-controlled shells show the *same* drawdown as domestic ones; the difference is *recoverability*, not harm magnitude (`foreign_control_census.py`, `foreign_control_refine.py`).
-- Narrative-costume rotation is measured two ways: **23%** wear ≥2 hot themes (crypto/quantum/AI/nuclear) simultaneously, and serial name-rotation is real but rare (~5%), the AI-era replication of the dot-com name-change literature (`costume_rotation.py`).
-- Cross-border *counterparty* structure (US-raised cash routed offshore for low-substance "assets") is screened at cohort level (`exfil_conduit.py`).
+**Cross-border structure (measured, not asserted; cohort-level figures from the private pipeline):**
+- A foreign-control census finds **~26%** of the cohort is genuinely foreign-controlled, but with a **disciplined severity null**: foreign-controlled shells show the *same* drawdown as domestic ones; the difference is *recoverability*, not harm magnitude.
+- Narrative-costume rotation is measured two ways: **23%** wear ≥2 hot themes (crypto/quantum/AI/nuclear) simultaneously, and serial name-rotation is real but rare (~5%), the AI-era replication of the dot-com name-change literature.
+- Cross-border *counterparty* structure (US-raised cash routed offshore for low-substance "assets") is screened at cohort level.
 
 ---
 
 ## Script → claim map
 
+Public scripts ship in this repo; issuer-level cohort/network analysis is in the **private** pipeline (excluded per [Scope](#scope-what-is-not-here)) and is marked *private* below.
+
 | Group | Scripts | Supports |
 |---|---|---|
-| Label prevalence & informativeness | `edgar_fts.py`, `ai_prevalence.py`, `ai_lexicon.py`, `ai_sector.py`, `informativeness.py`, `ai_sophistication.py`, `cooccurrence.py` | the decoupling of the label from substance, market-wide |
-| Cohort construction | `nano_pivot_screen.py`, `nano_clean.py`, `nonspac_shells.py`, `spac_census.py`, `spac_vintage.py` | the 244-shell tail; shell sources; self-replenishing supply |
-| Extraction instrument | `dilution_evasion.py` | the pre-funded-warrant/blocker §16-evasion triad |
-| Financier concentration | `name_funds.py`, `financier_book.py` | 7 funds → 265 issuers |
-| Gatekeeper concentration | `gatekeeper_screen.py`, `auditor_opinions.py`, `auditor_4_01_direction.py` | small-auditor skew; going-concern/material-weakness rates; churn direction |
-| Capital destruction | `capture_decomp.py`, `value_destroyed.py` | $3.04B raised / −95% / $24.3B destroyed |
-| Capability-gap classifier | `gap_classifier.py`, `composite_prep.py` | the size-collinearity null (public data resolves only the shell tail) |
+| Label prevalence & informativeness | `ai_prevalence.py`, `ai_lexicon.py`, `ai_sector.py`, `informativeness.py`, `ai_sophistication.py` | the decoupling of the label from substance, market-wide |
+| Screen engine (market-wide surfaces) | `screen/` (see [`docs/SCREEN.md`](docs/SCREEN.md)) | §16-evasion, auditor market/churn, dilution, accrual, EPS-rounding, crypto-treasury, CFIUS surfaces + validation |
+| Cohort construction | *private* | the 244-shell tail; shell sources; self-replenishing supply |
+| Extraction instrument | *private* (market-wide version: `screen/` `sec16_evasion`) | the pre-funded-warrant/blocker §16-evasion triad |
+| Financier concentration | *private* | 7 funds → 265 issuers |
+| Gatekeeper concentration | *private* (market-wide version: `screen/` `auditor_market`/`auditor_churn`) | small-auditor skew; going-concern/material-weakness rates; churn direction |
+| Capital destruction | *private* | $3.04B raised / −95% / $24.3B destroyed |
+| Capability-gap classifier | *private* | the size-collinearity null (public data resolves only the shell tail) |
 | AI return premium | `sector_premium.py`, `size_premium.py`, `ff_alpha.py` | premium is large-cap; small-cap AI is negative |
-| ETF channel | `etf_intersect.py` | nano shells absent from AI ETFs |
+| ETF channel | *private* | nano shells absent from AI ETFs |
 | Enforcement event study | `event_study.py`, `event_study/` | enforcement does not re-separate the cross-section (null) |
-| Cross-border structure | `foreign_control_census.py`, `foreign_control_refine.py`, `costume_rotation.py`, `exfil_conduit.py` | foreign-control census + severity null; costume rotation; offshore counterparty structure |
+| Cross-border structure | *private* | foreign-control census + severity null; costume rotation; offshore counterparty structure |
 
 ---
 
@@ -109,16 +112,16 @@ pip install matplotlib
 python pipeline/make_figures.py      # reads data/aggregates/, writes docs/figures/
 ```
 
-**Full pipeline:** scripts are standalone Python 3 and pull directly from public SEC/market sources; each caches to a local `data/` directory (regenerated on first run, not checked in). Rough order:
+**Full public pipeline:** the scripts here are standalone Python 3 and pull directly from public SEC/market sources; each caches to a local `data/` directory (regenerated on first run, not checked in). They produce the market-wide aggregates and figures; the issuer-level cohort/network pipeline is private (see [Scope](#scope-what-is-not-here)). Rough order:
 
 ```
-python pipeline/edgar_fts.py         # full-text-search infrastructure + phrase/year counts
-python pipeline/ai_prevalence.py     # prevalence time series
-python pipeline/nano_pivot_screen.py # theme-pivot candidate set
-python pipeline/nano_clean.py        # -> the 244-shell cohort
-python pipeline/foreign_control_census.py && python pipeline/foreign_control_refine.py
-python pipeline/costume_rotation.py
-# ...see the script→claim map above
+python pipeline/ai_prevalence.py     # AI-label prevalence time series (F1)
+python pipeline/ai_lexicon.py        # marketing vs build vocabulary (F2)
+python pipeline/ai_sector.py         # sector diffusion (F3)
+python pipeline/informativeness.py   # label information content (F4)
+python pipeline/placebo_terms.py     # placebo buzzwords (F5)
+python -m screen.run                 # the regulatory-surface screen engine (F6/F7 inputs)
+python pipeline/make_figures.py      # renders docs/figures/ from data/aggregates/
 ```
 
 **Before running:** each script's EDGAR `User-Agent` declares a real contact (the SEC requires one). If you fork this repo, replace the `matthewgreergentis@gmail.com` contact string with your own before running. Requests are rate-limited to stay within SEC fair-access limits.

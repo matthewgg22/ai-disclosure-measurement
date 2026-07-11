@@ -44,8 +44,8 @@ For construction detail (denominators, phrase selection, identification), see
   bound, since a filing can use several), so the *levels* are generous but the
   *divergence* between marketing and substance is the robust object.
 - **Caveat (ecological inference):** a population ratio cannot classify an
-  individual filing. The per-filing version of this test lives in
-  [`pipeline/cooccurrence.py`](../pipeline/cooccurrence.py); see METHODOLOGY §2.
+  individual filing. The per-filing version of this test is part of the private
+  issuer-level pipeline (excluded per the [Scope](../README.md#scope-what-is-not-here) section).
 
 ## F3: ...and it spread beyond software
 

@@ -1,9 +1,9 @@
 # Third-party dependencies (Python standard library is used heavily and is not listed).
 #
-# Most of the label-measurement layer (edgar_fts, ai_prevalence, ai_lexicon, ai_sector,
-# and the EDGAR full-text-search / master-index scripts) is PURE standard library and
-# needs nothing here. The packages below are only needed for the numerical, market-data,
-# and spreadsheet-output steps. Version floors are the lowest tested; newer is fine.
+# Most of the label-measurement layer (ai_prevalence, ai_lexicon, ai_sector, and the
+# EDGAR full-text-search / master-index scripts) plus the screen/ engine is PURE standard
+# library and needs nothing here. The packages below are only needed for the numerical,
+# market-data, and spreadsheet-output steps. Version floors are the lowest tested; newer is fine.
 
 # Numerical / statistical (event study, premia, capital decomposition, classifier):
 numpy>=1.24

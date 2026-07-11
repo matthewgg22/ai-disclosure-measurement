@@ -27,3 +27,4 @@ env/
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx
 *.pdf
+.gstack/

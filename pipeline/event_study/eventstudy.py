@@ -9,7 +9,7 @@ Implements the toolkit from methodology-and-measurement.md:
     Wilcoxon signed-rank, sign test, Corrado rank test
 
 No network or external data here — this operates on returns you hand it, so it is unit-testable
-(see synth_test.py). The data-pull layers (edgar_fts.py, returns.py, matching.py) feed it.
+(see synth_test.py). The data-pull layers (returns.py, matching.py) feed it.
 
 Design notes
 ------------
