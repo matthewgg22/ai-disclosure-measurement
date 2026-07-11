@@ -25,6 +25,12 @@ accusations at industrial scale. Market-wide prevalence of fraud-associated surf
 quantity this repository reports, is the output the data can actually bear; issuer-level
 inference belongs downstream, where each candidate gets human case work before any conclusion.
 
+The legal foundation is mapped separately in [DOCTRINE.md](DOCTRINE.md): each fraud theory's
+elements as the statutes, rules, and controlling cases state them, the filing-evidence pattern
+that satisfies or defeats each element, and the engine surface that measures it. The design
+rule it enforces: a registry surface should correspond to an element the government or a
+plaintiff must actually prove.
+
 Two principles from fraud-risk practice organize the registry. First, the residual-risk
 discipline of the COSO/ACFE Fraud Risk Management Guide: for every control, ask how it can be
 circumvented. Applied to securities regulation, each surface in the registry is a disclosure
