@@ -12,8 +12,9 @@ screen/
   signal.py            SurfaceSpec + YearAggregate data types; INSTRUMENTS
   edgar.py             one shared throttled/cached EDGAR full-text-search client
   extractors.py        FtsExtractor (phrase prevalence) + XbrlExtractor (structured share
-                       dilution) + PcaobExtractor (auditor market structure); SurfaceSpec ->
-                       per-year YearAggregate, pure fn of the client
+                       dilution) + AccrualExtractor (forensic accrual ratios) + PcaobExtractor
+                       (auditor market structure); SurfaceSpec -> per-year YearAggregate,
+                       pure fn of the client
   pcaob.py             PcaobClient: caches PCAOB Form AP bulk data; is_big4 classifier
   aggregate.py         run_all + to_csv (through the publication gate)
   publication_gate.py  refuses any issuer-level column; only aggregates leave the engine
@@ -48,9 +49,11 @@ python3 -m pytest -q                      # the test suite (no network; recorded
 ## Scope (Phase 1+2)
 
 In: the registry, the shared clients, and the extractors for the surfaces measurable now:
-FTS (Section 16 evasion, going concern, material weakness, late filing, toxic dilution / ATM,
-reverse-split reset, 8-K restatement and delisting triggers), XBRL (share explosion), and PCAOB
-Form AP (auditor market structure); the publication gate; and the test suite.
+FTS (Section 16 evasion, going concern, material weakness, late filing, toxic dilution / ATM /
+equity lines, reverse-split reset, 8-K restatement and delisting triggers, crypto-treasury
+pivots, CFIUS mentions), XBRL (share explosion, receivables outrunning revenue, profit without
+cash), and PCAOB Form AP (auditor market structure and churn); the publication gate; and the
+test suite.
 
 Also in: the size-controlled validation harness (`validation.py`), as tested code that
 operates on an abstract labeled table and holds no issuer identity.

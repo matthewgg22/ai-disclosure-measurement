@@ -5,12 +5,13 @@ import pytest
 class FakeClient:
     """Implements the methods extractors depend on, from preset dicts."""
 
-    def __init__(self, counts, denom, frames=None):
+    def __init__(self, counts, denom, frames=None, frames_duration=None):
         # counts: {(query, year, forms): n}; denom: {year: n_filers};
-        # frames: {(concept, year): {cik: shares}}
+        # frames / frames_duration: {(concept, year): {cik: value}}
         self._counts = counts
         self._denom = denom
         self._frames = frames or {}
+        self._frames_duration = frames_duration or {}
         self.calls = []
 
     def fts_count(self, query, year, forms="10-K"):
@@ -22,6 +23,9 @@ class FakeClient:
 
     def xbrl_frames_instant(self, concept, year, unit="shares"):
         return self._frames.get((concept, int(year)), {})
+
+    def xbrl_frames_duration(self, concept, year, unit="USD"):
+        return self._frames_duration.get((concept, int(year)), {})
 
 
 class FakePcaobClient:

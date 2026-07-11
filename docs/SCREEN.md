@@ -16,6 +16,15 @@ pre-funded warrant, a going-concern opinion, or a small auditor is not fraud. Th
 premise is that *the co-occurrence of many of these features, in the small-cap tail, at the
 same issuer* is what carries signal. Any single feature is a screening input, never a finding.
 
+Two principles from fraud-risk practice organize the registry. First, the residual-risk
+discipline of the COSO/ACFE Fraud Risk Management Guide: for every control, ask how it can be
+circumvented. Applied to securities regulation, each surface in the registry is a disclosure
+rule *paired with the way issuers route around it* (Section 16 and the blocker structure;
+Schedule 13D and sub-threshold parking; the going-concern opinion and the auditor swap that
+sheds it). Second, deterrence economics: prevention plus detection equals deterrence, and the
+certainty of detection deters more than the severity of punishment, which is why this
+measurement layer is public while the issuer-level casework stays private.
+
 ## Implementation
 
 The screen is an engine, not a pile of scripts. The registry of regulatory surfaces and the
@@ -85,6 +94,12 @@ frames, and the financial-statement data sets). Grouped by what they capture:
 - Balance-sheet integrity: an asset carried far above the stock given for it, with the gap
   booked as a related-party non-cash contribution (ASC 845 / SAB Topic 5:G; registry surface
   `manufactured_asset`, XBRL path deferred).
+- Forensic-canon accrual markers, computed live from XBRL annual frames: **receivables
+  outrunning revenue** (the days-sales-in-receivables index behind Beneish's DSRI; the
+  engine's `receivables_outrun` surface, at 1.5x and 2x cuts) and **profit without cash**
+  (positive net income over negative operating cash flow, the `paper_earnings` surface).
+  Earnings are an opinion, cash is a fact; both markers are aggregate shares over the join of
+  filers reporting the underlying concepts.
 
 **C. Financier concentration (who funds it).**
 - A bipartite fund-to-issuer incidence: a small set of financiers touching many issuers.

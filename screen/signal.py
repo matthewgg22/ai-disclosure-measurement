@@ -48,7 +48,9 @@ DENOM_10K_FILERS = "10k_filers"            # n = filings matching the phrase; ba
 DENOM_FILING_OVER_10K = "filing_count_over_10k"  # n = count of a DIFFERENT form's filings; base = 10-K filers
 DENOM_XBRL_Q4 = "xbrl_q4_intersection"     # n = filers over a growth threshold; base = the Q4-frame intersection
 DENOM_PCAOB_AUDITS = "pcaob_audit_engagements"   # base = issuer audits (PCAOB Form AP) that year
-DENOM_SOURCES = {DENOM_10K_FILERS, DENOM_FILING_OVER_10K, DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS}
+DENOM_XBRL_JOIN = "xbrl_annual_join"       # n = filers tripping a forensic ratio; base = the annual-frame join
+DENOM_SOURCES = {DENOM_10K_FILERS, DENOM_FILING_OVER_10K, DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS,
+                 DENOM_XBRL_JOIN}
 
 
 @dataclass(frozen=True)

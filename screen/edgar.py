@@ -109,6 +109,36 @@ class EdgarClient:
         self.failures.append(("xbrl", cache_key))
         return {}
 
+    def xbrl_frames_duration(self, concept, year, unit="USD"):
+        """A flow (duration) XBRL concept as a {cik: value} map for the annual frame
+        CY{year} (full calendar year). Same caching, retry, and 404 semantics as the
+        instant variant."""
+        tax, name = ("dei", concept.split(":", 1)[1]) if concept.startswith("dei:") \
+            else ("us-gaap", concept.split(":", 1)[-1])
+        cache_key = f"frames|{tax}|{name}|{unit}|CY{year}"
+        if cache_key in self._cache:
+            return {int(k): v for k, v in self._cache[cache_key].items()}
+        self._sleep()
+        url = f"https://data.sec.gov/api/xbrl/frames/{tax}/{name}/{unit}/CY{year}.json"
+        for i in range(6):
+            try:
+                d = json.load(urllib.request.urlopen(
+                    urllib.request.Request(url, headers=self.ua), timeout=self.timeout))
+                out = {int(x["cik"]): x["val"] for x in d.get("data", [])}
+                self._cache[cache_key] = out
+                self._save()
+                return out
+            except urllib.error.HTTPError as e:
+                if e.code == 404:  # no such frame that year: a real absence, not a failure
+                    self._cache[cache_key] = {}
+                    self._save()
+                    return {}
+                time.sleep(2.0 * (i + 1))
+            except _NET_ERRORS:
+                time.sleep(2.0 * (i + 1))
+        self.failures.append(("xbrl", cache_key))
+        return {}
+
     def denominator(self, year):
         """Distinct 10-K filers in a year, from the committed aggregate (ai_prevalence.csv)."""
         if self._denom is None:

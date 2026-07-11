@@ -10,7 +10,7 @@ from collections import Counter
 
 from .pcaob import is_big4, firm_key
 from .signal import (YearAggregate, DENOM_10K_FILERS, DENOM_FILING_OVER_10K,
-                     DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS)
+                     DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS, DENOM_XBRL_JOIN)
 
 
 class FtsExtractor:
@@ -173,9 +173,72 @@ class AuditorChurnExtractor:
         return rows
 
 
+class AccrualExtractor:
+    """Forensic-canon accrual signals from XBRL annual frames, aggregate only. Two surfaces:
+
+    receivables_outrun: share of filers whose receivables growth outruns revenue growth by
+      1.5x / 2x year over year (a days-sales-in-receivables index, the classic marker of
+      booking sales customers are not paying for). Revenue is Revenues merged with
+      RevenueFromContractWithCustomerExcludingAssessedTax (filers tag either).
+    paper_earnings: share of filers with positive net income and negative operating cash
+      flow (profit as an accounting opinion with no cash underneath).
+
+    Per-CIK values stay in memory; only the yearly shares leave."""
+
+    REV_CONCEPTS = ("Revenues", "RevenueFromContractWithCustomerExcludingAssessedTax")
+
+    def __init__(self, spec, min_filers=100):
+        if spec.source != "xbrl" or spec.id not in ("receivables_outrun", "paper_earnings"):
+            raise ValueError(f"{spec.id}: not an accrual surface")
+        self.spec = spec
+        self.min_filers = min_filers   # skip thin early-XBRL years
+
+    def _revenue(self, client, year):
+        merged = dict(client.xbrl_frames_duration(self.REV_CONCEPTS[1], year))
+        for cik, v in client.xbrl_frames_duration(self.REV_CONCEPTS[0], year).items():
+            merged.setdefault(cik, v)
+        return merged
+
+    def _row(self, year, label, n, base):
+        return YearAggregate(int(year), self.spec.instrument, f"{self.spec.id}.{label}",
+                             int(n), int(base), denom_source=DENOM_XBRL_JOIN)
+
+    def signals(self, client, years):
+        rows = []
+        for year in years:
+            if self.spec.id == "receivables_outrun":
+                ar_c = client.xbrl_frames_instant("AccountsReceivableNetCurrent", year, unit="USD")
+                ar_p = client.xbrl_frames_instant("AccountsReceivableNetCurrent", year - 1, unit="USD")
+                rev_c = self._revenue(client, year)
+                rev_p = self._revenue(client, year - 1)
+                dsri = []
+                for cik, a1 in ar_c.items():
+                    a0, r1, r0 = ar_p.get(cik), rev_c.get(cik), rev_p.get(cik)
+                    if all(v and v > 0 for v in (a0, a1, r0, r1)):
+                        dsri.append((a1 / a0) / (r1 / r0))
+                if len(dsri) < self.min_filers:
+                    continue
+                rows.append(self._row(year, "over_1_5x", sum(1 for d in dsri if d > 1.5), len(dsri)))
+                rows.append(self._row(year, "over_2x", sum(1 for d in dsri if d > 2.0), len(dsri)))
+            else:  # paper_earnings
+                ni = client.xbrl_frames_duration("NetIncomeLoss", year)
+                ocf = client.xbrl_frames_duration(
+                    "NetCashProvidedByUsedInOperatingActivities", year)
+                joined = [(ni[c], ocf[c]) for c in ni if c in ocf]
+                if len(joined) < self.min_filers:
+                    continue
+                n = sum(1 for i, o in joined if i > 0 and o < 0)
+                rows.append(self._row(year, "profit_no_cash", n, len(joined)))
+        rows.sort(key=lambda r: (r.signal_id, r.year))
+        return rows
+
+
 def extractor_for(spec):
-    """Return the extractor that drives a surface, by its source (and, for PCAOB, its id)."""
+    """Return the extractor that drives a surface, by its source (and, where one source has
+    several extraction shapes, by its id)."""
     if spec.source == "xbrl":
+        if spec.id in ("receivables_outrun", "paper_earnings"):
+            return AccrualExtractor(spec)
         return XbrlExtractor(spec)
     if spec.source == "pcaob":
         return AuditorChurnExtractor(spec) if spec.id == "auditor_churn" else PcaobExtractor(spec)

@@ -98,6 +98,33 @@ REGISTRY = [
             "for full-text search, measured prevalence ~0)."),
         fts_queries={},
     ),
+    SurfaceSpec(
+        id="receivables_outrun",
+        instrument="B",
+        citation="Reg S-X (financial statements); XBRL frames; forensic canon (Beneish DSRI)",
+        description=(
+            "Receivables growing much faster than revenue: the classic accrual-manipulation "
+            "marker (sales booked that customers are not paying for). Computed from XBRL as "
+            "the share of filers whose year-over-year receivables growth outruns revenue "
+            "growth by 1.5x / 2x (a days-sales-in-receivables index), over the join of filers "
+            "reporting both concepts in both years."),
+        fts_queries={},
+        source="xbrl",
+        xbrl_concept="AccountsReceivableNetCurrent",
+    ),
+    SurfaceSpec(
+        id="paper_earnings",
+        instrument="B",
+        citation="Reg S-X (statement of cash flows); XBRL frames; 'follow the money'",
+        description=(
+            "Profit without cash: filers reporting positive net income while operating cash "
+            "flow is negative. Earnings are an opinion, cash is a fact; a persistent gap is "
+            "the accrual signature that precedes many restatements. Share of filers with "
+            "NI > 0 and operating cash flow < 0 over the join reporting both."),
+        fts_queries={},
+        source="xbrl",
+        xbrl_concept="NetIncomeLoss",
+    ),
     # --- C. Auditor & gatekeeper ---
     SurfaceSpec(
         id="auditor_market",
