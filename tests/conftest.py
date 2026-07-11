@@ -24,7 +24,10 @@ class FakeClient:
     def xbrl_frames_instant(self, concept, year, unit="shares"):
         return self._frames.get((concept, int(year)), {})
 
-    def xbrl_frames_duration(self, concept, year, unit="USD"):
+    def xbrl_frames_duration(self, concept, year, unit="USD", quarter=None):
+        # annual frames keyed (concept, year); quarterly keyed (concept, year, quarter)
+        if quarter:
+            return self._frames_duration.get((concept, int(year), int(quarter)), {})
         return self._frames_duration.get((concept, int(year)), {})
 
 

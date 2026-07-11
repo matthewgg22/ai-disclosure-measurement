@@ -51,9 +51,9 @@ python3 -m pytest -q                      # the test suite (no network; recorded
 In: the registry, the shared clients, and the extractors for the surfaces measurable now:
 FTS (Section 16 evasion, going concern, material weakness, late filing, toxic dilution / ATM /
 equity lines, reverse-split reset, 8-K restatement and delisting triggers, crypto-treasury
-pivots, CFIUS mentions), XBRL (share explosion, receivables outrunning revenue, profit without
-cash), and PCAOB Form AP (auditor market structure and churn); the publication gate; and the
-test suite.
+pivots, CFIUS mentions, Wells notices), XBRL (share explosion, receivables outrunning revenue,
+profit without cash, EPS rounding management), and PCAOB Form AP (auditor market structure and
+churn); the publication gate; and the test suite.
 
 Also in: the size-controlled validation harness (`validation.py`), as tested code that
 operates on an abstract labeled table and holds no issuer identity.

@@ -113,6 +113,22 @@ REGISTRY = [
         xbrl_concept="AccountsReceivableNetCurrent",
     ),
     SurfaceSpec(
+        id="eps_rounding",
+        instrument="B",
+        citation="Reg S-X; XBRL quarterly frames; SEC Division of Enforcement EPS Initiative",
+        description=(
+            "EPS rounding management ('quadrophobia'): computed quarterly EPS (net income over "
+            "weighted-average shares) expressed in cents should have a uniform first "
+            "post-decimal digit, 10% each. Firms nudging income up a tenth of a cent to gain a "
+            "reported cent erase 4s; a firm-level score on missing 4s predicts restatements, "
+            "AAERs, and class actions (Malenko, Grundfest & Shen, JFQA 2023), and the SEC's "
+            "EPS Initiative settled enforcement actions on this fingerprint. Emitted here as "
+            "the market-wide digit-4 share per year over positive-EPS firm-quarters."),
+        fts_queries={},
+        source="xbrl",
+        xbrl_concept="NetIncomeLoss",
+    ),
+    SurfaceSpec(
         id="paper_earnings",
         instrument="B",
         citation="Reg S-X (statement of cash flows); XBRL frames; 'follow the money'",

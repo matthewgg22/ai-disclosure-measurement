@@ -109,17 +109,18 @@ class EdgarClient:
         self.failures.append(("xbrl", cache_key))
         return {}
 
-    def xbrl_frames_duration(self, concept, year, unit="USD"):
-        """A flow (duration) XBRL concept as a {cik: value} map for the annual frame
-        CY{year} (full calendar year). Same caching, retry, and 404 semantics as the
-        instant variant."""
+    def xbrl_frames_duration(self, concept, year, unit="USD", quarter=None):
+        """A flow (duration) XBRL concept as a {cik: value} map. Annual frame CY{year} by
+        default; pass quarter=1..4 for the quarterly frame CY{year}Q{q}. Same caching,
+        retry, and 404 semantics as the instant variant."""
         tax, name = ("dei", concept.split(":", 1)[1]) if concept.startswith("dei:") \
             else ("us-gaap", concept.split(":", 1)[-1])
-        cache_key = f"frames|{tax}|{name}|{unit}|CY{year}"
+        period = f"CY{year}Q{quarter}" if quarter else f"CY{year}"
+        cache_key = f"frames|{tax}|{name}|{unit}|{period}"
         if cache_key in self._cache:
             return {int(k): v for k, v in self._cache[cache_key].items()}
         self._sleep()
-        url = f"https://data.sec.gov/api/xbrl/frames/{tax}/{name}/{unit}/CY{year}.json"
+        url = f"https://data.sec.gov/api/xbrl/frames/{tax}/{name}/{unit}/{period}.json"
         for i in range(6):
             try:
                 d = json.load(urllib.request.urlopen(

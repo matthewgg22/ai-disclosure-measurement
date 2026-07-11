@@ -49,8 +49,9 @@ DENOM_FILING_OVER_10K = "filing_count_over_10k"  # n = count of a DIFFERENT form
 DENOM_XBRL_Q4 = "xbrl_q4_intersection"     # n = filers over a growth threshold; base = the Q4-frame intersection
 DENOM_PCAOB_AUDITS = "pcaob_audit_engagements"   # base = issuer audits (PCAOB Form AP) that year
 DENOM_XBRL_JOIN = "xbrl_annual_join"       # n = filers tripping a forensic ratio; base = the annual-frame join
+DENOM_XBRL_QTR = "xbrl_firm_quarters"      # n = firm-quarters with the property; base = joined firm-quarters
 DENOM_SOURCES = {DENOM_10K_FILERS, DENOM_FILING_OVER_10K, DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS,
-                 DENOM_XBRL_JOIN}
+                 DENOM_XBRL_JOIN, DENOM_XBRL_QTR}
 
 
 @dataclass(frozen=True)

@@ -8,9 +8,11 @@ the registry needs no new code here.
 """
 from collections import Counter
 
+import math
+
 from .pcaob import is_big4, firm_key
 from .signal import (YearAggregate, DENOM_10K_FILERS, DENOM_FILING_OVER_10K,
-                     DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS, DENOM_XBRL_JOIN)
+                     DENOM_XBRL_Q4, DENOM_PCAOB_AUDITS, DENOM_XBRL_JOIN, DENOM_XBRL_QTR)
 
 
 class FtsExtractor:
@@ -233,12 +235,75 @@ class AccrualExtractor:
         return rows
 
 
+class EpsRoundingExtractor:
+    """The 'quadrophobia' EPS-rounding signal, aggregate only. Reported EPS is already rounded
+    to whole cents, so the tell lives in COMPUTED EPS: net income over weighted-average shares,
+    both from quarterly XBRL frames. Express EPS in cents and take the first post-decimal digit
+    (the tenth-of-a-cent). Under the no-management null that digit is uniform (10% each); a
+    firm nudging income up by a tenth of a cent to gain a reported cent erases 4s. The SEC's
+    EPS Initiative settled enforcement actions on exactly this fingerprint. Emitted per year:
+    the share of firm-quarters whose digit is 4, over all positive-EPS (>= 1 cent) firm-quarter
+    observations in the join. Per-firm values never leave."""
+
+    NI = "NetIncomeLoss"
+    SHARES = ("WeightedAverageNumberOfDilutedSharesOutstanding",
+              "WeightedAverageNumberOfSharesOutstandingBasic")
+
+    def __init__(self, spec, min_obs=1000):
+        if spec.source != "xbrl" or spec.id != "eps_rounding":
+            raise ValueError(f"{spec.id}: not the eps_rounding surface")
+        self.spec = spec
+        self.min_obs = min_obs   # skip thin early-XBRL years
+
+    def _shares(self, client, year, quarter):
+        merged = dict(client.xbrl_frames_duration(self.SHARES[0], year, unit="shares",
+                                                  quarter=quarter))
+        for cik, v in client.xbrl_frames_duration(self.SHARES[1], year, unit="shares",
+                                                  quarter=quarter).items():
+            merged.setdefault(cik, v)   # diluted preferred, basic fills gaps
+        return merged
+
+    @staticmethod
+    def tenth_of_cent_digit(ni, shares):
+        """First post-decimal digit of EPS expressed in cents; None if EPS < 1 cent or
+        inputs are unusable. eps_cents * 10 == 1000 * ni / shares."""
+        if not shares or shares <= 0 or ni is None or ni <= 0:
+            return None
+        eps_cents = 100.0 * ni / shares
+        if eps_cents < 1.0:
+            return None   # sub-cent EPS: the digit is degenerate, not uniform under the null
+        return int(math.floor(eps_cents * 10.0)) % 10
+
+    def signals(self, client, years):
+        rows = []
+        for year in years:
+            n4 = total = 0
+            for q in (1, 2, 3, 4):
+                ni = client.xbrl_frames_duration(self.NI, year, quarter=q)
+                sh = self._shares(client, year, q)
+                for cik, v in ni.items():
+                    d = self.tenth_of_cent_digit(v, sh.get(cik))
+                    if d is None:
+                        continue
+                    total += 1
+                    if d == 4:
+                        n4 += 1
+            if total < self.min_obs:
+                continue
+            rows.append(YearAggregate(int(year), self.spec.instrument,
+                                      f"{self.spec.id}.digit4_share", n4, total,
+                                      denom_source=DENOM_XBRL_QTR))
+        return rows
+
+
 def extractor_for(spec):
     """Return the extractor that drives a surface, by its source (and, where one source has
     several extraction shapes, by its id)."""
     if spec.source == "xbrl":
         if spec.id in ("receivables_outrun", "paper_earnings"):
             return AccrualExtractor(spec)
+        if spec.id == "eps_rounding":
+            return EpsRoundingExtractor(spec)
         return XbrlExtractor(spec)
     if spec.source == "pcaob":
         return AuditorChurnExtractor(spec) if spec.id == "auditor_churn" else PcaobExtractor(spec)

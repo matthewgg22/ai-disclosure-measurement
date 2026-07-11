@@ -16,6 +16,15 @@ pre-funded warrant, a going-concern opinion, or a small auditor is not fraud. Th
 premise is that *the co-occurrence of many of these features, in the small-cap tail, at the
 same issuer* is what carries signal. Any single feature is a screening input, never a finding.
 
+The aggregate-only boundary is not just an ethical choice; it is what the statistics support.
+Beneish and Vorst (The Accounting Review, 2022) evaluated seven public-data fraud-prediction
+models, from the M-Score to modern machine learning, and found that even the best trade off
+**168 to 324 false positives for every true positive** at the individual-issuer level. At
+those error rates, publishing per-issuer fraud flags from public data manufactures false
+accusations at industrial scale. Market-wide prevalence of fraud-associated surfaces, the
+quantity this repository reports, is the output the data can actually bear; issuer-level
+inference belongs downstream, where each candidate gets human case work before any conclusion.
+
 Two principles from fraud-risk practice organize the registry. First, the residual-risk
 discipline of the COSO/ACFE Fraud Risk Management Guide: for every control, ask how it can be
 circumvented. Applied to securities regulation, each surface in the registry is a disclosure
@@ -100,6 +109,16 @@ frames, and the financial-statement data sets). Grouped by what they capture:
   (positive net income over negative operating cash flow, the `paper_earnings` surface).
   Earnings are an opinion, cash is a fact; both markers are aggregate shares over the join of
   filers reporting the underlying concepts.
+- **EPS rounding management** (the engine's `eps_rounding` surface): computed quarterly EPS in
+  cents should have a uniform tenth-of-a-cent digit; firms nudging income up to gain a
+  reported cent erase 4s. The firm-level version of this signal predicts restatements, AAERs,
+  and class actions (Malenko, Grundfest and Shen, JFQA 2023) and is the basis of the SEC
+  Division of Enforcement's EPS Initiative, which has settled enforcement actions on this
+  fingerprint; the engine reports the market-wide digit-4 share per year, where the
+  no-management null is 10%. In the engine's series the digit-4 share runs a clear deficit
+  (8.6 to 9.7%) from 2010 through 2019, then returns to the 10% null from 2020 on, coincident
+  with the Initiative's first enforcement actions: consistent with the deterrence effect of
+  the SEC operationalizing the fingerprint.
 
 **C. Financier concentration (who funds it).**
 - A bipartite fund-to-issuer incidence: a small set of financiers touching many issuers.
