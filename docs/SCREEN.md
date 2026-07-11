@@ -142,10 +142,28 @@ a transparent-score AUC (rank-based, no model fit), a size-adjusted AUC (mean AU
 size terciles, so the score must clear 0.5 *after* the size control), lift by decile, and a
 fixed-seed bootstrap CI. It operates on an abstract labeled table (score, size, outcome) and
 holds no issuer identity, so it lives here and is unit-tested on synthetic data (it recovers a
-planted signal, shows the size-only baseline is weaker, and returns ~0.5 on noise). Producing
-*real* numbers means running it over the issuer universe with delisting / drawdown outcomes:
-that is issuer-level, so it is the private Phase 3 step, and only the aggregate AUC / lift it
-returns would ever be published here.
+planted signal, shows the size-only baseline is weaker, and returns ~0.5 on noise).
+
+**The harness has now run on real labels, and the gatekeeper dimension validates.** The
+issuer-level run is private (per the wall); the aggregate result is committed here
+(`data/aggregates/validation_summary.csv`, `validation_lift.csv`; figure F7 in
+[RESULTS.md](RESULTS.md)):
+
+- **Forward design.** A transparent 0-3 auditor-distress score (non-Big-4 auditor, Big-4 to
+  non-Big-4 downgrade, auditor churn, all from PCAOB Form AP) measured strictly through fiscal
+  2021; outcome = an SEC Section 12(j) delinquent-filer proceeding or trading suspension in
+  2022+. Nothing from the outcome window enters the score or the size control.
+- **Result:** size-adjusted AUC **0.732**, 95% bootstrap CI **(0.578, 0.773)**, n = 8,393,
+  234 failures. Top deciles fail at ~6-7% vs 0.0% in the bottom two. Size alone is
+  anti-predictive (AUC 0.11), so this is not a size story.
+- **The paired nulls.** The same score against large-cap AAER enforcement is null (0.564, CI
+  straddling 0.5): AAER targets skew large and Big-4-audited, the wrong population for this
+  score, which is itself the population-match lesson. A deliberately noisy label (all Form
+  25-NSE delistings, mixing failures with mergers and note redemptions) was predicted null in
+  advance and came back 0.492. The harness says no when the labels are wrong.
+- **Scope of the claim:** one dimension (gatekeeper distress) is validated against one class
+  of regulatory outcome; the composite screen and the other groups still need their own
+  labeled runs. The score is coarse and the CI wide, though clean of 0.5.
 
 **A disciplining result the project keeps in front, not buried:** the naive "hollow firm =
 washer" resource gap is **mostly a size effect**. A size-controlled classifier on that feature

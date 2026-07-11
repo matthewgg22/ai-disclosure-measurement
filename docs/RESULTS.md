@@ -178,6 +178,37 @@ For construction detail (denominators, phrase selection, identification), see
 - **Data source:** the engine, [`python -m screen.run`](../screen/) (the `auditor_churn` surface,
   PCAOB Form AP) → `data/aggregates/screen_registry.csv`.
 
+## F7: The gatekeeper signals predict regulatory failure
+
+![F7](figures/f7_validation.png)
+
+- **Number:** a transparent auditor-distress score (a 0-3 count of red flags from PCAOB Form
+  AP: non-Big-4 auditor, a Big-4 to non-Big-4 downgrade, auditor churn), measured strictly
+  through fiscal 2021, predicts which issuers are hit by an SEC Section 12(j) delinquent-filer
+  proceeding or trading suspension in 2022 or later: **size-adjusted AUC 0.732, 95% bootstrap
+  CI (0.578, 0.773)**, n = 8,393 issuers, 234 failures (base rate 2.8%). The top score deciles
+  fail at **~6-7%** against **0.0%** in the bottom two deciles.
+- **Why it matters:** this is the engine's claim made falsifiable, and it survived. The design
+  is forward-looking (nothing after fiscal 2021 enters the score or the size control), the AUC
+  is computed within size terciles, and size alone is *anti*-predictive here (AUC 0.11), so the
+  result is not "small firms fail more" restated.
+- **The null that makes it credible:** the same score was first run against SEC accounting
+  enforcement releases (AAERs, 2016+) and came back **null**: size-adjusted AUC 0.564, CI
+  (0.467, 0.649), straddling chance. AAER targets skew large and Big-4-audited, the opposite
+  population from the nano-cap distress this score encodes. A separate noisy label (all Form
+  25-NSE delistings, which mix compliance failures with mergers and note redemptions) was
+  predicted in advance to come back null and did: AUC 0.492. The harness reports nulls when
+  the labels are wrong, which is what makes the positive result worth something.
+- **Honest boundary:** one dimension is validated (gatekeeper distress), not the composite
+  screen; the score is coarse (0-3 integers, so deciles tie unevenly and the bar heights are
+  lumpy); the CI is wide though clean of 0.5; and 12(j) resolution is name-based on the
+  issuers that once filed 10-Ks, which aligns with the scored universe but is imperfect.
+- **Data source:** the committed aggregates `validation_summary.csv` and `validation_lift.csv`.
+  These are exported from the private issuer-level run (PCAOB Form AP histories, XBRL assets,
+  SEC enforcement listings resolved to CIK); only the aggregate statistics cross into this
+  repo, per the [methodology](METHODOLOGY.md) wall. The harness itself,
+  [`screen/validation.py`](../screen/validation.py), is public and unit-tested.
+
 ---
 
 ## Reproduce

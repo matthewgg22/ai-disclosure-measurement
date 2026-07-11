@@ -1,0 +1,5 @@
+year,label,design,n,positives,base_rate_pct,auc_size_only,auc_score_raw,auc_score_size_adj,ci_lo,ci_hi
+2016,aaer,cross_sectional,9431,34,0.36,0.583,0.49,0.564,0.467,0.649
+2022,twelve_j,forward_score_thru_2021,8393,232,2.76,0.109,0.734,0.717,0.557,0.762
+2022,failure,forward_score_thru_2021,8393,234,2.79,0.112,0.735,0.732,0.578,0.773
+2022,delisting,forward_score_thru_2021,8393,2266,27.0,0.544,0.485,0.492,0.481,0.504
