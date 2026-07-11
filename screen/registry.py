@@ -223,6 +223,22 @@ REGISTRY = [
             "specific to a live deficiency remediation, unlike generic 'listing' risk-factor text."),
         fts_queries={"regain_compliance": '"regain compliance"'},
     ),
+    SurfaceSpec(
+        id="enforcement_pipeline",
+        instrument="E",
+        citation="Exchange Act Section 21 (investigations); Rule 10b-5 half-truth doctrine",
+        description=(
+            "The enforcement pipeline surfacing in periodic reports: filers disclosing receipt "
+            "of a Wells notice (the SEC staff's advance warning of a recommended enforcement "
+            "action) or a subpoena. There is no clean line-item duty to disclose an "
+            "investigation, so under the half-truth doctrine the disclosure itself is a signal "
+            "the issuer judged the matter material or already 'in play'. Both phrases are "
+            "deliberately narrow; prevalence is a floor, not the rate of investigations."),
+        fts_queries={
+            "wells_notice": '"Wells notice"',
+            "subpoena": '"received a subpoena"',
+        },
+    ),
     # --- F. Entity & market structure ---
     SurfaceSpec(
         id="theme_pivot",
