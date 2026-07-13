@@ -7,11 +7,13 @@ A reproducible screen for the **capital-extraction structures that recur in nano
 
 Built over the EDGAR corpus and the Russell 3000. Everything here is **aggregate and reproducible**; no individual issuer is named or ranked. That boundary is statistical, not just ethical: even the best public-data fraud models produce **168 to 324 false positives per true positive** at issuer level (Beneish and Vorst, The Accounting Review 2022), so market-wide prevalence is the defensible output and issuer-level inference is left to downstream case work. This repository is the public *measurement layer* of a larger research project; issuer-level scoring, the §16(b) matcher, lead-generation, network mapping, and case files are deliberately excluded and kept private (see [Scope](#scope-what-is-not-here)).
 
+> **Reviewing this repo in ten minutes?** The validated result is [F7 below](#out-of-sample-validation-f7) (details: [`docs/RESULTS.md`](docs/RESULTS.md)). The honesty checks are the disciplining nulls (F4, F5, and the AAER null that *failed* first). The legal grounding is [`docs/DOCTRINE.md`](docs/DOCTRINE.md). To run something: `pip install matplotlib && python pipeline/make_figures.py` regenerates every figure from committed aggregates in about a minute, no network; `pytest` runs 55 offline tests (the same suite as [CI](https://github.com/matthewgg22/ai-disclosure-measurement/actions)).
+
 ---
 
-## The result, in three figures
+## The result, in figures
 
-Across 25 years of 10-K filings, the "AI" label **went everywhere, stayed hollow, and left its home sector.** Every figure below is aggregate (no individual issuer), regenerated from committed data by [`pipeline/make_figures.py`](pipeline/make_figures.py). Full figure→script→number map in [`docs/RESULTS.md`](docs/RESULTS.md).
+Across 25 years of 10-K filings, the "AI" label **went everywhere, stayed hollow, and left its home sector** — and the screen built underneath it predicts real regulatory failure out of sample (F7). Every figure below is aggregate (no individual issuer), regenerated from committed data by [`pipeline/make_figures.py`](pipeline/make_figures.py). Full figure→script→number map in [`docs/RESULTS.md`](docs/RESULTS.md).
 
 **1. The label went everywhere.** "Artificial intelligence" appeared in **0.8%** of 10-K filers in 2001 and **50.7%** in 2025.
 
@@ -48,6 +50,14 @@ The AI label is the wrapper. The value is pulled out through a specific, measura
 ![The extraction instrument spread through filings](docs/figures/f6_extraction.png)
 
 These phrases have legitimate uses, so their prevalence is a **screening input, not a finding of fraud**. The detection method combines this with gatekeeper distress, financier concentration, shell lineage, and cross-border structure; the full feature set, scoring, and out-of-sample validation design are in [`docs/SCREEN.md`](docs/SCREEN.md). Issuer-level scoring stays private, by design.
+
+### Out-of-sample validation (F7)
+
+Does the screen detect anything real? The claim is made falsifiable and tested forward: a transparent 0–3 auditor-distress score (non-Big-4, Big-4→non-Big-4 downgrade, churn — from PCAOB Form AP), measured **strictly through fiscal 2021**, predicts which issuers are hit by an SEC trading suspension or Section 12(j) proceeding **in 2022 or later**. Nothing from the outcome window enters the score.
+
+![Out-of-sample validation: gatekeeper distress measured through FY2021 predicts 2022+ regulatory failure](docs/figures/f7_validation.png)
+
+**Size-adjusted AUC 0.732, 95% bootstrap CI (0.578, 0.773)**, n = 8,393 issuers, 234 failures; top score deciles fail at ~6–7% vs 0.0% in the bottom two, and size alone is *anti*-predictive (AUC 0.11), so this is not "small firms fail more" restated. What makes the positive result credible is that the same harness **returned nulls when the labels were wrong**: against large-cap AAER enforcement it read 0.564 (chance), and against raw Form 25 delistings (which mix mergers into "failure") it read 0.492 — both reported, not buried. Honest boundary: one dimension is validated here, the CI is wide though clean of 0.5, and the score is deliberately coarse; full caveats in [`docs/RESULTS.md`](docs/RESULTS.md) and [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md#7-reproducibility-and-caveats).
 
 ---
 
@@ -105,7 +115,7 @@ Public scripts ship in this repo; issuer-level cohort/network analysis is in the
 
 ## Reproducibility
 
-**Fastest path (60 seconds, no network):** the three headline figures regenerate from the committed aggregate CSVs in `data/aggregates/`:
+**Fastest path (about a minute, no network):** all seven figures regenerate from the committed aggregate CSVs in `data/aggregates/`:
 
 ```
 pip install matplotlib
@@ -126,7 +136,7 @@ python pipeline/make_figures.py      # renders docs/figures/ from data/aggregate
 
 **Before running:** each script's EDGAR `User-Agent` declares a real contact (the SEC requires one). If you fork this repo, replace the `matthewgreergentis@gmail.com` contact string with your own before running. Requests are rate-limited to stay within SEC fair-access limits.
 
-Dependencies: standard library plus what's in `requirements.txt`. Market-data steps use free sources (yfinance/stooq) for prototyping; the event study reads Ken French factors (public).
+Dependencies: standard library plus what's in `requirements.txt`. The one script that pulls market prices (`ff_alpha.py`) needs a free Tiingo token (`TIINGO_TOKEN` env var); it populates the local price caches the premium and event-study scripts read. Factor data comes from Ken French's public library.
 
 For construction details (data sources, population definitions, the estimating equations, and the disciplining nulls), see [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
@@ -145,7 +155,7 @@ Nothing here names or targets an individual company as a fraud suspect. The coho
 
 ## Note on AI-assisted development
 
-This pipeline was built with AI-assisted analysis and coding. The research design, the measurement choices, the interpretation, and the verification are the author's; AI was used as a coding and large-scale-review tool. All results are reproducible from the code and public data.
+This pipeline was built working with Claude (Anthropic's Claude Code) in an agentic workflow. The division of labor, concretely: the research design, the measurement choices, the legal framing, the interpretation, and the final verification are the author's; Claude implemented the pipeline, ran large-scale corpus review, and ran **adversarial review passes against its own code** — one of which caught, before it ever shipped, a filter bug that would have silently dropped the entire operating-issuer population from the PCAOB signal (the positive-selection fix is in `screen/pcaob.py`; a later pass produced the "Harden the screen engine after adversarial review" commit). Guardrails are structural rather than trust-based: results regenerate from committed aggregates and public data, the validation harness is unit-tested on synthetic data with known answers, a publication gate (`scripts/check_public_safe.py`) blocks issuer-identifying output from ever shipping, and CI runs the full offline suite on every push. The disciplining nulls reported throughout (the AAER null, the delisting null, F4/F5) came out of the same workflow: the harness was built to be able to say *no*, and sometimes it did.
 
 ## Working paper
 
