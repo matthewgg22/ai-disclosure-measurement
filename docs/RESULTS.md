@@ -206,8 +206,16 @@ For construction detail (denominators, phrase selection, identification), see
 - **Data source:** the committed aggregates `validation_summary.csv` and `validation_lift.csv`.
   These are exported from the private issuer-level run (PCAOB Form AP histories, XBRL assets,
   SEC enforcement listings resolved to CIK); only the aggregate statistics cross into this
-  repo, per the [methodology](METHODOLOGY.md) wall. The harness itself,
-  [`screen/validation.py`](../screen/validation.py), is public and unit-tested.
+  repo, per the [methodology](METHODOLOGY.md) wall.
+- **Reproducibility, stated exactly:** F7 is **verifiable in method but not re-runnable from this
+  public repo.** The scoring *method* (a transparent 0–3 flag count) and the *statistical harness*
+  that produces the AUC, CI, and decile lift — [`screen/validation.py`](../screen/validation.py) —
+  are both public and unit-tested against analytic answers (`tests/test_validation.py`: AUC = 1.0 /
+  0.0 / 0.5, planted-signal recovery, noise → 0.5, determinism). What is *not* public is the
+  issuer-level input table (each firm's score, size, and 2022+ outcome), because it is issuer-level
+  by construction. A reader can therefore audit *how* the number is computed and re-run the harness
+  on any labeled table, but cannot regenerate this specific AUC from this repo alone — an inherent
+  consequence of the aggregate-only wall, not an omission.
 
 ---
 

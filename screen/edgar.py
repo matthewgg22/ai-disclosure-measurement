@@ -39,6 +39,7 @@ class EdgarClient:
             self._cache = {}
         self._denom = None
         self.failures = []   # (kind, key) for fetches that exhausted retries; run.py checks this
+        self.truncated = []  # queries whose true count exceeds EDGAR's 10k cap (reported as a floor)
 
     def _sleep(self):
         dt = time.time() - self._last
@@ -68,7 +69,14 @@ class EdgarClient:
             try:
                 d = json.load(urllib.request.urlopen(
                     urllib.request.Request(url, headers=self.ua), timeout=self.timeout))
-                n = d.get("hits", {}).get("total", {}).get("value", 0)
+                total = d.get("hits", {}).get("total", {})
+                n = total.get("value", 0)
+                # EDGAR/Elasticsearch caps `value` at 10,000 and sets relation "gte" for very common
+                # terms; the true count is then a floor, not exact. Surface it rather than reporting
+                # a truncated count as if it were exact. (The engine's surfaces are all rare, so this
+                # is a guard, not a live condition.)
+                if total.get("relation") == "gte":
+                    self.truncated.append(key)
                 self._cache[key] = n
                 self._save()
                 return n

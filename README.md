@@ -132,7 +132,7 @@ python pipeline/ai_lexicon.py        # marketing vs build vocabulary (F2)
 python pipeline/ai_sector.py         # sector diffusion (F3)
 python pipeline/informativeness.py   # label information content (F4)
 python pipeline/placebo_terms.py     # placebo buzzwords (F5)
-python -m screen.run                 # the regulatory-surface screen engine (F6/F7 inputs)
+python -m screen.run you@example.com # the regulatory-surface screen engine (F6/F7 inputs); pass your SEC contact
 python pipeline/make_figures.py      # renders docs/figures/ from data/aggregates/
 ```
 

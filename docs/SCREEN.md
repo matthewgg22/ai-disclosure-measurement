@@ -178,6 +178,28 @@ frames, and the financial-statement data sets). Grouped by what they capture:
   docket itself is confidential by statute, so the issuer's own 8-K disclosure is the only
   public surface; steady 2-3.4% of 8-K filings mention it.
 
+### Measurement caveats (what each surface does *not* control for)
+
+Three limitations are worth stating plainly, because each is the sort of confound a fraud
+examiner or auditor would probe. None invalidates a market-wide prevalence trend; each is a reason
+the levels are approximate and the surfaces are screening inputs, not findings.
+
+- **Auditor-firm mergers read as client "churn."** The `auditor_churn` surface treats a change in
+  the Form AP firm name as an auditor switch. Big-4 network name variants are collapsed so they do
+  not, but a *non*-Big-4 firm renaming through a merger (e.g., Friedman LLP into Marcum) registers
+  as a switch for all of its clients. In audit-industry consolidation years this inflates the
+  change rate. It is the auditor-side analogue of counting an M&A delisting as a "failure," and it
+  is not corrected here.
+- **Share-count dilution is split-naive.** The dilution surface compares shares outstanding year
+  over year; a reverse split lowers the count and can mask genuine dilution, while a forward split
+  inflates it. The prevalence trend is robust to this in aggregate, but individual-year levels are
+  noisy around split activity.
+- **Co-occurrence is document-level, not deal-level.** The paired §16-evasion surface counts 10-Ks
+  in which *both* the pre-funded-warrant and the ownership-blocker phrases appear (EDGAR full-text
+  search ANDs them within a filing). Two phrases in one 10-K need not describe the same instrument,
+  so the paired count is an upper bound on the genuinely-paired structure — which is exactly why it
+  is reported as a screening input, not a count of evasive deals.
+
 ---
 
 ## 2. How the screen is scored

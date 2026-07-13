@@ -21,7 +21,12 @@ YEARS = range(2001, 2026)
 
 
 def main():
-    contact = sys.argv[1] if len(sys.argv) > 1 else "matthewgreergentis@gmail.com"
+    # SEC fair access requires a real contact in the User-Agent. Take it from argv or the
+    # SEC_CONTACT env var; never fall back to a hard-coded address, so a fork identifies itself.
+    contact = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("SEC_CONTACT")
+    if not contact:
+        sys.exit("Provide an SEC contact email: `python -m screen.run you@example.com` "
+                 "(or set SEC_CONTACT). The SEC requires a real contact in the request User-Agent.")
     edgar, pcaob = EdgarClient(contact), PcaobClient(contact)
     clients = {"fts": edgar, "xbrl": edgar, "pcaob": pcaob}
     specs = extractable()
@@ -40,6 +45,10 @@ def main():
         summary = "  ".join(f"{r.signal_id.split('.')[1]}={r.pct}%" for r in vals)
         print(f"  [{s.instrument}] {s.id} ({latest}): {summary}")
     print(f"[done] {len(rows)} rows -> {os.path.relpath(OUT, _ROOT)}")
+    # Loud on count truncation: a query over EDGAR's 10k cap is a floor, not an exact count.
+    if edgar.truncated:
+        print(f"\n[WARN] {len(edgar.truncated)} FTS count(s) hit EDGAR's 10,000 cap (reported as a "
+              f"floor, not exact): {edgar.truncated[:5]}")
     # Loud on fetch failures: a transient error must not silently become a data gap.
     failures = edgar.failures + pcaob.failures
     if failures:
