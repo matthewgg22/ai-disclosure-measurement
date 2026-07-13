@@ -47,8 +47,9 @@ disclosure stays tied to substance. When a term becomes free to use, so that wri
 costs nothing and signals little, it stops helping investors tell firms apart and starts
 helping weaker firms pool with stronger ones. Regulators have recently called this pattern
 "AI washing" and have brought cases against advisers who overstated their use of the
-technology (SEC, 2024). Those cases are issuer-specific and are not the subject of this
-paper. This paper supplies the market-level backdrop against which such cases sit: how far,
+technology — the March 2024 settlements with Delphia (USA) Inc. and Global Predictions Inc.
+were the SEC's first enforcement actions naming AI washing directly (SEC, 2024). Those cases
+are issuer-specific and are not the subject of this paper. This paper supplies the market-level backdrop against which such cases sit: how far,
 and in which direction, the language of AI in filings has moved relative to its substance.
 
 The contribution is a set of aggregate measurements over the full 10-K corpus: four that
@@ -233,6 +234,6 @@ should be verified against the author's citation style.*
   *Journal of Finance*, 56(6), 2371–2388.
 - Loughran, T., & McDonald, B. (2011). When Is a Liability Not a Liability? Textual Analysis,
   Dictionaries, and 10-Ks. *Journal of Finance*, 66(1), 35–65.
-- U.S. Securities and Exchange Commission (2024). SEC Charges Two Investment Advisers for
-  Making False and Misleading Statements About Their Use of Artificial Intelligence. Press
-  release 2024-36.
+- U.S. Securities and Exchange Commission (2024). SEC Charges Two Investment Advisers,
+  Delphia (USA) Inc. and Global Predictions Inc., for Making False and Misleading Statements
+  About Their Use of Artificial Intelligence. Press release 2024-36 (March 18, 2024).

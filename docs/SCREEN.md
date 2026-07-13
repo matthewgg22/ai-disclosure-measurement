@@ -31,6 +31,33 @@ that satisfies or defeats each element, and the engine surface that measures it.
 rule it enforces: a registry surface should correspond to an element the government or a
 plaintiff must actually prove.
 
+### Related work and contribution
+
+The screen stands on the forensic-accounting detection literature and reuses its validated
+markers rather than inventing metrics. Its accrual and earnings-quality surfaces implement the
+canonical constructs: the days-sales-in-receivables and total-accruals components behind
+**Beneish's M-Score** (Beneish, *Financial Analysts Journal*, 1999), the accrual anomaly of
+**Sloan** (*The Accounting Review*, 1996), the fundamental-health signals of **Piotroski's
+F-Score** (*Journal of Accounting Research*, 2000), and the restatement-prediction work of
+**Dechow, Ge, Larson, and Sloan** (*Contemporary Accounting Research*, 2011). The EPS-rounding
+surface operationalizes the **"quadrophobia"** discontinuity in reported earnings digits
+(Grundfest and Malenko; Malenko, Grundfest, and Shen, *JFQA*, 2023). The textual surfaces build
+on the 10-K dictionary methodology of **Loughran and McDonald** (*Journal of Finance*, 2011),
+and the theme-pivot/name-rotation framing follows the dot-com evidence of **Cooper, Dimitrov,
+and Rau** (*Journal of Finance*, 2001). The governing false-positive economics are from
+**Beneish and Vorst** (*The Accounting Review*, 2022).
+
+Against that literature the contribution here is threefold. First, **breadth as a registry**:
+rather than a single score, the surfaces are organized as a registry of regulatory *elements*
+(A–F), each tied in [DOCTRINE.md](DOCTRINE.md) to a fraud theory the government or a plaintiff
+must prove — so coverage grows by adding a rule, not a model. Second, **the extraction
+mechanism**, the pre-funded-warrant-plus-ownership-blocker structure that routes dilution around
+Section 16, measured market-wide (F6) as a first-class surface rather than treated as a footnote.
+Third, an **honest aggregate-vs-issuer boundary**: the same literature that supplies the markers
+also supplies the 168–324:1 false-positive ceiling, so this layer publishes market-wide
+prevalence and a forward-validated single dimension (F7) and leaves issuer-level inference to
+private case work.
+
 Two principles from fraud-risk practice organize the registry. First, the residual-risk
 discipline of the COSO/ACFE Fraud Risk Management Guide: for every control, ask how it can be
 circumvented. Applied to securities regulation, each surface in the registry is a disclosure

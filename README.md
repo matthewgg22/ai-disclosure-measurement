@@ -5,6 +5,8 @@
 
 A reproducible screen for the **capital-extraction structures that recur in nano, micro, and small-cap securities fraud**, built from public SEC filings, with out-of-sample evidence that it works: **the engine's gatekeeper signals, measured through fiscal 2021, predict SEC regulatory failure in 2022+ with a size-adjusted AUC of 0.73** (F7 in [`docs/RESULTS.md`](docs/RESULTS.md)). The "AI" label is one narrative *wrapper* the screen sits under: this repo measures how far that label has decoupled from substance (F1 to F5), and, at the level that matters more, tracks the extraction *mechanism* the wrapper hides, the pre-funded-warrant and ownership-blocker structure that routes dilution around Section 16 (F6, [`docs/SCREEN.md`](docs/SCREEN.md)). Every surface the engine measures traces to an element of a securities-fraud theory the government or a plaintiff must actually prove; the element-by-element map is [`docs/DOCTRINE.md`](docs/DOCTRINE.md).
 
+This is also, at bottom, **measurement of a societal impact of AI**: it quantifies how a claim *about AI capability* propagates through a disclosure system and decouples from substance, and it tracks the market-integrity harm that follows when it does. The methods are securities-specific, but the object — measuring where AI language outruns AI reality, at population scale, from primary sources — is AI-impacts research.
+
 Built over the EDGAR corpus and the Russell 3000. Everything here is **aggregate and reproducible**; no individual issuer is named or ranked. That boundary is statistical, not just ethical: even the best public-data fraud models produce **168 to 324 false positives per true positive** at issuer level (Beneish and Vorst, The Accounting Review 2022), so market-wide prevalence is the defensible output and issuer-level inference is left to downstream case work. This repository is the public *measurement layer* of a larger research project; issuer-level scoring, the §16(b) matcher, lead-generation, network mapping, and case files are deliberately excluded and kept private (see [Scope](#scope-what-is-not-here)).
 
 > **Reviewing this repo in ten minutes?** The validated result is [F7 below](#out-of-sample-validation-f7) (details: [`docs/RESULTS.md`](docs/RESULTS.md)). The honesty checks are the disciplining nulls (F4, F5, and the AAER null that *failed* first). The legal grounding is [`docs/DOCTRINE.md`](docs/DOCTRINE.md). To run something: `pip install matplotlib && python pipeline/make_figures.py` regenerates every figure from committed aggregates in about a minute, no network; `pytest` runs 55 offline tests (the same suite as [CI](https://github.com/matthewgg22/ai-disclosure-measurement/actions)).
@@ -49,7 +51,7 @@ The AI label is the wrapper. The value is pulled out through a specific, measura
 
 ![The extraction instrument spread through filings](docs/figures/f6_extraction.png)
 
-These phrases have legitimate uses, so their prevalence is a **screening input, not a finding of fraud**. The detection method combines this with gatekeeper distress, financier concentration, shell lineage, and cross-border structure; the full feature set, scoring, and out-of-sample validation design are in [`docs/SCREEN.md`](docs/SCREEN.md). Issuer-level scoring stays private, by design.
+These phrases have legitimate uses, so their prevalence is a **screening input, not a finding of fraud**. The detection method combines this with gatekeeper distress, financier concentration, shell lineage, and cross-border structure; the full feature set, scoring, and out-of-sample validation design are in [`docs/SCREEN.md`](docs/SCREEN.md). Issuer-level scoring stays private, by design. The screen builds on the forensic-detection canon — Beneish's M-Score, Sloan accruals, Piotroski's F-Score, the Loughran–McDonald 10-K dictionary method, and the "quadrophobia" earnings-digit discontinuity — and reuses its validated markers rather than inventing metrics; the lineage and the specific contribution are set out in [`docs/SCREEN.md`](docs/SCREEN.md#related-work-and-contribution).
 
 ### Out-of-sample validation (F7)
 
@@ -138,7 +140,9 @@ python pipeline/make_figures.py      # renders docs/figures/ from data/aggregate
 
 Dependencies: standard library plus what's in `requirements.txt`. The one script that pulls market prices (`ff_alpha.py`) needs a free Tiingo token (`TIINGO_TOKEN` env var); it populates the local price caches the premium and event-study scripts read. Factor data comes from Ken French's public library.
 
-For construction details (data sources, population definitions, the estimating equations, and the disciplining nulls), see [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
+**Computational requirements.** Python 3.9+; no GPU, no cluster, no paid data. The figure-regeneration path needs only `matplotlib` and runs in about a minute on a laptop; `pytest` (55 tests) runs offline in ~5 seconds. Full pipeline runs from public SEC/PCAOB/XBRL endpoints over an ordinary connection and caches locally. Every committed aggregate CSV is documented in [`docs/CODEBOOK.md`](docs/CODEBOOK.md).
+
+For construction details (data sources, population definitions, the estimating equations, and the disciplining nulls), see [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md). For how the findings map to disclosure-policy levers, see [`docs/POLICY.md`](docs/POLICY.md).
 
 ---
 
@@ -152,6 +156,8 @@ This is the **measurement layer**. Deliberately excluded, because it belongs to 
 - case-specific dossiers.
 
 Nothing here names or targets an individual company as a fraud suspect. The cohort is a screened population of public filers; the findings are statistical.
+
+This split is a deliberate **responsible-disclosure** design, not just legal caution: the same public data that yields useful market-wide measurement also yields an issuer-targeting capability whose false-positive rate (168–324 per true positive) makes public per-issuer output net-harmful. So the repository publishes the measurement and the reproducible method, and withholds the targeting layer — a capability-vs-measurement line drawn on evidence about error rates, enforced in code by a publication gate rather than by promise. It is the same shape of judgment that governs disclosure decisions elsewhere: release what informs, hold back what mostly manufactures harm.
 
 ## Note on AI-assisted development
 
