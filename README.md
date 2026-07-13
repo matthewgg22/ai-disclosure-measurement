@@ -177,5 +177,5 @@ Greer-Gentis, M. (2026). AI Disclosure Measurement. https://github.com/matthewgg
 
 ## Author & license
 
-Matthew Greer-Gentis · Harvard Kennedy School (MPP) · research advised by Hal Scott and Daniel Tarullo.
+Matthew Greer-Gentis · Harvard Kennedy School (MPP).
 Released under the MIT License (see `LICENSE`).
