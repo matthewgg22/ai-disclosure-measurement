@@ -162,3 +162,120 @@ One row per (label, score decile).
 | `bad_rate_pct` | pp | failure rate within that decile |
 
 Monotone lift — ~0% in the bottom deciles rising to ~6–7% in the top — is the visual of the AUC.
+
+---
+
+# Revelation and event-study aggregates (F8)
+
+Population-level outputs behind [`REVELATION.md`](REVELATION.md). Building the revelation calendar
+and estimating issuer-level abnormal returns happens in a separate private repository; only these
+group-level counts and statistics cross into this one. The `year` column carries a vintage where a
+result is per-vintage and the span `2022-2024` where it is pooled.
+
+## `forward_vintage_summary.csv` — the screen, forward, per vintage
+One row per feature year.
+
+| column | unit | meaning |
+|---|---|---|
+| `year` | year | feature year; outcomes run the following 20 months |
+| `n` | count | issuers with a price series and XBRL assets |
+| `base_rate_pct` | % | share suffering a 50% loss or delisting |
+| `auc_size_adj` | AUC | **headline**: computed within size terciles |
+| `ci_lo`, `ci_hi` | AUC | 95% bootstrap CI |
+| `auc_size_only` | AUC | size alone; ~0.23 means size is *anti*-predictive |
+
+## `forward_by_warning_signs.csv` — the ordering
+One row per (year, warning-sign count).
+
+| column | unit | meaning |
+|---|---|---|
+| `warning_signs` | 0–4 | count of pillars firing in that year's 10-K |
+| `median_fwd_return_pct` | % | median return over the following 20 months |
+| `severe_rate_pct` | % | share suffering a 50% loss or delisting |
+| `loss_pct_of_float` | % | realized loss as a share of public float |
+
+The first sign-count whose median falls below −25% is **2** in all three vintages. That the
+threshold does not drift by regime matters more than the AUC point estimate.
+
+## `revelation_calendar.csv` — the events
+One row per event type. Mandatory SEC filings whose trigger is defined by rule, so dates are set by
+the issuer's legal obligation rather than chosen with hindsight.
+
+| value of `event_type` | filing | meaning |
+|---|---|---|
+| `R_NONRELIANCE` | 8-K Item 4.02 | previously issued financials should no longer be relied upon |
+| `R_LISTING` | 8-K Item 3.01 | failure to satisfy a continued-listing rule |
+| `R_AUDITOR` | 8-K Item 4.01 | change in certifying accountant |
+| `R_LATE` | NT 10-K / NT 10-Q | inability to file on time |
+
+## `revelation_incidence.csv` — who gets caught
+One row per (year, outcome, variant, sample, warning-sign count).
+
+| column | unit | meaning |
+|---|---|---|
+| `outcome` | text | `y_nonrel`, `y_listing`, `y_any` (within 20 months), `y_listing_12m` |
+| `variant` | text | signal set: `FULL`, `NO_RSS` (drops the reverse-split surface), `NO_P4`, `TEXT_ONLY` |
+| `sample` | text | `ALL`, or `NOPRIOR` = issuers with no listing notice before the 10-K |
+| `rate_pct` | % | share of that bucket with the outcome |
+
+**Quote the `NOPRIOR` / `y_nonrel` rows.** The `ALL` / `y_listing` rows are inflated by two
+artefacts documented in [`REVELATION.md`](REVELATION.md): firms reverse-split *to cure* a bid-price
+deficiency, and issuers already under a notice can receive another.
+
+## `revelation_discrimination.csv` — the same, as AUC
+One row per (year, outcome, variant, sample).
+
+| column | unit | meaning |
+|---|---|---|
+| `auc_size_adj`, `ci_lo`, `ci_hi` | AUC | size-stratified AUC and 95% bootstrap CI |
+| `auc_size_only` | AUC | size alone; 0.19–0.33 here, so *anti*-predictive |
+| `monotone` | 0/1 | whether incidence rises at every step |
+| `lift_top_over_bottom` | ratio | top bucket rate ÷ bottom bucket rate |
+
+## `tier_a_precision.csv` — the structural detectors, as triggers
+One row per (detector, outcome).
+
+| column | unit | meaning |
+|---|---|---|
+| `detector` | text | `A1` share explosion, `A3` manufactured asset, `A4` period inconsistency |
+| `precision_pct` | % | share of flagged issuers with the outcome |
+| `lift` | ratio | precision ÷ base rate — **the comparable statistic** |
+| `recall_pct` | % | share of all outcomes the flag caught |
+| `fisher_p` | p | one-sided Fisher exact test |
+| `auc_observed` | AUC | reported only to be compared against the next column |
+| `auc_ceiling` | AUC | highest AUC a binary flag at this firing rate could reach |
+
+**Do not read `auc_observed` on its own.** For a binary flag AUC is (sensitivity + specificity)/2,
+so a flag firing on 0.2% of the population is pinned near 0.5 whatever its precision. Compare it to
+`auc_ceiling` (`screen/eventstudy.auc_ceiling`), and use `precision_pct` and `lift` for triggers.
+`A4` is a **failure** — four firms, zero outcomes — and is kept for that reason.
+
+## `car_by_event_type.csv` — what the market pays
+One row per (event type, window).
+
+| column | unit | meaning |
+|---|---|---|
+| `window` | text | trading days relative to the filing; `PLACEBO[-10,-3]` is the pre-event check |
+| `mean_car_pct` | % | mean cumulative abnormal return vs the Russell 2000, **winsorized 1/99** |
+| `median_car_pct` | % | median, untreated |
+| `t_crosssec` | t | plain cross-sectional t — reported for comparability, not relied on |
+| `t_bmp` | t | BMP (1991); survives event-induced variance |
+| `z_corrado` | Z | Corrado (1989) rank test; survives magnitude entirely |
+| `significant` | 0/1 | 1 only where **both** BMP and Corrado exceed \|1.96\| |
+
+The placebo row is the load-bearing check. `R_NONRELIANCE` is null there; `R_LISTING` and `R_LATE`
+are not, so those events are partly anticipated and cannot be read as clean surprises.
+
+## `attributable_loss.csv` — the dollar figure
+One row per event type, plus a `UNION` row (first revelation of any type per issuer).
+
+| column | unit | meaning |
+|---|---|---|
+| `n_events` | count | one event per issuer per type; float capped at $2B |
+| `float_usd_bn` | $bn | public float, **not** market cap — insider shares are not public losses |
+| `attributable_usd_mn` | $mn | Σ (CAR × float), signed; positives included, not dropped |
+| `ci_lo_usd_mn`, `ci_hi_usd_mn` | $mn | 95% bootstrap CI |
+
+**Quote the `UNION` row**, not a sum of the type rows: an issuer filing both a non-reliance and a
+listing notice appears in two type rows. Coverage is 52% — issuers already delisted cannot be
+priced, and those are the worst outcomes, so the figure **understates**.

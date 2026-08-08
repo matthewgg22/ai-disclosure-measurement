@@ -84,15 +84,56 @@ targeting) is the same line an agency would draw.
 
 ---
 
+## 5. Non-reliance disclosure is the only revelation the market cannot anticipate (F8) → a bar on weakening it
+
+Evidence: [`REVELATION.md`](REVELATION.md); `data/aggregates/car_by_event_type.csv`.
+
+Four kinds of mandatory revelation were dated from issuers' own filings and priced against the
+Russell 2000. **Only one is a surprise.**
+
+| revelation | pre-event drift | reading |
+|---|---|---|
+| **non-reliance** (8-K Item 4.02) | **none** (placebo −0.86%, Corrado −0.60) | the market did **not** know the books were wrong |
+| listing deficiency (Item 3.01) | significant | the market had already worked out the firm was in listing trouble |
+| late filing (NT 10-K/Q) | significant | same |
+| auditor change (Item 4.01) | — | **null on every window**: not treated as news at all |
+
+By the time an exchange says a company has fallen below a listing standard, the price has already
+moved. By the time a company says its financial statements cannot be relied upon, it has not — and
+the announcement is worth **−3.16% in two trading days**, with $10.5B (CI $5.9–15.3B) of value
+destruction across revelation days in this population.
+
+**The lever.** Item 4.02 is carrying information the market has no other route to. That makes it a
+poor candidate for the scaled-disclosure treatment smaller reporting companies receive elsewhere:
+any proposal to soften, delay, or raise the materiality threshold for non-reliance reporting for
+smaller filers should have to answer that number. The symmetric point is that the *auditor-change*
+null suggests Item 4.01 is doing little pricing work in this population — which is where relief, if
+any is wanted, would cost least.
+
+**Scope discipline.** This measures what the market learns, not whether anyone did anything wrong. A
+restatement is a statement about **disclosure**. Nothing here identifies an issuer as a wrongdoer,
+and the false-positive economics in §4 apply with equal force to the F8 screen: at 9.1% precision on
+its highest-recall detector, publishing issuer-level scores would brand nine solvent companies for
+each troubled one, with financing consequences for exactly the firms least able to absorb them.
+
+---
+
 ### The through-line
 
 Findings 1–2 say a *vocabulary* went free and the fix is to re-price the term (guidance, narrowly
 scoped). Finding 3 says a *structure* routes around an existing rule and the fix is an anti-evasion
 gloss where the prevalence justifies it. Finding 4 says a *screen works but only for triage*, which
-is an argument about who should hold it and how it should be used, not about publishing scores. In
-every case the market-wide measurement is what tells a regulator whether the gap is real and
-growing — which is the contribution a public, reproducible measurement layer can make that
-issuer-level casework cannot.
+is an argument about who should hold it and how it should be used, not about publishing scores.
+Finding 5 says one *disclosure obligation* is doing informational work nothing else replaces, and
+the lever there is protective rather than additive — do not weaken it. In every case the market-wide
+measurement is what tells a regulator whether the gap is real and growing — which is the
+contribution a public, reproducible measurement layer can make that issuer-level casework cannot.
+
+**One caution that applies to all five.** The screen is a way to sort a haystack, not a metal
+detector: discrimination is modest (AUC ≈ 0.58 on returns, 0.61 on restatement), and the strongest
+raw version of Finding 5 was **withdrawn** after two attacks broke it — a listing-deficiency gradient
+of 8.1% → 71% that fell to roughly 10% → 27% once repeat notices and a circular signal surface were
+removed. The withdrawal is reported at the same length as the result that survived.
 
 *This note states policy implications of the measurements; it is analysis, not legal advice, and
 the levers are framed for discussion.*

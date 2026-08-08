@@ -1,0 +1,7 @@
+year,event_type,n_events,float_usd_bn,float_weighted_car_pct,attributable_usd_mn,ci_lo_usd_mn,ci_hi_usd_mn,median_per_event_usd_mn
+2022-2024,R_AUDITOR,907,227.0,-0.4,-908.2,-2481.5,611.6,-0.1423
+2022-2024,R_LATE,863,182.72,-2.36,-4306.3,-7928.6,-1213.6,-0.0961
+2022-2024,R_LISTING,1509,429.84,-1.14,-4887.7,-7414.8,-2621.7,-0.2543
+2022-2024,R_NONRELIANCE,272,73.87,-4.69,-3464.5,-6511.2,-999.2,-0.3192
+2022-2024,R_NONRELIANCE (unconfounded only),150,43.68,-0.79,-343.0,-1490.2,891.2,-0.2019
+2022-2024,UNION — first revelation of any type per issuer,2115,636.61,-1.65,-10472.7,-15291.9,-5893.7,-0.1435

@@ -9,7 +9,7 @@ This is also, at bottom, **measurement of a societal impact of AI**: it quantifi
 
 Built over the EDGAR corpus and the Russell 3000. Everything here is **aggregate and reproducible**; no individual issuer is named or ranked. That boundary is statistical, not just ethical: even the best public-data fraud models produce **168 to 324 false positives per true positive** at issuer level (Beneish and Vorst, The Accounting Review 2022), so market-wide prevalence is the defensible output and issuer-level inference is left to downstream case work. This repository is the public *measurement layer* of a larger research project; issuer-level scoring, the §16(b) matcher, lead-generation, network mapping, and case files are deliberately excluded and kept private (see [Scope](#scope-what-is-not-here)).
 
-> **Reviewing this repo in ten minutes?** *The economics:* an information-economics question — does a disclosure term still carry information once it becomes free to assert? — measured across 25 years of filings as a lemons dynamic (F4), with the findings mapped to concrete disclosure-policy levers in [`docs/POLICY.md`](docs/POLICY.md). *The evidence it is measurement, not description:* the out-of-sample-validated screen, [F7 below](#out-of-sample-validation-f7), predicts SEC regulatory failure at size-adjusted AUC 0.73 ([`docs/RESULTS.md`](docs/RESULTS.md)). *The honesty:* the disciplining nulls (F4, F5, and the AAER null that *failed* first). *The legal grounding:* [`docs/DOCTRINE.md`](docs/DOCTRINE.md). *To run it:* `pip install matplotlib && python pipeline/make_figures.py` regenerates every figure from committed aggregates in about a minute, no network; `pytest` runs 56 offline tests (the same suite as [CI](https://github.com/matthewgg22/ai-disclosure-measurement/actions)).
+> **Reviewing this repo in ten minutes?** *The economics:* an information-economics question — does a disclosure term still carry information once it becomes free to assert? — measured across 25 years of filings as a lemons dynamic (F4), with the findings mapped to concrete disclosure-policy levers in [`docs/POLICY.md`](docs/POLICY.md). *The strongest single result:* [F8](#predicting-disclosure-failure-and-pricing-it-f8) — the screen predicts which small issuers will later declare their own financial statements unreliable (12.2% vs 1.6%, monotone, size anti-predictive), and the event study prices that declaration at −3.2% with a null placebo and $10.5B across the population ([`docs/REVELATION.md`](docs/REVELATION.md)). *The evidence it is measurement, not description:* the out-of-sample-validated screen, [F7 below](#out-of-sample-validation-f7), predicts SEC regulatory failure at size-adjusted AUC 0.73 ([`docs/RESULTS.md`](docs/RESULTS.md)). *The honesty:* the disciplining nulls (F4, F5, the AAER null that *failed* first), and the F8 result that was **withdrawn** after two attacks broke it. *The legal grounding:* [`docs/DOCTRINE.md`](docs/DOCTRINE.md). *To run it:* `pip install matplotlib && python pipeline/make_figures.py` regenerates every figure from committed aggregates in about a minute, no network; `pytest` runs 74 offline tests (the same suite as [CI](https://github.com/matthewgg22/ai-disclosure-measurement/actions)).
 
 ---
 
@@ -61,6 +61,18 @@ Does the screen detect anything real? The claim is made falsifiable and tested f
 
 **Size-adjusted AUC 0.732, 95% bootstrap CI (0.578, 0.773)**, n = 8,393 issuers, 234 failures; top score deciles fail at ~6–7% vs 0.0% in the bottom two, and size alone is *anti*-predictive (AUC 0.11), so this is not "small firms fail more" restated. What makes the positive result credible is that the same harness **returned nulls when the labels were wrong**: against large-cap AAER enforcement it read 0.564 (chance), and against raw Form 25 delistings (which mix mergers into "failure") it read 0.492 — both reported, not buried. Honest boundary: one dimension is validated here, the CI is wide though clean of 0.5, and the score is deliberately coarse; full caveats in [`docs/RESULTS.md`](docs/RESULTS.md) and [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md#7-reproducibility-and-caveats).
 
+### Predicting disclosure failure, and pricing it (F8)
+
+The strongest result in the repo, and the one furthest from the AI label. The same screen predicts an outcome it was never fitted to — a company being **forced by rule to correct the record** — and the event study prices what that correction costs. Full treatment in [`docs/REVELATION.md`](docs/REVELATION.md).
+
+![The screen predicts which issuers later retract their own financials, and what retracting costs](docs/figures/f8_revelation.png)
+
+Across 14,282 issuer-vintages (2022–2024), issuers with **no prior listing trouble** and three warning signs in the 10-K went on to file an 8-K Item 4.02 — *previously issued financial statements should no longer be relied upon* — at **12.2%**, against **1.6%** for issuers with none. Monotone, **7.5×**, size-adjusted AUC **0.606**, and firm size again *anti*-predictive (0.285). One detector is sharper than the whole screen: a material asset booked without arm's-length consideration flagged **29 companies in three years, of which 17.2% later retracted** (4.17× lift, Fisher exact p = 0.006) — a precision AUC structurally cannot see, since a flag firing on 0.2% of a population is pinned near 0.5 whatever its precision.
+
+Dating those retractions from the issuers' own mandatory filings puts **$10.5B (95% CI $5.9–15.3B)** of value destruction on revelation days themselves, with the retraction event costing a mean **−3.16%** in two days and showing **no pre-event drift** — the market did not already know. Significance requires both the BMP standardized test and the Corrado rank test, because in the first uncorrected run mean CARs read −172% and +2,299% while medians sat near −1%. Estimators in [`screen/eventstudy.py`](screen/eventstudy.py), validated against planted synthetic answers in [`tests/test_eventstudy.py`](tests/test_eventstudy.py).
+
+**What was withdrawn.** The raw listing-deficiency version of this result ran 8.1% → 71.0% and does **not** survive: one warning-sign surface fires on "reverse stock split," which firms do *to cure* a bid-price deficiency, and repeat notices inflate the rest. Stressed, it falls to roughly 10% → 27%. That figure is reported in [`docs/REVELATION.md`](docs/REVELATION.md) alongside the attacks that broke it.
+
 ---
 
 ## What it measures (headline results)
@@ -80,6 +92,13 @@ All figures are reproducible from the named scripts. The unit of analysis is the
 - A concentrated financier layer: **7 funds touch 265 issuers**.
 - **71%** of the cohort is audited by small non-Big-4 firms; the sharpest recur as terminal "backstop" auditors after serial churn. *(Market-wide auditor structure is reproducible here: the engine's `auditor_market` / `auditor_churn` surfaces.)*
 - Capital: **~$3.04B raised / ~$213M placement fees / median −95% post-raise drawdown / median ~567× dilution**; **~$24.3B** peak market value destroyed (envelope).
+
+**Disclosure failure, predicted and priced (F8, [`docs/REVELATION.md`](docs/REVELATION.md)):**
+- Issuers with three warning signs and no prior listing trouble later declared their own financials unreliable at **12.2%** vs **1.6%** for issuers with none — monotone, 7.5×, size-adjusted AUC **0.606**, size alone anti-predictive (0.285).
+- A single detector (material asset booked without arm's-length consideration) flagged **29 firms in three years, 17.2% of which retracted** — **4.17× lift**, Fisher exact p = 0.006.
+- Those retractions cost a mean **−3.16%** in two trading days with **no pre-event drift**; **$10.5B** (CI $5.9–15.3B) of value destruction on revelation days across 2,115 issuers.
+- **Auditor changes are a complete null** on every window and every test.
+- The screen replicates forward across three vintages spanning a recovery, a rising small-cap market and a falling one (AUC 0.607 / 0.575 / 0.589), with the usable threshold at exactly two warning signs in all three.
 
 **Disciplining nulls (kept prominently):**
 - The "hollow = washer" resource gap is **mostly a size effect**: a size-controlled classifier gains only ~+0.01 AUC.
@@ -112,6 +131,7 @@ Public scripts ship in this repo; issuer-level cohort/network analysis is in the
 | ETF channel | *private* | nano shells absent from AI ETFs |
 | Enforcement event study | `event_study.py`, `event_study/` | enforcement does not re-separate the cross-section (null) |
 | Cross-border structure | *private* | foreign-control census + severity null; costume rotation; offshore counterparty structure |
+| Revelation prediction (F8) | *private* (calendar + issuer-level CARs); aggregates and estimators public: `screen/eventstudy.py`, `tests/test_eventstudy.py` | 12.2% vs 1.6% restatement rate; A3 at 4.17× lift; −3.16% CAR with a null placebo; $10.5B attributable ([`docs/REVELATION.md`](docs/REVELATION.md)) |
 
 ---
 

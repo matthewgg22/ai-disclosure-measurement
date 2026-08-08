@@ -23,6 +23,16 @@ env/
 !data/aggregates/screen_registry.csv
 !data/aggregates/validation_summary.csv
 !data/aggregates/validation_lift.csv
+# Revelation / event-study aggregates (F8). Population-level counts and statistics only; the
+# calendar and the issuer-level CAR estimation stay in the private repo. See docs/CODEBOOK.md.
+!data/aggregates/forward_vintage_summary.csv
+!data/aggregates/forward_by_warning_signs.csv
+!data/aggregates/revelation_calendar.csv
+!data/aggregates/revelation_incidence.csv
+!data/aggregates/revelation_discrimination.csv
+!data/aggregates/tier_a_precision.csv
+!data/aggregates/car_by_event_type.csv
+!data/aggregates/attributable_loss.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx
