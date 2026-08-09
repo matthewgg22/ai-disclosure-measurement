@@ -1,0 +1,17 @@
+year,outcome,term,label,odds_ratio,p,survives,auc_auditor_only,auc_with_balance,auc_delta,n
+2022-2024,y_nonrel,paper_earnings,"Paper earnings (NI>0, OCF<0)",1.21,0.256168,0,,,,
+2022-2024,y_nonrel,ocf_negative,Operating cash flow < 0,1.821,0.000153,1,,,,
+2022-2024,y_nonrel,equity_negative,Negative equity,1.293,0.058563,0,,,,
+2022-2024,y_nonrel,equity_thin,Equity < 10% of assets,1.552,0.023303,1,,,,
+2022-2024,y_nonrel,opacity_over_50,Opaque assets > 50%,1.378,0.049178,1,,,,
+2022-2024,y_nonrel,going_concern,going_concern,1.484,0.01136,1,,,,
+2022-2024,y_nonrel,mw_alt,mw_alt,2.369,0.0,1,,,,
+2022-2024,y_nonrel,_auc,,,,,0.7684,0.7764,0.008,12750
+2022-2024,y_severe,paper_earnings,"Paper earnings (NI>0, OCF<0)",0.624,5.7e-05,1,,,,
+2022-2024,y_severe,ocf_negative,Operating cash flow < 0,2.71,0.0,1,,,,
+2022-2024,y_severe,equity_negative,Negative equity,1.269,0.011818,1,,,,
+2022-2024,y_severe,equity_thin,Equity < 10% of assets,1.176,0.175097,0,,,,
+2022-2024,y_severe,opacity_over_50,Opaque assets > 50%,1.716,0.0,1,,,,
+2022-2024,y_severe,going_concern,going_concern,1.599,0.0,1,,,,
+2022-2024,y_severe,mw_alt,mw_alt,1.434,4.9e-05,1,,,,
+2022-2024,y_severe,_auc,,,,,0.7874,0.7993,0.0119,9811

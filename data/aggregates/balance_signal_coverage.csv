@@ -1,0 +1,13 @@
+year,construct,computable,fires,rate
+2022-2024,paper_earnings,13462,944,0.0701
+2022-2024,ocf_negative,13956,5774,0.4137
+2022-2024,runway_under_12m,4722,2944,0.6235
+2022-2024,dsri_over_1_5,6382,665,0.1042
+2022-2024,receivable_heavy,6830,116,0.017
+2022-2024,equity_negative,13407,2507,0.187
+2022-2024,equity_thin,13407,1161,0.0866
+2022-2024,opacity_over_50,14282,1411,0.0988
+2022-2024,related_party,131,118,0.9008
+2022-2024,related_party_material,131,18,0.1374
+2022-2024,revenue_trivial,10757,437,0.0406
+2022-2024,asset_light_burn,4615,24,0.0052

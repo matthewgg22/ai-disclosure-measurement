@@ -474,6 +474,55 @@ and the code was recording a failed fetch as "no data." The resulting row was en
 −23.4% instead of −29.6%. Fetches now retry with backoff. A silent failure produces a confidently
 wrong table, not an obviously broken one.
 
+
+## Is any of this independent of the audit opinion?
+
+`data/aggregates/balance_signal_tests.csv` · `balance_signal_joint.csv` · `balance_signal_coverage.csv`
+
+An objection worth taking seriously: if going-concern doubt and material weakness are the only
+surviving signals, this is a distribution channel for a result other people established. Both are the
+auditor's own words, both are standard forensic-accounting material, and anyone who opens the filing
+reads them. Reach is not information.
+
+The test is whether a construct computed from the **financial statements alone** — no auditor
+language, no disclosure text — survives with both admissions already in the model. Twelve were built
+from XBRL. **Ten of twenty-four construct-outcome tests survive.**
+
+Joint model, using only constructs computable for ≥90% of filers so it is estimated on the population
+rather than a tagging-selected subset:
+
+| | restatement (n=12,750) | price collapse (n=9,811) |
+|---|---|---|
+| **Operating cash flow < 0** | **1.82**\*\*\* | **2.71**\*\*\* |
+| **Opaque assets > 50%** | **1.38**\* | **1.72**\*\*\* |
+| Equity < 10% of assets | **1.55**\* | 1.18 |
+| Negative equity | 1.29 | **1.27**\* |
+| Paper earnings (NI>0, OCF<0) | 1.21 | **0.62**\*\*\* |
+| *Going-concern doubt* | *1.48*\* | *1.60*\*\*\* |
+| *Material weakness* | *2.37*\*\*\* | *1.43*\*\*\* |
+| AUC auditor-only → with balance sheet | 0.768 → **0.776** | 0.787 → **0.799** |
+
+**For price collapse a line in the cash flow statement beats both auditor signals** — operating cash
+flow below zero at 2.71 against 1.60 and 1.43, computable for 98% of filers, and a number the issuer
+reported rather than a sentence written about it. Asset opacity (goodwill + intangibles + other
+assets over total) is computable for **100%** and independently significant at 1.72; no auditor
+writes "this balance sheet cannot be verified from outside."
+
+Three qualifications, because the result is easy to overstate:
+
+**The discrimination gain is small** — +0.008 and +0.012 of AUC. The balance sheet changes what the
+screen is *made of* more than how well it ranks. The claim is independent content, not materially
+better accuracy.
+
+**Paper earnings flips sign and is not a fraud signal here.** It reads 0.62 (protective) for price
+collapse, but only with operating cash flow already in the model: among cash-burning firms, those
+still reporting a profit are *less* distressed than those reporting losses too.
+
+**The canonical receivables construct fails.** Beneish's days-sales-in-receivables index is null on
+both outcomes (1.18, 1.05). And due-from-related-parties — which should be among the sharpest markers
+available — is unusable at population scale: only 131 issuer-vintages (0.9%) tag the concept and 90%
+of those fire, making it a presence-indicator with no denominator.
+
 ---
 
 ## Result 3 — what retracting costs

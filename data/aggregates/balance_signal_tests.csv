@@ -1,0 +1,25 @@
+year,outcome,construct,label,n,coverage,events,odds_ratio,or_lo,or_hi,p,survives
+2022-2024,y_nonrel,paper_earnings,"Paper earnings (NI>0, OCF<0)",13462,0.9426,567,1.538,1.139,2.076,0.004991,1
+2022-2024,y_nonrel,ocf_negative,Operating cash flow < 0,13956,0.9772,580,1.88,1.424,2.481,8e-06,1
+2022-2024,y_nonrel,runway_under_12m,Cash runway < 12 months,4722,0.3306,323,1.656,1.23,2.23,0.000883,1
+2022-2024,y_nonrel,dsri_over_1_5,Receivables outrun revenue,6382,0.4469,231,1.18,0.812,1.713,0.385032,0
+2022-2024,y_nonrel,receivable_heavy,Receivables > 1yr revenue,6830,0.4782,267,2.273,1.22,4.234,0.009656,1
+2022-2024,y_nonrel,equity_negative,Negative equity,13407,0.9387,565,1.321,1.019,1.712,0.035542,1
+2022-2024,y_nonrel,equity_thin,Equity < 10% of assets,13407,0.9387,565,1.377,0.96,1.974,0.081952,0
+2022-2024,y_nonrel,opacity_over_50,Opaque assets > 50%,14282,1.0,590,1.326,0.974,1.806,0.073344,0
+2022-2024,y_nonrel,related_party,,131,0.0092,,,,,,0
+2022-2024,y_nonrel,related_party_material,,131,0.0092,,,,,,0
+2022-2024,y_nonrel,revenue_trivial,Revenue < $1M on >$10M assets,10757,0.7532,404,1.202,0.753,1.919,0.440239,0
+2022-2024,y_nonrel,asset_light_burn,"No revenue, no R&D",4615,0.3231,186,2.215,0.642,7.635,0.208011,0
+2022-2024,y_severe,paper_earnings,"Paper earnings (NI>0, OCF<0)",10279,0.9532,2419,0.932,0.744,1.166,0.535442,0
+2022-2024,y_severe,ocf_negative,Operating cash flow < 0,10611,0.984,2482,2.366,2.057,2.722,0.0,1
+2022-2024,y_severe,runway_under_12m,Cash runway < 12 months,3301,0.3061,1454,1.474,1.244,1.748,8e-06,1
+2022-2024,y_severe,dsri_over_1_5,Receivables outrun revenue,5270,0.4887,1189,1.046,0.824,1.328,0.711147,0
+2022-2024,y_severe,receivable_heavy,Receivables > 1yr revenue,5568,0.5163,1326,1.226,0.655,2.296,0.524466,0
+2022-2024,y_severe,equity_negative,Negative equity,10237,0.9493,2434,1.298,1.085,1.553,0.004339,1
+2022-2024,y_severe,equity_thin,Equity < 10% of assets,10237,0.9493,2434,1.1,0.874,1.383,0.416141,0
+2022-2024,y_severe,opacity_over_50,Opaque assets > 50%,10784,1.0,2523,1.565,1.301,1.882,2e-06,1
+2022-2024,y_severe,related_party,,82,0.0076,,,,,,0
+2022-2024,y_severe,related_party_material,,82,0.0076,,,,,,0
+2022-2024,y_severe,revenue_trivial,Revenue < $1M on >$10M assets,8391,0.7781,1845,1.65,1.263,2.156,0.000243,1
+2022-2024,y_severe,asset_light_burn,"No revenue, no R&D",3906,0.3622,1104,0.887,0.38,2.074,0.782651,0
