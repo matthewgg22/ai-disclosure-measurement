@@ -57,6 +57,7 @@ env/
 !data/aggregates/forward7_vintage_summary.csv
 !data/aggregates/forward7_by_warning_signs.csv
 # Balance-sheet constructs: does the screen have content beyond the audit opinion?
+!data/aggregates/recovery_gap.csv
 !data/aggregates/signal_timing.csv
 !data/aggregates/balance_signal_tests.csv
 !data/aggregates/balance_signal_joint.csv

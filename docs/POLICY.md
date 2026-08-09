@@ -172,3 +172,61 @@ removed. The withdrawal is reported at the same length as the result that surviv
 
 *This note states policy implications of the measurements; it is analysis, not legal advice, and
 the levers are framed for discussion.*
+
+---
+
+## The recovery gap: every SEC dollar remedy is indexed to the wrongdoer's gain
+
+`data/aggregates/recovery_gap.csv`
+
+The measured harm is **$10.47B** on revelation days, 2022–2026. How much of it comes back is a
+structural question, and "the SEC is underfunded" does not answer it — that explanation predicts a
+uniform shortfall, and the shortfall is not uniform.
+
+**No monetary remedy in the securities laws is measured by what investors lost.** Disgorgement is
+capped at the wrongdoer's net profits after legitimate expenses (*Liu v. SEC*, 591 U.S. 71 (2020)).
+Civil penalties under **15 U.S.C. §78u(d)(3)** are capped, in all three tiers, at *"the greater of"*
+a fixed per-violation figure *"or the gross amount of pecuniary gain to such defendant."* The third
+tier is *triggered* by *"substantial losses"* to others and never *measured* by them.
+
+***Sripetch v. SEC*, 608 U.S. ___ (4 June 2026)** — unanimous — holds that *"a showing of pecuniary
+loss to investors is not required before the SEC may obtain a disgorgement award."* That removes a
+proof burden about loss. It does not create a remedy measured by loss: the Court expressly reserved
+the §78u(d)(7) scope question and left *Liu*'s net-profits cap intact.
+
+Five layers sit between harm and recovery. Four are real; the fifth was tested and is not.
+
+| layer | measured |
+|---|---|
+| **Detection** — no case is brought | **0.4%–2.2%** of issuers with a dated revelation ever appear as an SEC defendant |
+| **Indexation** — remedy measures gain, harm is loss | measurable gain is **13.5%** of investor loss |
+| **Ordering** — the amount is small | **median $0.70M** per case; **57.9%** under $1m |
+| **Return** — ordered money never reaches investors | **151** cases in the SEC's distributions index, all years, against **1,600** district-court cases in 2021–2026 alone |
+| *Limitations period* | ***null*** — revelation follows the signalling filing by a median of **0.6 years**, inside the five years of §78u(d)(8) |
+
+**Indexation is the layer no budget closes.** Across 615 issuers measurable on both sides, investor
+loss is $3.69B against $0.50B of measurable insider gain. Perfect detection, perfect litigation and
+perfect collection would reach roughly **one-seventh** of what investors lost — before *Liu* deducts
+legitimate expenses and restricts joint-and-several liability. Both figures are on the basis least
+favourable to the argument: signed loss rather than the larger negatives-only measure, and a gain
+measure counting only insider open-market sales.
+
+**The median case cannot pay the person who reported it.** §78u-6(a)(1) defines a covered action as
+one *"that results in monetary sanctions exceeding $1,000,000"*, and 57.9% of district-court cases
+order less. The award under §78u-6(b)(1) is a share *"of what has been collected"*, so a reporter
+carries collection risk on top of threshold risk. In the population where an insider tip has the
+largest informational advantage — no analyst coverage, no way for a private actor to monetise the
+research — the whistleblower statute is switched off by its own floor.
+
+**What follows is a trade-off, not a fix.** A loss-indexed remedy would likely be penal rather than
+equitable, and a legal characterisation carries a post-*Jarkesy* Seventh Amendment jury right — noted
+in Thomas, J.'s *Sripetch* concurrence. That raises the cost of every contested case and cuts against
+bringing marginal ones. A loss-indexed remedy and a high-volume enforcement programme are in tension.
+The honest alternative is to state plainly that these statutes deter and punish but do not
+compensate, and to locate compensation elsewhere.
+
+**Scope and limits.** District-court actions only — settled administrative proceedings carry
+substantial additional Commission-wide disgorgement and are excluded, so the ordering figures are a
+floor on agency output. Dollar amounts are parsed from 1,592 SEC litigation releases at sentence
+level, with each figure retained beside the sentence it was read from. The detection bracket is wide
+because company-name matching is collision-prone, and a single figure would be false precision.
