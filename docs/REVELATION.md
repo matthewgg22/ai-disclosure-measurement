@@ -427,6 +427,53 @@ are significant at nano and nowhere else. What does not survive is the AUC ranki
 about where the dollars are. The corrected dollars finding is arguably the more interesting one:
 **the segment losing most on revelation days is mid-cap, not the tail this work set out to study.**
 
+
+## Does the ordering appear early enough to act on?
+
+`data/aggregates/forward7_vintage_summary.csv` · `forward7_by_warning_signs.csv`
+
+The 20-month tests show the screen orders outcomes. A regulator does not have 20 months. A matched
+7-month window tests whether separation is visible early — and reaches the 2025 vintage, which 20
+months cannot, since its outcome window would run to 2027-08.
+
+| | 2022 → 2023 | 2023 → 2024 | 2024 → 2025 | **2025 → 2026** |
+|---|---|---|---|---|
+| n priced | 2,822 | 3,888 | 3,819 | **4,021** |
+| base rate | 8.3% | 11.3% | 13.0% | 10.4% |
+| **size-adjusted AUC** | 0.603 | 0.568 | 0.583 | **0.648** (.612–.687) |
+| raw AUC | 0.718 | 0.713 | 0.733 | 0.771 |
+| size alone | 0.215 | 0.224 | 0.206 | 0.210 |
+
+Median 7-month return by warning-sign count:
+
+| signs | 2022 | 2023 | 2024 | 2025 |
+|---|---|---|---|---|
+| 0 | +5.3% | +3.2% | −2.5% | **+12.1%** |
+| 1 | +1.2% | −0.6% | −7.2% | +3.2% |
+| **2** | **−22.4%** | **−27.2%** | **−29.6%** | **−24.3%** |
+| 3 | −22.1% | −34.9% | −61.0% | −46.0% |
+| 4 | — | — | −75.8% | −53.9% |
+
+**The threshold is two signs in all four vintages** — the same cut-off the 20-month tests produce, at
+a third of the horizon. That is the difference between a retrospective description and something an
+examiner can act on inside a fiscal year.
+
+**The most recent vintage is the strongest**, not the weakest: 2025 reads 0.648, the highest of the
+four, with the widest spread (+12.1% at zero signs against −24.3% at two — a 36-point gap in seven
+months). A text-based screen should be expected to decay as filers adapt and phrasing drifts. It has
+not.
+
+Magnitudes are roughly half the 20-month figures, which is arithmetic: a firm ending 20 months down
+50% is not down 50% at seven. 2022 is flagged non-monotone only in the 2-vs-3 comparison (−22.4%
+against −22.1% on 17 firms) — noise, not a break.
+
+*One data-quality note, because it nearly corrupted this table.* The 2024 vintage first came back
+with 65% of its price fetches null against 16–17% for the others — a rate limit, not missing data —
+and the code was recording a failed fetch as "no data." The resulting row was entirely plausible
+(AUC 0.604, ordering intact) and wrong: n was 1,565 instead of 3,819, and the two-sign median read
+−23.4% instead of −29.6%. Fetches now retry with backoff. A silent failure produces a confidently
+wrong table, not an obviously broken one.
+
 ---
 
 ## Result 3 — what retracting costs

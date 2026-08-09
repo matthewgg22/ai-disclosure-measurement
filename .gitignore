@@ -53,6 +53,9 @@ env/
 !data/aggregates/stratified_out_of_sample.csv
 # Chain of custody: every quoted figure with the file and JSON path that produced it.
 !data/aggregates/claims_ledger.csv
+# Matched 7-month window: does the ordering appear early enough to act on?
+!data/aggregates/forward7_vintage_summary.csv
+!data/aggregates/forward7_by_warning_signs.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx
