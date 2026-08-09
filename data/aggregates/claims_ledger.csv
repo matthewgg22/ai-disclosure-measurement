@@ -1,0 +1,420 @@
+year,section,claim,value,unit,source_file,json_path,module
+2022-2024,Finding 1,2022 size-adjusted AUC,0.607,AUC,forward_test3_2022.json,full_pillar_auc,forward3.py 2022
+2022-2024,Finding 1,2022 AUC 95% CI low,0.581,AUC,forward_test3_2022.json,full_pillar_ci[0],forward3.py 2022
+2022-2024,Finding 1,2022 AUC 95% CI high,0.634,AUC,forward_test3_2022.json,full_pillar_ci[1],forward3.py 2022
+2022-2024,Finding 1,2022 size-only AUC,0.226,AUC,forward_test3_2022.json,size_only_auc,forward3.py 2022
+2022-2024,Finding 1,2022 n,2830,issuers,forward_test3_2022.json,n,forward3.py 2022
+2022-2024,Finding 1,2022 base rate,23.96,%,forward_test3_2022.json,base_rate,forward3.py 2022
+2022-2024,Finding 1,"2022 median fwd return, 0 signs",8.79,%,forward_test3_2022.json,by_pillar_count[pillars=0].median_fwd,forward3.py 2022
+2022-2024,Finding 1,"2022 median fwd return, 1 signs",-4.55,%,forward_test3_2022.json,by_pillar_count[pillars=1].median_fwd,forward3.py 2022
+2022-2024,Finding 1,"2022 median fwd return, 2 signs",-61.18,%,forward_test3_2022.json,by_pillar_count[pillars=2].median_fwd,forward3.py 2022
+2022-2024,Finding 1,"2022 median fwd return, 3 signs",-69.84,%,forward_test3_2022.json,by_pillar_count[pillars=3].median_fwd,forward3.py 2022
+2022-2024,Finding 1,2023 size-adjusted AUC,0.575,AUC,forward_test3_2023.json,full_pillar_auc,forward3.py 2023
+2022-2024,Finding 1,2023 AUC 95% CI low,0.557,AUC,forward_test3_2023.json,full_pillar_ci[0],forward3.py 2023
+2022-2024,Finding 1,2023 AUC 95% CI high,0.595,AUC,forward_test3_2023.json,full_pillar_ci[1],forward3.py 2023
+2022-2024,Finding 1,2023 size-only AUC,0.243,AUC,forward_test3_2023.json,size_only_auc,forward3.py 2023
+2022-2024,Finding 1,2023 n,3902,issuers,forward_test3_2023.json,n,forward3.py 2023
+2022-2024,Finding 1,2023 base rate,24.58,%,forward_test3_2023.json,base_rate,forward3.py 2023
+2022-2024,Finding 1,"2023 median fwd return, 0 signs",8.04,%,forward_test3_2023.json,by_pillar_count[pillars=0].median_fwd,forward3.py 2023
+2022-2024,Finding 1,"2023 median fwd return, 1 signs",0.0,%,forward_test3_2023.json,by_pillar_count[pillars=1].median_fwd,forward3.py 2023
+2022-2024,Finding 1,"2023 median fwd return, 2 signs",-52.52,%,forward_test3_2023.json,by_pillar_count[pillars=2].median_fwd,forward3.py 2023
+2022-2024,Finding 1,"2023 median fwd return, 3 signs",-61.39,%,forward_test3_2023.json,by_pillar_count[pillars=3].median_fwd,forward3.py 2023
+2022-2024,Finding 1,2024 size-adjusted AUC,0.589,AUC,forward_test3_2024.json,full_pillar_auc,forward3.py 2024
+2022-2024,Finding 1,2024 AUC 95% CI low,0.568,AUC,forward_test3_2024.json,full_pillar_ci[0],forward3.py 2024
+2022-2024,Finding 1,2024 AUC 95% CI high,0.609,AUC,forward_test3_2024.json,full_pillar_ci[1],forward3.py 2024
+2022-2024,Finding 1,2024 size-only AUC,0.236,AUC,forward_test3_2024.json,size_only_auc,forward3.py 2024
+2022-2024,Finding 1,2024 n,4052,issuers,forward_test3_2024.json,n,forward3.py 2024
+2022-2024,Finding 1,2024 base rate,21.87,%,forward_test3_2024.json,base_rate,forward3.py 2024
+2022-2024,Finding 1,"2024 median fwd return, 0 signs",14.4,%,forward_test3_2024.json,by_pillar_count[pillars=0].median_fwd,forward3.py 2024
+2022-2024,Finding 1,"2024 median fwd return, 1 signs",0.29,%,forward_test3_2024.json,by_pillar_count[pillars=1].median_fwd,forward3.py 2024
+2022-2024,Finding 1,"2024 median fwd return, 2 signs",-50.07,%,forward_test3_2024.json,by_pillar_count[pillars=2].median_fwd,forward3.py 2024
+2022-2024,Finding 1,"2024 median fwd return, 3 signs",-85.84,%,forward_test3_2024.json,by_pillar_count[pillars=3].median_fwd,forward3.py 2024
+2022-2024,Finding 1,"2024 median fwd return, 4 signs",-88.19,%,forward_test3_2024.json,by_pillar_count[pillars=4].median_fwd,forward3.py 2024
+2022-2024,Finding 2,non-reliance size-adj AUC (no prior notice),0.606,AUC,e5_stress.json,results[NOPRIOR|y_nonrel|FULL].auc_size_adj,e5_stress.py
+2022-2024,Finding 2,  CI low,0.575,AUC,e5_stress.json,…ci[0],e5_stress.py
+2022-2024,Finding 2,  CI high,0.639,AUC,e5_stress.json,…ci[1],e5_stress.py
+2022-2024,Finding 2,size-alone AUC,0.299,AUC,e5_stress.json,…auc_size_only,e5_stress.py
+2022-2024,Finding 2,"restatement rate, 0 signs",1.62,%,e5_stress.json,…incidence[signs=0].rate,e5_stress.py
+2022-2024,Finding 2,"restatement rate, 1 signs",6.27,%,e5_stress.json,…incidence[signs=1].rate,e5_stress.py
+2022-2024,Finding 2,"restatement rate, 2 signs",8.54,%,e5_stress.json,…incidence[signs=2].rate,e5_stress.py
+2022-2024,Finding 2,"restatement rate, 3 signs",12.2,%,e5_stress.json,…incidence[signs=3].rate,e5_stress.py
+2022-2024,Finding 3,A1 precision (non-reliance),9.09,%,tier_a_eval.json,results[A1|y_nonrel].precision,tier_a_eval.py
+2022-2024,Finding 3,A1 lift,2.2,x,tier_a_eval.json,results[A1|y_nonrel].lift,tier_a_eval.py
+2022-2024,Finding 3,A1 Fisher exact p,0.0,p,tier_a_eval.json,…fisher_p,tier_a_eval.py
+2022-2024,Finding 3,A3 precision (non-reliance),17.24,%,tier_a_eval.json,results[A3|y_nonrel].precision,tier_a_eval.py
+2022-2024,Finding 3,A3 lift,4.17,x,tier_a_eval.json,results[A3|y_nonrel].lift,tier_a_eval.py
+2022-2024,Finding 3,A3 Fisher exact p,0.00617,p,tier_a_eval.json,…fisher_p,tier_a_eval.py
+2022-2024,Finding 3,A4 precision (non-reliance),0.0,%,tier_a_eval.json,results[A4|y_nonrel].precision,tier_a_eval.py
+2022-2024,Finding 3,A4 lift,0.0,x,tier_a_eval.json,results[A4|y_nonrel].lift,tier_a_eval.py
+2022-2024,Finding 3,A4 Fisher exact p,1.0,p,tier_a_eval.json,…fisher_p,tier_a_eval.py
+2022-2024,Finding 3,ANY precision (non-reliance),9.35,%,tier_a_eval.json,results[ANY|y_nonrel].precision,tier_a_eval.py
+2022-2024,Finding 3,ANY lift,2.26,x,tier_a_eval.json,results[ANY|y_nonrel].lift,tier_a_eval.py
+2022-2024,Finding 3,ANY Fisher exact p,0.0,p,tier_a_eval.json,…fisher_p,tier_a_eval.py
+2022-2024,Finding 4,Going-concern doubt OR (y_nonrel),1.718,OR,fraud_model.json,results[y_nonrel].coefficients[going_concern].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Going-concern doubt p (y_nonrel),0.000286,p,fraud_model.json,…coefficients[going_concern].p,fraud_model.py
+2022-2024,Finding 4,Material weakness OR (y_nonrel),1.412,OR,fraud_model.json,results[y_nonrel].coefficients[material_weakness].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness p (y_nonrel),0.011412,p,fraud_model.json,…coefficients[material_weakness].p,fraud_model.py
+2022-2024,Finding 4,Reverse stock split OR (y_nonrel),1.08,OR,fraud_model.json,results[y_nonrel].coefficients[rss].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Reverse stock split p (y_nonrel),0.597529,p,fraud_model.json,…coefficients[rss].p,fraud_model.py
+2022-2024,Finding 4,Equity line of credit OR (y_nonrel),1.443,OR,fraud_model.json,results[y_nonrel].coefficients[elc].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Equity line of credit p (y_nonrel),0.104501,p,fraud_model.json,…coefficients[elc].p,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase OR (y_nonrel),1.732,OR,fraud_model.json,results[y_nonrel].coefficients[sepa].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase p (y_nonrel),0.23211,p,fraud_model.json,…coefficients[sepa].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker OR (y_nonrel),0.932,OR,fraud_model.json,results[y_nonrel].coefficients[prefunded].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker p (y_nonrel),0.878493,p,fraud_model.json,…coefficients[prefunded].p,fraud_model.py
+2022-2024,Finding 4,A1 share explosion OR (y_nonrel),1.271,OR,fraud_model.json,results[y_nonrel].coefficients[a1].odds_ratio,fraud_model.py
+2022-2024,Finding 4,A1 share explosion p (y_nonrel),0.173149,p,fraud_model.json,…coefficients[a1].p,fraud_model.py
+2022-2024,Finding 4,A3 manufactured asset OR (y_nonrel),1.442,OR,fraud_model.json,results[y_nonrel].coefficients[a3].odds_ratio,fraud_model.py
+2022-2024,Finding 4,A3 manufactured asset p (y_nonrel),0.464286,p,fraud_model.json,…coefficients[a3].p,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature OR (y_nonrel),0.93,OR,fraud_model.json,results[y_nonrel].coefficients[ramp].odds_ratio,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature p (y_nonrel),0.862172,p,fraud_model.json,…coefficients[ramp].p,fraud_model.py
+2022-2024,Finding 4,Subpoena received OR (y_nonrel),1.141,OR,fraud_model.json,results[y_nonrel].coefficients[subpoena].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Subpoena received p (y_nonrel),0.727313,p,fraud_model.json,…coefficients[subpoena].p,fraud_model.py
+2022-2024,Finding 4,At-the-market facility OR (y_nonrel),0.934,OR,fraud_model.json,results[y_nonrel].coefficients[atm_facility].odds_ratio,fraud_model.py
+2022-2024,Finding 4,At-the-market facility p (y_nonrel),0.708586,p,fraud_model.json,…coefficients[atm_facility].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) OR (y_nonrel),0.943,OR,fraud_model.json,results[y_nonrel].coefficients[prefunded_solo].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) p (y_nonrel),0.794633,p,fraud_model.json,…coefficients[prefunded_solo].p,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) OR (y_nonrel),1.95,OR,fraud_model.json,results[y_nonrel].coefficients[mw_alt].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) p (y_nonrel),1.2e-05,p,fraud_model.json,…coefficients[mw_alt].p,fraud_model.py
+2022-2024,Finding 4,log(total assets) OR (y_nonrel),1.012,OR,fraud_model.json,results[y_nonrel].coefficients[log_assets].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(total assets) p (y_nonrel),0.624422,p,fraud_model.json,…coefficients[log_assets].p,fraud_model.py
+2022-2024,Finding 4,log(public float) OR (y_nonrel),0.89,OR,fraud_model.json,results[y_nonrel].coefficients[log_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(public float) p (y_nonrel),0.0,p,fraud_model.json,…coefficients[log_float].p,fraud_model.py
+2022-2024,Finding 4,free-float ratio OR (y_nonrel),1.036,OR,fraud_model.json,results[y_nonrel].coefficients[free_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,free-float ratio p (y_nonrel),0.074523,p,fraud_model.json,…coefficients[free_float].p,fraud_model.py
+2022-2024,Finding 4,Shell company OR (y_nonrel),1.747,OR,fraud_model.json,results[y_nonrel].coefficients[shell].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Shell company p (y_nonrel),0.002367,p,fraud_model.json,…coefficients[shell].p,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) OR (y_nonrel),1.954,OR,fraud_model.json,results[y_nonrel].coefficients[prior_any].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) p (y_nonrel),0.0,p,fraud_model.json,…coefficients[prior_any].p,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency OR (y_nonrel),0.958,OR,fraud_model.json,results[y_nonrel].coefficients[regain_compliance].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency p (y_nonrel),0.805846,p,fraud_model.json,…coefficients[regain_compliance].p,fraud_model.py
+2022-2024,Finding 4,OOS AUC model (y_nonrel),0.7637,AUC,fraud_model.json,results[y_nonrel].out_of_sample.auc_model,fraud_model.py
+2022-2024,Finding 4,OOS AUC count score (y_nonrel),0.7277,AUC,fraud_model.json,…auc_count_score,fraud_model.py
+2022-2024,Finding 4,ECE before calibration (y_nonrel),2.407,pp,fraud_model.json,…calibrated.ece_raw_pp,fraud_model.py
+2022-2024,Finding 4,ECE after calibration (y_nonrel),1.501,pp,fraud_model.json,…calibrated.ece_calibrated_pp,fraud_model.py
+2022-2024,Finding 4,Going-concern doubt OR (y_any),2.104,OR,fraud_model.json,results[y_any].coefficients[going_concern].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Going-concern doubt p (y_any),0.0,p,fraud_model.json,…coefficients[going_concern].p,fraud_model.py
+2022-2024,Finding 4,Material weakness OR (y_any),1.235,OR,fraud_model.json,results[y_any].coefficients[material_weakness].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness p (y_any),0.00753,p,fraud_model.json,…coefficients[material_weakness].p,fraud_model.py
+2022-2024,Finding 4,Reverse stock split OR (y_any),1.4,OR,fraud_model.json,results[y_any].coefficients[rss].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Reverse stock split p (y_any),1.8e-05,p,fraud_model.json,…coefficients[rss].p,fraud_model.py
+2022-2024,Finding 4,Equity line of credit OR (y_any),1.281,OR,fraud_model.json,results[y_any].coefficients[elc].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Equity line of credit p (y_any),0.081758,p,fraud_model.json,…coefficients[elc].p,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase OR (y_any),2.213,OR,fraud_model.json,results[y_any].coefficients[sepa].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase p (y_any),0.108904,p,fraud_model.json,…coefficients[sepa].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker OR (y_any),0.783,OR,fraud_model.json,results[y_any].coefficients[prefunded].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker p (y_any),0.455239,p,fraud_model.json,…coefficients[prefunded].p,fraud_model.py
+2022-2024,Finding 4,A1 share explosion OR (y_any),1.922,OR,fraud_model.json,results[y_any].coefficients[a1].odds_ratio,fraud_model.py
+2022-2024,Finding 4,A1 share explosion p (y_any),1e-06,p,fraud_model.json,…coefficients[a1].p,fraud_model.py
+2022-2024,Finding 4,A3 manufactured asset OR (y_any),3.336,OR,fraud_model.json,results[y_any].coefficients[a3].odds_ratio,fraud_model.py
+2022-2024,Finding 4,A3 manufactured asset p (y_any),0.164125,p,fraud_model.json,…coefficients[a3].p,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature OR (y_any),0.995,OR,fraud_model.json,results[y_any].coefficients[ramp].odds_ratio,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature p (y_any),0.985115,p,fraud_model.json,…coefficients[ramp].p,fraud_model.py
+2022-2024,Finding 4,Wells notice OR (y_any),0.846,OR,fraud_model.json,results[y_any].coefficients[wells_notice].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Wells notice p (y_any),0.61395,p,fraud_model.json,…coefficients[wells_notice].p,fraud_model.py
+2022-2024,Finding 4,Subpoena received OR (y_any),1.328,OR,fraud_model.json,results[y_any].coefficients[subpoena].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Subpoena received p (y_any),0.135738,p,fraud_model.json,…coefficients[subpoena].p,fraud_model.py
+2022-2024,Finding 4,At-the-market facility OR (y_any),1.248,OR,fraud_model.json,results[y_any].coefficients[atm_facility].odds_ratio,fraud_model.py
+2022-2024,Finding 4,At-the-market facility p (y_any),0.01303,p,fraud_model.json,…coefficients[atm_facility].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) OR (y_any),0.899,OR,fraud_model.json,results[y_any].coefficients[prefunded_solo].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) p (y_any),0.482954,p,fraud_model.json,…coefficients[prefunded_solo].p,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) OR (y_any),1.898,OR,fraud_model.json,results[y_any].coefficients[mw_alt].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) p (y_any),0.0,p,fraud_model.json,…coefficients[mw_alt].p,fraud_model.py
+2022-2024,Finding 4,log(total assets) OR (y_any),0.87,OR,fraud_model.json,results[y_any].coefficients[log_assets].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(total assets) p (y_any),0.0,p,fraud_model.json,…coefficients[log_assets].p,fraud_model.py
+2022-2024,Finding 4,log(public float) OR (y_any),0.843,OR,fraud_model.json,results[y_any].coefficients[log_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(public float) p (y_any),0.0,p,fraud_model.json,…coefficients[log_float].p,fraud_model.py
+2022-2024,Finding 4,free-float ratio OR (y_any),1.045,OR,fraud_model.json,results[y_any].coefficients[free_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,free-float ratio p (y_any),0.005205,p,fraud_model.json,…coefficients[free_float].p,fraud_model.py
+2022-2024,Finding 4,Shell company OR (y_any),3.07,OR,fraud_model.json,results[y_any].coefficients[shell].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Shell company p (y_any),0.0,p,fraud_model.json,…coefficients[shell].p,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) OR (y_any),2.382,OR,fraud_model.json,results[y_any].coefficients[prior_any].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) p (y_any),0.0,p,fraud_model.json,…coefficients[prior_any].p,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency OR (y_any),2.328,OR,fraud_model.json,results[y_any].coefficients[regain_compliance].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency p (y_any),0.0,p,fraud_model.json,…coefficients[regain_compliance].p,fraud_model.py
+2022-2024,Finding 4,OOS AUC model (y_any),0.8552,AUC,fraud_model.json,results[y_any].out_of_sample.auc_model,fraud_model.py
+2022-2024,Finding 4,OOS AUC count score (y_any),0.7507,AUC,fraud_model.json,…auc_count_score,fraud_model.py
+2022-2024,Finding 4,ECE before calibration (y_any),8.524,pp,fraud_model.json,…calibrated.ece_raw_pp,fraud_model.py
+2022-2024,Finding 4,ECE after calibration (y_any),3.95,pp,fraud_model.json,…calibrated.ece_calibrated_pp,fraud_model.py
+2022-2024,Finding 4,Going-concern doubt OR (y_severe),1.737,OR,fraud_model.json,results[y_severe].coefficients[going_concern].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Going-concern doubt p (y_severe),0.0,p,fraud_model.json,…coefficients[going_concern].p,fraud_model.py
+2022-2024,Finding 4,Material weakness OR (y_severe),1.142,OR,fraud_model.json,results[y_severe].coefficients[material_weakness].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness p (y_severe),0.15201,p,fraud_model.json,…coefficients[material_weakness].p,fraud_model.py
+2022-2024,Finding 4,Reverse stock split OR (y_severe),1.376,OR,fraud_model.json,results[y_severe].coefficients[rss].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Reverse stock split p (y_severe),0.000311,p,fraud_model.json,…coefficients[rss].p,fraud_model.py
+2022-2024,Finding 4,Equity line of credit OR (y_severe),1.126,OR,fraud_model.json,results[y_severe].coefficients[elc].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Equity line of credit p (y_severe),0.491316,p,fraud_model.json,…coefficients[elc].p,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase OR (y_severe),1.029,OR,fraud_model.json,results[y_severe].coefficients[sepa].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Standby equity purchase p (y_severe),0.926216,p,fraud_model.json,…coefficients[sepa].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker OR (y_severe),0.993,OR,fraud_model.json,results[y_severe].coefficients[prefunded].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant + blocker p (y_severe),0.981991,p,fraud_model.json,…coefficients[prefunded].p,fraud_model.py
+2022-2024,Finding 4,A1 share explosion OR (y_severe),1.728,OR,fraud_model.json,results[y_severe].coefficients[a1].odds_ratio,fraud_model.py
+2022-2024,Finding 4,A1 share explosion p (y_severe),0.000196,p,fraud_model.json,…coefficients[a1].p,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature OR (y_severe),0.766,OR,fraud_model.json,results[y_severe].coefficients[ramp].odds_ratio,fraud_model.py
+2022-2024,Finding 4,P8 ramp signature p (y_severe),0.343291,p,fraud_model.json,…coefficients[ramp].p,fraud_model.py
+2022-2024,Finding 4,Wells notice OR (y_severe),0.975,OR,fraud_model.json,results[y_severe].coefficients[wells_notice].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Wells notice p (y_severe),0.960199,p,fraud_model.json,…coefficients[wells_notice].p,fraud_model.py
+2022-2024,Finding 4,Subpoena received OR (y_severe),1.355,OR,fraud_model.json,results[y_severe].coefficients[subpoena].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Subpoena received p (y_severe),0.165985,p,fraud_model.json,…coefficients[subpoena].p,fraud_model.py
+2022-2024,Finding 4,At-the-market facility OR (y_severe),1.275,OR,fraud_model.json,results[y_severe].coefficients[atm_facility].odds_ratio,fraud_model.py
+2022-2024,Finding 4,At-the-market facility p (y_severe),0.00984,p,fraud_model.json,…coefficients[atm_facility].p,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) OR (y_severe),1.231,OR,fraud_model.json,results[y_severe].coefficients[prefunded_solo].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Pre-funded warrant (unpaired) p (y_severe),0.134433,p,fraud_model.json,…coefficients[prefunded_solo].p,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) OR (y_severe),1.358,OR,fraud_model.json,results[y_severe].coefficients[mw_alt].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Material weakness (alt phrasing) p (y_severe),0.003216,p,fraud_model.json,…coefficients[mw_alt].p,fraud_model.py
+2022-2024,Finding 4,log(total assets) OR (y_severe),0.847,OR,fraud_model.json,results[y_severe].coefficients[log_assets].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(total assets) p (y_severe),0.0,p,fraud_model.json,…coefficients[log_assets].p,fraud_model.py
+2022-2024,Finding 4,log(public float) OR (y_severe),0.935,OR,fraud_model.json,results[y_severe].coefficients[log_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,log(public float) p (y_severe),0.001499,p,fraud_model.json,…coefficients[log_float].p,fraud_model.py
+2022-2024,Finding 4,free-float ratio OR (y_severe),1.036,OR,fraud_model.json,results[y_severe].coefficients[free_float].odds_ratio,fraud_model.py
+2022-2024,Finding 4,free-float ratio p (y_severe),0.039215,p,fraud_model.json,…coefficients[free_float].p,fraud_model.py
+2022-2024,Finding 4,Shell company OR (y_severe),1.909,OR,fraud_model.json,results[y_severe].coefficients[shell].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Shell company p (y_severe),2.6e-05,p,fraud_model.json,…coefficients[shell].p,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) OR (y_severe),1.217,OR,fraud_model.json,results[y_severe].coefficients[prior_any].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Prior revelation (pre-10-K) p (y_severe),0.009207,p,fraud_model.json,…coefficients[prior_any].p,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency OR (y_severe),1.289,OR,fraud_model.json,results[y_severe].coefficients[regain_compliance].odds_ratio,fraud_model.py
+2022-2024,Finding 4,Curing a listing deficiency p (y_severe),0.022406,p,fraud_model.json,…coefficients[regain_compliance].p,fraud_model.py
+2022-2024,Finding 4,OOS AUC model (y_severe),0.7775,AUC,fraud_model.json,results[y_severe].out_of_sample.auc_model,fraud_model.py
+2022-2024,Finding 4,OOS AUC count score (y_severe),0.7135,AUC,fraud_model.json,…auc_count_score,fraud_model.py
+2022-2024,Finding 4,ECE before calibration (y_severe),5.292,pp,fraud_model.json,…calibrated.ece_raw_pp,fraud_model.py
+2022-2024,Finding 4,ECE after calibration (y_severe),3.778,pp,fraud_model.json,…calibrated.ece_calibrated_pp,fraud_model.py
+2022-2024,Finding 2,"difference vs 0 signs, 1 signs",4.65,pp,fraud_model.json,headline_differences[signs=1].diff_pp,fraud_model.py
+2022-2024,Finding 2,"  CI low, 1 signs",3.8,pp,fraud_model.json,…ci_lo_pp,fraud_model.py
+2022-2024,Finding 2,"  CI high, 1 signs",5.49,pp,fraud_model.json,…ci_hi_pp,fraud_model.py
+2022-2024,Finding 2,"difference vs 0 signs, 2 signs",6.92,pp,fraud_model.json,headline_differences[signs=2].diff_pp,fraud_model.py
+2022-2024,Finding 2,"  CI low, 2 signs",5.02,pp,fraud_model.json,…ci_lo_pp,fraud_model.py
+2022-2024,Finding 2,"  CI high, 2 signs",8.81,pp,fraud_model.json,…ci_hi_pp,fraud_model.py
+2022-2024,Finding 2,"difference vs 0 signs, 3 signs",10.57,pp,fraud_model.json,headline_differences[signs=3].diff_pp,fraud_model.py
+2022-2024,Finding 2,"  CI low, 3 signs",4.78,pp,fraud_model.json,…ci_lo_pp,fraud_model.py
+2022-2024,Finding 2,"  CI high, 3 signs",16.36,pp,fraud_model.json,…ci_hi_pp,fraud_model.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+1] mean CAR",-0.64,%,event_study.json,"summaries[R_AUDITOR].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+1] BMP",0.238,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+1] Corrado",0.109,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[-1,+1] mean CAR",-0.72,%,event_study.json,"summaries[R_AUDITOR].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[-1,+1] BMP",0.483,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[-1,+1] Corrado",-0.551,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+5] mean CAR",-1.15,%,event_study.json,"summaries[R_AUDITOR].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+5] BMP",-1.48,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+5] Corrado",-2.637,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+20] mean CAR",-3.05,%,event_study.json,"summaries[R_AUDITOR].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+20] BMP",-0.548,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_AUDITOR CAR[0,+20] Corrado",-1.938,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_AUDITOR PLACEBO[-10,-3] mean CAR",-0.57,%,event_study.json,"summaries[R_AUDITOR].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"R_AUDITOR PLACEBO[-10,-3] BMP",-0.127,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_AUDITOR PLACEBO[-10,-3] Corrado",-1.055,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+1] mean CAR",-1.39,%,event_study.json,"summaries[R_LATE].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+1] BMP",-3.773,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+1] Corrado",-2.916,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[-1,+1] mean CAR",-1.81,%,event_study.json,"summaries[R_LATE].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[-1,+1] BMP",-4.676,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[-1,+1] Corrado",-4.301,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+5] mean CAR",-1.26,%,event_study.json,"summaries[R_LATE].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+5] BMP",-1.341,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+5] Corrado",-2.663,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+20] mean CAR",-0.08,%,event_study.json,"summaries[R_LATE].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+20] BMP",1.034,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LATE CAR[0,+20] Corrado",-3.375,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LATE PLACEBO[-10,-3] mean CAR",-1.4,%,event_study.json,"summaries[R_LATE].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LATE PLACEBO[-10,-3] BMP",-1.173,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LATE PLACEBO[-10,-3] Corrado",-2.199,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+1] mean CAR",-1.61,%,event_study.json,"summaries[R_LISTING].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+1] BMP",-5.199,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+1] Corrado",-4.705,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[-1,+1] mean CAR",-1.33,%,event_study.json,"summaries[R_LISTING].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[-1,+1] BMP",-2.218,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[-1,+1] Corrado",-3.476,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+5] mean CAR",-1.57,%,event_study.json,"summaries[R_LISTING].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+5] BMP",-2.759,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+5] Corrado",-3.96,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+20] mean CAR",1.68,%,event_study.json,"summaries[R_LISTING].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+20] BMP",2.937,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LISTING CAR[0,+20] Corrado",-1.539,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_LISTING PLACEBO[-10,-3] mean CAR",-1.2,%,event_study.json,"summaries[R_LISTING].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"R_LISTING PLACEBO[-10,-3] BMP",-3.252,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_LISTING PLACEBO[-10,-3] Corrado",-0.305,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+1] mean CAR",-3.16,%,event_study.json,"summaries[R_NONRELIANCE].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+1] BMP",-4.386,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+1] Corrado",-5.377,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[-1,+1] mean CAR",-3.59,%,event_study.json,"summaries[R_NONRELIANCE].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[-1,+1] BMP",-4.379,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[-1,+1] Corrado",-5.66,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+5] mean CAR",-2.66,%,event_study.json,"summaries[R_NONRELIANCE].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+5] BMP",-2.793,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+5] Corrado",-2.408,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+20] mean CAR",-0.92,%,event_study.json,"summaries[R_NONRELIANCE].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+20] BMP",-0.214,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE CAR[0,+20] Corrado",-0.366,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE PLACEBO[-10,-3] mean CAR",-0.86,%,event_study.json,"summaries[R_NONRELIANCE].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE PLACEBO[-10,-3] BMP",-0.556,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE PLACEBO[-10,-3] Corrado",-0.603,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+1] mean CAR",-2.03,%,event_study.json,"summaries[R_NONRELIANCE (unconfounded only)].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+1] BMP",-2.34,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+1] Corrado",-3.19,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[-1,+1] mean CAR",-2.54,%,event_study.json,"summaries[R_NONRELIANCE (unconfounded only)].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[-1,+1] BMP",-2.627,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[-1,+1] Corrado",-3.701,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+5] mean CAR",-1.67,%,event_study.json,"summaries[R_NONRELIANCE (unconfounded only)].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+5] BMP",-1.243,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+5] Corrado",-0.993,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+20] mean CAR",-1.14,%,event_study.json,"summaries[R_NONRELIANCE (unconfounded only)].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+20] BMP",-0.244,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) CAR[0,+20] Corrado",-0.75,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) PLACEBO[-10,-3] mean CAR",0.02,%,event_study.json,"summaries[R_NONRELIANCE (unconfounded only)].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) PLACEBO[-10,-3] BMP",-0.327,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"R_NONRELIANCE (unconfounded only) PLACEBO[-10,-3] Corrado",-0.089,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+1] mean CAR",-1.21,%,event_study.json,"summaries[UNION — first revelation of any type per issuer].windows[CAR[0,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+1] BMP",-5.866,t,event_study.json,"…windows[CAR[0,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+1] Corrado",-3.728,Z,event_study.json,"…windows[CAR[0,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[-1,+1] mean CAR",-1.24,%,event_study.json,"summaries[UNION — first revelation of any type per issuer].windows[CAR[-1,+1]].mean_car",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[-1,+1] BMP",-4.968,t,event_study.json,"…windows[CAR[-1,+1]].t_bmp",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[-1,+1] Corrado",-4.056,Z,event_study.json,"…windows[CAR[-1,+1]].z_corrado",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+5] mean CAR",-1.21,%,event_study.json,"summaries[UNION — first revelation of any type per issuer].windows[CAR[0,+5]].mean_car",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+5] BMP",-2.981,t,event_study.json,"…windows[CAR[0,+5]].t_bmp",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+5] Corrado",-3.422,Z,event_study.json,"…windows[CAR[0,+5]].z_corrado",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+20] mean CAR",0.52,%,event_study.json,"summaries[UNION — first revelation of any type per issuer].windows[CAR[0,+20]].mean_car",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+20] BMP",1.86,t,event_study.json,"…windows[CAR[0,+20]].t_bmp",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer CAR[0,+20] Corrado",-1.966,Z,event_study.json,"…windows[CAR[0,+20]].z_corrado",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer PLACEBO[-10,-3] mean CAR",-0.71,%,event_study.json,"summaries[UNION — first revelation of any type per issuer].windows[PLACEBO[-10,-3]].mean_car",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer PLACEBO[-10,-3] BMP",-1.898,t,event_study.json,"…windows[PLACEBO[-10,-3]].t_bmp",event_study.py
+2022-2024,Finding 5,"UNION — first revelation of any type per issuer PLACEBO[-10,-3] Corrado",-0.408,Z,event_study.json,"…windows[PLACEBO[-10,-3]].z_corrado",event_study.py
+2022-2024,Finding 5,attributable loss — R_AUDITOR,-0.908,$B,event_study.json,tier2[R_AUDITOR].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — R_AUDITOR,-2.482,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — R_AUDITOR,0.612,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,attributable loss — R_LATE,-4.306,$B,event_study.json,tier2[R_LATE].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — R_LATE,-7.929,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — R_LATE,-1.214,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,attributable loss — R_LISTING,-4.888,$B,event_study.json,tier2[R_LISTING].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — R_LISTING,-7.415,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — R_LISTING,-2.622,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,attributable loss — R_NONRELIANCE,-3.464,$B,event_study.json,tier2[R_NONRELIANCE].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — R_NONRELIANCE,-6.511,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — R_NONRELIANCE,-0.999,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,attributable loss — R_NONRELIANCE (unconfounded only),-0.343,$B,event_study.json,tier2[R_NONRELIANCE (unconfounded only)].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — R_NONRELIANCE (unconfounded only),-1.49,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — R_NONRELIANCE (unconfounded only),0.891,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,attributable loss — UNION — first revelation of any type per issuer,-10.473,$B,event_study.json,tier2[UNION — first revelation of any type per issuer].attributable_signed_usd,event_study.py
+2022-2024,Finding 5,  CI low — UNION — first revelation of any type per issuer,-15.292,$B,event_study.json,…attributable_signed_ci[0],event_study.py
+2022-2024,Finding 5,  CI high — UNION — first revelation of any type per issuer,-5.894,$B,event_study.json,…attributable_signed_ci[1],event_study.py
+2022-2024,Finding 5,"revelation events, total",18972,events,revelations.json,n_events,revelations.py
+2022-2024,Finding 5,revelation events — R_AUDITOR,3043,events,revelations.json,by_type.R_AUDITOR,revelations.py
+2022-2024,Finding 5,revelation events — R_LATE,7971,events,revelations.json,by_type.R_LATE,revelations.py
+2022-2024,Finding 5,revelation events — R_LISTING,7267,events,revelations.json,by_type.R_LISTING,revelations.py
+2022-2024,Finding 5,revelation events — R_NONRELIANCE,691,events,revelations.json,by_type.R_NONRELIANCE,revelations.py
+2022-2024,Two screens,y_nonrel 1 nano in-sample AUC,0.6888,AUC,stratified.json,results[y_nonrel|1 nano].auc_in_sample,stratified.py
+2022-2024,Two screens,Going-concern doubt OR — y_nonrel 1 nano,1.512,OR,stratified.json,…coefficients[going_concern].or,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_nonrel 1 nano,1.174,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_nonrel 1 nano,1.553,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,A1 share explosion OR — y_nonrel 1 nano,1.372,OR,stratified.json,…coefficients[a1].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_nonrel 1 nano,0.96,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_nonrel 1 nano,0.97,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_nonrel 1 nano,1.439,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Two screens,Standby equity purchase OR — y_nonrel 1 nano,0.825,OR,stratified.json,…coefficients[sepa].or,stratified.py
+2022-2024,Two screens,Pre-funded warrant (unpaired) OR — y_nonrel 1 nano,0.932,OR,stratified.json,…coefficients[prefunded_solo].or,stratified.py
+2022-2024,Two screens,y_nonrel 2 mid in-sample AUC,0.7683,AUC,stratified.json,results[y_nonrel|2 mid].auc_in_sample,stratified.py
+2022-2024,Two screens,Going-concern doubt OR — y_nonrel 2 mid,2.27,OR,stratified.json,…coefficients[going_concern].or,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_nonrel 2 mid,2.784,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_nonrel 2 mid,1.048,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,A1 share explosion OR — y_nonrel 2 mid,1.482,OR,stratified.json,…coefficients[a1].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_nonrel 2 mid,1.69,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_nonrel 2 mid,0.74,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_nonrel 2 mid,1.798,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Two screens,Standby equity purchase OR — y_nonrel 2 mid,3.362,OR,stratified.json,…coefficients[sepa].or,stratified.py
+2022-2024,Two screens,Pre-funded warrant (unpaired) OR — y_nonrel 2 mid,1.395,OR,stratified.json,…coefficients[prefunded_solo].or,stratified.py
+2022-2024,Two screens,y_nonrel 3 large in-sample AUC,0.7954,AUC,stratified.json,results[y_nonrel|3 large].auc_in_sample,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_nonrel 3 large,10.018,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_nonrel 3 large,1.475,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_nonrel 3 large,0.321,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_nonrel 3 large,0.549,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_nonrel 3 large,1.203,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Two screens,y_severe 1 nano in-sample AUC,0.7116,AUC,stratified.json,results[y_severe|1 nano].auc_in_sample,stratified.py
+2022-2024,Two screens,Going-concern doubt OR — y_severe 1 nano,1.952,OR,stratified.json,…coefficients[going_concern].or,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_severe 1 nano,0.971,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_severe 1 nano,1.268,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,A1 share explosion OR — y_severe 1 nano,2.083,OR,stratified.json,…coefficients[a1].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_severe 1 nano,1.468,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_severe 1 nano,1.056,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_severe 1 nano,1.756,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Two screens,Standby equity purchase OR — y_severe 1 nano,0.877,OR,stratified.json,…coefficients[sepa].or,stratified.py
+2022-2024,Two screens,Pre-funded warrant (unpaired) OR — y_severe 1 nano,1.365,OR,stratified.json,…coefficients[prefunded_solo].or,stratified.py
+2022-2024,Two screens,y_severe 2 mid in-sample AUC,0.6893,AUC,stratified.json,results[y_severe|2 mid].auc_in_sample,stratified.py
+2022-2024,Two screens,Going-concern doubt OR — y_severe 2 mid,1.882,OR,stratified.json,…coefficients[going_concern].or,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_severe 2 mid,1.714,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_severe 2 mid,0.959,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,A1 share explosion OR — y_severe 2 mid,1.288,OR,stratified.json,…coefficients[a1].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_severe 2 mid,1.348,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_severe 2 mid,1.452,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_severe 2 mid,0.706,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Two screens,Pre-funded warrant (unpaired) OR — y_severe 2 mid,1.21,OR,stratified.json,…coefficients[prefunded_solo].or,stratified.py
+2022-2024,Two screens,y_severe 3 large in-sample AUC,0.6941,AUC,stratified.json,results[y_severe|3 large].auc_in_sample,stratified.py
+2022-2024,Two screens,Going-concern doubt OR — y_severe 3 large,0.723,OR,stratified.json,…coefficients[going_concern].or,stratified.py
+2022-2024,Two screens,Material weakness (alt phrasing) OR — y_severe 3 large,1.34,OR,stratified.json,…coefficients[mw_alt].or,stratified.py
+2022-2024,Two screens,Material weakness OR — y_severe 3 large,1.411,OR,stratified.json,…coefficients[material_weakness].or,stratified.py
+2022-2024,Two screens,A1 share explosion OR — y_severe 3 large,1.0,OR,stratified.json,…coefficients[a1].or,stratified.py
+2022-2024,Two screens,Reverse stock split OR — y_severe 3 large,1.824,OR,stratified.json,…coefficients[rss].or,stratified.py
+2022-2024,Two screens,At-the-market facility OR — y_severe 3 large,1.231,OR,stratified.json,…coefficients[atm_facility].or,stratified.py
+2022-2024,Two screens,Equity line of credit OR — y_severe 3 large,1.0,OR,stratified.json,…coefficients[elc].or,stratified.py
+2022-2024,Verification,attributable loss — 1 nano,-1.042,$B,verify_claims.json,claim1_loss_by_stratum.by_stratum[1 nano].attributable_usd,verify_claims.py
+2022-2024,Verification,share of loss — 1 nano,10.95,%,verify_claims.json,…share_of_total,verify_claims.py
+2022-2024,Verification,attributable loss — 2 mid,-4.807,$B,verify_claims.json,claim1_loss_by_stratum.by_stratum[2 mid].attributable_usd,verify_claims.py
+2022-2024,Verification,share of loss — 2 mid,50.5,%,verify_claims.json,…share_of_total,verify_claims.py
+2022-2024,Verification,attributable loss — 3 large,-3.669,$B,verify_claims.json,claim1_loss_by_stratum.by_stratum[3 large].attributable_usd,verify_claims.py
+2022-2024,Verification,share of loss — 3 large,38.55,%,verify_claims.json,…share_of_total,verify_claims.py
+2022-2024,Verification,OOS AUC — y_nonrel 1 nano,0.6417,AUC,verify_claims.json,claim2_out_of_sample[y_nonrel|1 nano].auc_oos,verify_claims.py
+2022-2024,Verification,OOS AUC — y_nonrel 2 mid,0.7295,AUC,verify_claims.json,claim2_out_of_sample[y_nonrel|2 mid].auc_oos,verify_claims.py
+2022-2024,Verification,OOS AUC — y_severe 1 nano,0.65,AUC,verify_claims.json,claim2_out_of_sample[y_severe|1 nano].auc_oos,verify_claims.py
+2022-2024,Verification,OOS AUC — y_severe 2 mid,0.6301,AUC,verify_claims.json,claim2_out_of_sample[y_severe|2 mid].auc_oos,verify_claims.py
+2022-2024,Verification,OOS AUC — y_severe 3 large,0.6701,AUC,verify_claims.json,claim2_out_of_sample[y_severe|3 large].auc_oos,verify_claims.py
+2022-2024,Table 1,ALL FILERS — median_assets,686310500.0,$,population_profile.json,groups[ALL FILERS].median_assets,population_profile.py
+2022-2024,Table 1,ALL FILERS — median_revenue,410921000,$,population_profile.json,groups[ALL FILERS].median_revenue,population_profile.py
+2022-2024,Table 1,ALL FILERS — median_net_income,299826,$,population_profile.json,groups[ALL FILERS].median_net_income,population_profile.py
+2022-2024,Table 1,ALL FILERS — pct_lossmaking,48.4,%,population_profile.json,groups[ALL FILERS].pct_lossmaking,population_profile.py
+2022-2024,Table 1,ALL FILERS — pct_big4,21.1,%,population_profile.json,groups[ALL FILERS].pct_big4,population_profile.py
+2022-2024,Table 1,ALL FILERS — pct_nasdaq,47.2,%,population_profile.json,groups[ALL FILERS].pct_nasdaq,population_profile.py
+2022-2024,Table 1,Small tercile — median_assets,17818571.5,$,population_profile.json,groups[Small tercile].median_assets,population_profile.py
+2022-2024,Table 1,Small tercile — median_revenue,4689661.5,$,population_profile.json,groups[Small tercile].median_revenue,population_profile.py
+2022-2024,Table 1,Small tercile — median_net_income,-3340212,$,population_profile.json,groups[Small tercile].median_net_income,population_profile.py
+2022-2024,Table 1,Small tercile — pct_lossmaking,78.6,%,population_profile.json,groups[Small tercile].pct_lossmaking,population_profile.py
+2022-2024,Table 1,Small tercile — pct_big4,9.4,%,population_profile.json,groups[Small tercile].pct_big4,population_profile.py
+2022-2024,Table 1,Small tercile — pct_nasdaq,48.4,%,population_profile.json,groups[Small tercile].pct_nasdaq,population_profile.py
+2022-2024,Table 1,Middle tercile — median_assets,685683000,$,population_profile.json,groups[Middle tercile].median_assets,population_profile.py
+2022-2024,Table 1,Middle tercile — median_revenue,372766000,$,population_profile.json,groups[Middle tercile].median_revenue,population_profile.py
+2022-2024,Table 1,Middle tercile — median_net_income,20034,$,population_profile.json,groups[Middle tercile].median_net_income,population_profile.py
+2022-2024,Table 1,Middle tercile — pct_lossmaking,49.7,%,population_profile.json,groups[Middle tercile].pct_lossmaking,population_profile.py
+2022-2024,Table 1,Middle tercile — pct_big4,30.6,%,population_profile.json,groups[Middle tercile].pct_big4,population_profile.py
+2022-2024,Table 1,Middle tercile — pct_nasdaq,59.3,%,population_profile.json,groups[Middle tercile].pct_nasdaq,population_profile.py
+2022-2024,Table 1,Large tercile — median_assets,8435930000,$,population_profile.json,groups[Large tercile].median_assets,population_profile.py
+2022-2024,Table 1,Large tercile — median_revenue,4203792500.0,$,population_profile.json,groups[Large tercile].median_revenue,population_profile.py
+2022-2024,Table 1,Large tercile — median_net_income,266440000,$,population_profile.json,groups[Large tercile].median_net_income,population_profile.py
+2022-2024,Table 1,Large tercile — pct_lossmaking,16.1,%,population_profile.json,groups[Large tercile].pct_lossmaking,population_profile.py
+2022-2024,Table 1,Large tercile — pct_big4,23.3,%,population_profile.json,groups[Large tercile].pct_big4,population_profile.py
+2022-2024,Table 1,Large tercile — pct_nasdaq,33.8,%,population_profile.json,groups[Large tercile].pct_nasdaq,population_profile.py
+2022-2024,Table 1,0 warning signs — median_assets,2098086000.0,$,population_profile.json,groups[0 warning signs].median_assets,population_profile.py
+2022-2024,Table 1,0 warning signs — median_revenue,1214877000,$,population_profile.json,groups[0 warning signs].median_revenue,population_profile.py
+2022-2024,Table 1,0 warning signs — median_net_income,34586257.5,$,population_profile.json,groups[0 warning signs].median_net_income,population_profile.py
+2022-2024,Table 1,0 warning signs — pct_lossmaking,30.8,%,population_profile.json,groups[0 warning signs].pct_lossmaking,population_profile.py
+2022-2024,Table 1,0 warning signs — pct_big4,25.0,%,population_profile.json,groups[0 warning signs].pct_big4,population_profile.py
+2022-2024,Table 1,0 warning signs — pct_nasdaq,43.8,%,population_profile.json,groups[0 warning signs].pct_nasdaq,population_profile.py
+2022-2024,Table 1,1 warning sign — median_assets,118375000,$,population_profile.json,groups[1 warning sign].median_assets,population_profile.py
+2022-2024,Table 1,1 warning sign — median_revenue,49556961.5,$,population_profile.json,groups[1 warning sign].median_revenue,population_profile.py
+2022-2024,Table 1,1 warning sign — median_net_income,-1528105,$,population_profile.json,groups[1 warning sign].median_net_income,population_profile.py
+2022-2024,Table 1,1 warning sign — pct_lossmaking,65.9,%,population_profile.json,groups[1 warning sign].pct_lossmaking,population_profile.py
+2022-2024,Table 1,1 warning sign — pct_big4,17.4,%,population_profile.json,groups[1 warning sign].pct_big4,population_profile.py
+2022-2024,Table 1,1 warning sign — pct_nasdaq,49.4,%,population_profile.json,groups[1 warning sign].pct_nasdaq,population_profile.py
+2022-2024,Table 1,2 warning signs — median_assets,17857500.0,$,population_profile.json,groups[2 warning signs].median_assets,population_profile.py
+2022-2024,Table 1,2 warning signs — median_revenue,4796474,$,population_profile.json,groups[2 warning signs].median_revenue,population_profile.py
+2022-2024,Table 1,2 warning signs — median_net_income,-9790279.0,$,population_profile.json,groups[2 warning signs].median_net_income,population_profile.py
+2022-2024,Table 1,2 warning signs — pct_lossmaking,89.4,%,population_profile.json,groups[2 warning signs].pct_lossmaking,population_profile.py
+2022-2024,Table 1,2 warning signs — pct_big4,12.1,%,population_profile.json,groups[2 warning signs].pct_big4,population_profile.py
+2022-2024,Table 1,2 warning signs — pct_nasdaq,56.3,%,population_profile.json,groups[2 warning signs].pct_nasdaq,population_profile.py
+2022-2024,Table 1,3 warning signs — median_assets,11786500.0,$,population_profile.json,groups[3 warning signs].median_assets,population_profile.py
+2022-2024,Table 1,3 warning signs — median_revenue,2472150.0,$,population_profile.json,groups[3 warning signs].median_revenue,population_profile.py
+2022-2024,Table 1,3 warning signs — median_net_income,-11579973.5,$,population_profile.json,groups[3 warning signs].median_net_income,population_profile.py
+2022-2024,Table 1,3 warning signs — pct_lossmaking,92.1,%,population_profile.json,groups[3 warning signs].pct_lossmaking,population_profile.py
+2022-2024,Table 1,3 warning signs — pct_big4,7.1,%,population_profile.json,groups[3 warning signs].pct_big4,population_profile.py
+2022-2024,Table 1,3 warning signs — pct_nasdaq,64.9,%,population_profile.json,groups[3 warning signs].pct_nasdaq,population_profile.py
+2022-2024,Table 1,4 warning signs — median_assets,21899000.0,$,population_profile.json,groups[4 warning signs].median_assets,population_profile.py
+2022-2024,Table 1,4 warning signs — median_revenue,4206015.5,$,population_profile.json,groups[4 warning signs].median_revenue,population_profile.py
+2022-2024,Table 1,4 warning signs — median_net_income,-17727000,$,population_profile.json,groups[4 warning signs].median_net_income,population_profile.py
+2022-2024,Table 1,4 warning signs — pct_lossmaking,96.6,%,population_profile.json,groups[4 warning signs].pct_lossmaking,population_profile.py
+2022-2024,Table 1,4 warning signs — pct_big4,3.3,%,population_profile.json,groups[4 warning signs].pct_big4,population_profile.py
+2022-2024,Table 1,4 warning signs — pct_nasdaq,90.0,%,population_profile.json,groups[4 warning signs].pct_nasdaq,population_profile.py

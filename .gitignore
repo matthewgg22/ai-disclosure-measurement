@@ -51,6 +51,8 @@ env/
 !data/aggregates/population_profile.csv
 !data/aggregates/attributable_loss_by_stratum.csv
 !data/aggregates/stratified_out_of_sample.csv
+# Chain of custody: every quoted figure with the file and JSON path that produced it.
+!data/aggregates/claims_ledger.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx
