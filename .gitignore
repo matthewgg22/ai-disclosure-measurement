@@ -39,6 +39,8 @@ env/
 !data/aggregates/model_marginal_effects.csv
 !data/aggregates/model_fit.csv
 !data/aggregates/model_calibration.csv
+!data/aggregates/model_calibration_fix.csv
+!data/aggregates/headline_difference_in_proportions.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx

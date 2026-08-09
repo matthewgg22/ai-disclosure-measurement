@@ -1,42 +1,59 @@
 year,outcome,term,label,effect_pp,p
-2022-2024,y_nonrel,going_concern,Going-concern doubt,2.057,0.000224
-2022-2024,y_nonrel,material_weakness,Material weakness,2.603,0.0
-2022-2024,y_nonrel,rss,Reverse stock split,0.2,0.704688
-2022-2024,y_nonrel,elc,Equity line of credit,1.475,0.082465
-2022-2024,y_nonrel,sepa,Standby equity purchase,2.229,0.190621
-2022-2024,y_nonrel,prefunded,Pre-funded warrant + blocker,-0.391,0.801764
-2022-2024,y_nonrel,a1,A1 share explosion,0.805,0.220156
-2022-2024,y_nonrel,a3,A3 manufactured asset,1.346,0.474003
-2022-2024,y_nonrel,ramp,P8 ramp signature,-0.168,0.91469
-2022-2024,y_nonrel,log_assets,log(total assets),0.075,0.424995
-2022-2024,y_nonrel,log_float,log(public float),-0.448,0.0
-2022-2024,y_nonrel,free_float,free-float ratio,0.139,0.058525
-2022-2024,y_nonrel,shell,Shell company,2.425,0.000339
-2022-2024,y_nonrel,prior_any,Prior revelation (pre-10-K),2.678,0.0
-2022-2024,y_any,going_concern,Going-concern doubt,11.691,0.0
-2022-2024,y_any,material_weakness,Material weakness,7.505,0.0
-2022-2024,y_any,rss,Reverse stock split,6.464,0.0
-2022-2024,y_any,elc,Equity line of credit,3.776,0.064858
-2022-2024,y_any,sepa,Standby equity purchase,15.129,0.034672
-2022-2024,y_any,prefunded,Pre-funded warrant + blocker,-2.875,0.482112
-2022-2024,y_any,a1,A1 share explosion,9.958,1e-06
-2022-2024,y_any,a3,A3 manufactured asset,18.63,0.145627
-2022-2024,y_any,ramp,P8 ramp signature,0.014,0.997113
-2022-2024,y_any,log_assets,log(total assets),-2.002,0.0
-2022-2024,y_any,log_float,log(public float),-2.684,0.0
-2022-2024,y_any,free_float,free-float ratio,0.703,0.003767
-2022-2024,y_any,shell,Shell company,16.507,0.0
-2022-2024,y_any,prior_any,Prior revelation (pre-10-K),14.967,0.0
-2022-2024,y_severe,going_concern,Going-concern doubt,8.531,0.0
-2022-2024,y_severe,material_weakness,Material weakness,4.024,0.000211
-2022-2024,y_severe,rss,Reverse stock split,5.496,4e-06
-2022-2024,y_severe,elc,Equity line of credit,2.005,0.403103
-2022-2024,y_severe,sepa,Standby equity purchase,1.022,0.821623
-2022-2024,y_severe,prefunded,Pre-funded warrant + blocker,2.862,0.463042
-2022-2024,y_severe,a1,A1 share explosion,8.133,5.4e-05
-2022-2024,y_severe,ramp,P8 ramp signature,-3.673,0.354925
-2022-2024,y_severe,log_assets,log(total assets),-2.419,0.0
-2022-2024,y_severe,log_float,log(public float),-0.97,0.001364
-2022-2024,y_severe,free_float,free-float ratio,0.484,0.044787
-2022-2024,y_severe,shell,Shell company,8.26,0.000102
-2022-2024,y_severe,prior_any,Prior revelation (pre-10-K),3.867,0.000119
+2022-2024,y_nonrel,going_concern,Going-concern doubt,2.024,0.000302
+2022-2024,y_nonrel,material_weakness,Material weakness,1.291,0.011889
+2022-2024,y_nonrel,rss,Reverse stock split,0.287,0.597973
+2022-2024,y_nonrel,elc,Equity line of credit,1.372,0.103681
+2022-2024,y_nonrel,sepa,Standby equity purchase,2.053,0.232501
+2022-2024,y_nonrel,prefunded,Pre-funded warrant + blocker,-0.261,0.878478
+2022-2024,y_nonrel,a1,A1 share explosion,0.897,0.173775
+2022-2024,y_nonrel,a3,A3 manufactured asset,1.369,0.463802
+2022-2024,y_nonrel,ramp,P8 ramp signature,-0.27,0.86219
+2022-2024,y_nonrel,subpoena,Subpoena received,0.492,0.727351
+2022-2024,y_nonrel,atm_facility,At-the-market facility,-0.254,0.708636
+2022-2024,y_nonrel,prefunded_solo,Pre-funded warrant (unpaired),-0.219,0.794715
+2022-2024,y_nonrel,mw_alt,Material weakness (alt phrasing),2.498,1.6e-05
+2022-2024,y_nonrel,log_assets,log(total assets),0.045,0.624474
+2022-2024,y_nonrel,log_float,log(public float),-0.436,0.0
+2022-2024,y_nonrel,free_float,free-float ratio,0.131,0.074921
+2022-2024,y_nonrel,shell,Shell company,2.086,0.002533
+2022-2024,y_nonrel,prior_any,Prior revelation (pre-10-K),2.505,0.0
+2022-2024,y_nonrel,regain_compliance,Curing a listing deficiency,-0.159,0.805868
+2022-2024,y_any,going_concern,Going-concern doubt,10.953,0.0
+2022-2024,y_any,material_weakness,Material weakness,3.112,0.007539
+2022-2024,y_any,rss,Reverse stock split,4.957,1.7e-05
+2022-2024,y_any,elc,Equity line of credit,3.642,0.081464
+2022-2024,y_any,sepa,Standby equity purchase,11.7,0.108822
+2022-2024,y_any,prefunded,Pre-funded warrant + blocker,-3.611,0.455279
+2022-2024,y_any,a1,A1 share explosion,9.624,1e-06
+2022-2024,y_any,a3,A3 manufactured asset,17.746,0.164117
+2022-2024,y_any,ramp,P8 ramp signature,-0.073,0.985115
+2022-2024,y_any,wells_notice,Wells notice,-2.468,0.613949
+2022-2024,y_any,subpoena,Subpoena received,4.175,0.135692
+2022-2024,y_any,atm_facility,At-the-market facility,3.266,0.01291
+2022-2024,y_any,prefunded_solo,Pre-funded warrant (unpaired),-1.56,0.483028
+2022-2024,y_any,mw_alt,Material weakness (alt phrasing),9.439,0.0
+2022-2024,y_any,log_assets,log(total assets),-2.047,0.0
+2022-2024,y_any,log_float,log(public float),-2.513,0.0
+2022-2024,y_any,free_float,free-float ratio,0.653,0.00517
+2022-2024,y_any,shell,Shell company,16.519,0.0
+2022-2024,y_any,prior_any,Prior revelation (pre-10-K),12.786,0.0
+2022-2024,y_any,regain_compliance,Curing a listing deficiency,12.444,0.0
+2022-2024,y_severe,going_concern,Going-concern doubt,7.732,0.0
+2022-2024,y_severe,material_weakness,Material weakness,1.864,0.151973
+2022-2024,y_severe,rss,Reverse stock split,4.469,0.000298
+2022-2024,y_severe,elc,Equity line of credit,1.665,0.491092
+2022-2024,y_severe,sepa,Standby equity purchase,0.396,0.926218
+2022-2024,y_severe,prefunded,Pre-funded warrant + blocker,-0.097,0.981991
+2022-2024,y_severe,a1,A1 share explosion,7.661,0.000187
+2022-2024,y_severe,ramp,P8 ramp signature,-3.738,0.343183
+2022-2024,y_severe,wells_notice,Wells notice,-0.349,0.960199
+2022-2024,y_severe,subpoena,Subpoena received,4.255,0.165733
+2022-2024,y_severe,atm_facility,At-the-market facility,3.398,0.009734
+2022-2024,y_severe,prefunded_solo,Pre-funded warrant (unpaired),2.908,0.134116
+2022-2024,y_severe,mw_alt,Material weakness (alt phrasing),4.289,0.003203
+2022-2024,y_severe,log_assets,log(total assets),-2.332,0.0
+2022-2024,y_severe,log_float,log(public float),-0.945,0.001513
+2022-2024,y_severe,free_float,free-float ratio,0.491,0.038925
+2022-2024,y_severe,shell,Shell company,9.055,2.4e-05
+2022-2024,y_severe,prior_any,Prior revelation (pre-10-K),2.752,0.00912
+2022-2024,y_severe,regain_compliance,Curing a listing deficiency,3.553,0.022225

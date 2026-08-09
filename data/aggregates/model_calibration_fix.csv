@@ -1,0 +1,4 @@
+year,outcome,design,auc_raw,auc_calibrated,ece_raw_pp,ece_calibrated_pp,brier_raw,brier_calibrated,top_decile_pred_raw_pct,top_decile_pred_calibrated_pct,top_decile_actual_pct
+2022-2024,y_nonrel,train 2022 -> calibrate 2023 -> test 2024,0.7612,0.7612,2.407,1.501,0.03453,0.033547,21.03,16.93,11.37
+2022-2024,y_any,train 2022 -> calibrate 2023 -> test 2024,0.8498,0.8498,8.524,3.95,0.158412,0.150386,98.01,95.82,90.94
+2022-2024,y_severe,train 2022 -> calibrate 2023 -> test 2024,0.7794,0.7794,5.292,3.778,0.149005,0.143056,84.63,74.03,58.87

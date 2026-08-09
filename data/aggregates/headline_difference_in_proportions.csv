@@ -1,0 +1,4 @@
+year,outcome,warning_signs,rate_pct,base_rate_pct,diff_pp,se_pp,ci_lo_pp,ci_hi_pp,excludes_zero
+2022-2024,y_nonrel,1,6.27,1.62,4.65,0.433,3.8,5.49,1
+2022-2024,y_nonrel,2,8.54,1.62,6.92,0.966,5.02,8.81,1
+2022-2024,y_nonrel,3,12.2,1.62,10.57,2.954,4.78,16.36,1

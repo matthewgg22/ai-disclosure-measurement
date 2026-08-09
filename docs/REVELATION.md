@@ -127,39 +127,47 @@ and every coefficient carries a standard error. **Errors are clustered by issuer
 issuer-vintages but only 6,192 distinct issuers, most appearing two or three times, so unclustered
 errors would badly overstate precision. Year and industry fixed effects throughout.
 
-Odds ratios, the same specification against three outcomes:
+Odds ratios, the same specification against three outcomes (sixteen candidate signals, including
+the seven registry surfaces added below):
 
 | signal | non-reliance | any revelation | price collapse |
 |---|---|---|---|
-| **Going-concern doubt** | **1.73**\*\*\* | **2.19**\*\*\* | **1.83**\*\*\* |
-| **Material weakness** | **2.00**\*\*\* | **1.65**\*\*\* | **1.33**\*\*\* |
-| A1 share explosion | 1.24 | **1.95**\*\*\* | **1.78**\*\*\* |
-| Reverse stock split | 1.05 | **1.54**\*\*\* | **1.48**\*\*\* |
-| Standby equity purchase | 1.81 | 2.76\* | 1.07 |
-| Equity line of credit | 1.48 | 1.29 | 1.15 |
-| A3 manufactured asset | 1.43 | 3.49 | *non-est.* |
-| Pre-funded warrant + blocker | 0.90 | 0.82 | 1.23 |
-| P8 ramp signature | 0.96 | 1.00 | 0.77 |
+| **Going-concern doubt** | **1.72**\*\*\* | **2.10**\*\*\* | **1.74**\*\*\* |
+| **Material weakness** ("identified a…") | **1.95**\*\*\* | **1.90**\*\*\* | **1.36**\*\* |
+| Material weakness (other phrasing) | **1.41**\* | **1.24**\*\* | 1.14 |
+| A1 share explosion | 1.27 | **1.92**\*\*\* | **1.73**\*\*\* |
+| Reverse stock split | 1.08 | **1.40**\*\*\* | **1.38**\*\*\* |
+| At-the-market facility | 0.93 | **1.25**\* | **1.27**\*\* |
+| Standby equity purchase | 1.73 | 2.21 | 1.03 |
+| Equity line of credit | 1.44 | 1.28 | 1.13 |
+| Subpoena received | 1.14 | 1.33 | 1.35 |
+| A3 manufactured asset | 1.44 | 3.34 | *non-est.* |
+| Pre-funded warrant + blocker | 0.93 | 0.78 | 0.99 |
+| Pre-funded warrant (unpaired) | 0.94 | 0.90 | 1.23 |
+| P8 ramp signature | 0.93 | 0.99 | 0.77 |
+| Wells notice | *non-est.* | 0.85 | 0.97 |
+| Variable-rate convertible | *non-est.* | *non-est.* | *non-est.* |
 | A4 period inconsistency | *non-est.* | *non-est.* | *non-est.* |
-| **log(public float)** | **0.89**\*\*\* | **0.83**\*\*\* | **0.93**\*\* |
-| log(total assets) | 1.02 | **0.87**\*\*\* | **0.84**\*\*\* |
-| Shell company | **1.91**\*\*\* | **3.03**\*\*\* | **1.80**\*\*\* |
-| Prior revelation (pre-10-K) | **2.04**\*\*\* | **2.73**\*\*\* | **1.32**\*\*\* |
+| **log(public float)** | **0.89**\*\*\* | **0.84**\*\*\* | **0.94**\*\* |
+| log(total assets) | 1.01 | **0.87**\*\*\* | **0.85**\*\*\* |
+| free-float ratio | 1.04 | **1.04**\*\* | **1.04**\* |
+| Shell company | **1.75**\*\* | **3.07**\*\*\* | **1.91**\*\*\* |
+| Prior revelation (pre-10-K) | **1.95**\*\*\* | **2.38**\*\*\* | **1.22**\*\* |
+| Curing a listing deficiency *(control)* | 0.96 | **2.33**\*\*\* | **1.29**\* |
 
-*\*\*\* p<.001, \*\* p<.01, \* p<.05. Joint tests on the signal block: chi2(9)=79.2 p=2e-13;
-chi2(9)=351.0 p=4e-70; chi2(8)=167.3 p=5e-32.*
+*\*\*\* p<.001, \*\* p<.01, \* p<.05. Joint tests on the signal block: chi2(13)=103.0 p=4e-16;
+chi2(14)=357.6 p=1e-67; chi2(13)=161.2 p=1e-27.*
 
-**Only two signals predict every outcome** — going-concern doubt and material weakness, both the
-auditor's or management's own written admission. As marginal effects on the 4.13% non-reliance base
-rate: material weakness **+2.6 percentage points**, going-concern **+2.1**.
+**Only the auditor-admission signals predict every outcome** — going-concern doubt and material
+weakness. Both are things the auditor or management already wrote down and filed.
 
-**The dilution markers predict distress, not misstatement.** A1 and reverse-split are strong for *any
-revelation* and *price collapse* and flat for *non-reliance* — the right pattern, since a reverse
-split responds to a listing problem rather than symptomising bad accounting. It is also a third
-independent confirmation of the circularity finding above.
+**The dilution markers predict distress, not misstatement.** Share explosion, reverse split and the
+at-the-market facility are strong for *any revelation* and *price collapse* and flat for
+*non-reliance* — the right pattern, since a reverse split responds to a listing problem rather than
+symptomising bad accounting. A third independent confirmation of the circularity finding above.
 
 **The relevant size dimension is float, not assets.** log(public float) is significant against all
-three outcomes; log(total assets) is not significant at all for non-reliance (OR 1.02, p=0.42).
+three; log(total assets) is not significant at all for non-reliance (OR 1.01).
 
 **A3 is underpowered, not refuted.** Its interval is [0.54, 3.83] on 29 firms and 5 events — wide
 enough to admit a near-doubling and to admit nothing. Against *any revelation* it cannot be estimated
@@ -170,17 +178,83 @@ Perfect separation, reported rather than absorbed.
 
 | outcome | model AUC | count-score AUC |
 |---|---|---|
-| non-reliance | **0.753** | 0.723 |
-| any revelation | **0.852** | 0.751 |
-| price collapse | **0.776** | 0.698 |
+| non-reliance | **0.764** | 0.728 |
+| any revelation | **0.855** | 0.751 |
+| price collapse | **0.777** | 0.714 |
 
 These are **not** comparable to the 0.606 above, which strips size out entirely; these include it as
 a predictor.
 
-**Calibration is the binding limit.** The top predicted-risk decile for non-reliance predicts 19.4%
-and delivers 10.4%; for price collapse, 77.4% against 56.4%. The model over-warns by roughly two. It
-ranks — top decile 2.9x the base rate — but the probabilities are not fit to be quoted as
-probabilities, and any triage use should treat the output as an **ordering**, not a risk.
+### The headline as a difference, not a ratio
+
+`data/aggregates/headline_difference_in_proportions.csv`
+
+"12.2% versus 1.6%" is a **difference in proportions**, and quoting it only as a ratio (7.5×) hides
+the base rate and has no natural interval. Stated properly:
+
+| warning signs | rate | difference vs 0 signs | 95% CI |
+|---|---|---|---|
+| 1 | 6.3% | **+4.7pp** | [+3.8, +5.5] |
+| 2 | 8.5% | **+6.9pp** | [+5.0, +8.8] |
+| 3 | 12.2% | **+10.6pp** | [+4.8, +16.4] |
+
+All three exclude zero. *Caveat:* the textbook interval assumes two independent samples, and these
+are strata of one population with issuers recurring across vintages, so these are too narrow. The
+cluster-robust marginal effects in Result 2 are the ones to prefer — they are the same quantity,
+computed correctly.
+
+### Adding signals: what earned its place and what did not
+
+The registry specifies twenty-three surfaces; the pillar set used six. Seven more full-text surfaces
+were fetched and entered, each on its own coefficient. Adding candidates is not finding signal — a
+surface that does not earn its place says so:
+
+| new surface | verdict |
+|---|---|
+| **"identified a material weakness"** | **Earns it.** 1.95\*\*\* / 1.90\*\*\* / 1.36\*\* — *stronger on every outcome than the phrasing originally used* |
+| "at-the-market offering" | Partial. n.s. for restatement, 1.25\* / 1.27\*\* for the broader outcomes — the dilution-marker pattern again |
+| "Wells notice" | **Null, and strikingly so.** 43 issuer-vintages disclosed one; **zero** subsequently filed a non-reliance 8-K. Non-estimable for restatement, null elsewhere |
+| "received a subpoena" | Null on all three |
+| "pre-funded warrant" (unpaired) | Null on all three |
+| "variable rate convertible" | Non-estimable — fires on 4–6 issuer-vintages |
+| "regain compliance" | Kept as a **control**, not a signal: it measures "already curing a listing deficiency" directly, which is the confounder that inflated the raw result. 2.33\*\*\* on any-revelation |
+
+**The phrase-sensitivity finding is the important one.** The original pillar used
+`"material weakness in our internal control"`; the registry's is `"identified a material weakness"`.
+Both capture material-weakness disclosure, they select overlapping but different issuers, and the
+registry phrasing is the stronger predictor everywhere. With both in the model the original drops
+from OR 2.00 to 1.41. **Part of the earlier result was an artefact of which string was chosen** — a
+measurement-error problem, not a modelling one, and invisible until two phrasings were run
+side by side.
+
+Net effect on out-of-sample discrimination: non-reliance **0.753 → 0.764**, any revelation 0.852 →
+0.855, price collapse 0.776 → 0.777. Real but small, and concentrated in the outcome that matters.
+
+**The Wells-notice null deserves a sentence of its own.** An SEC Wells notice is the staff's advance
+warning that enforcement is recommended — about the strongest public signal that a regulator has
+already found something. Across three years, 43 issuer-vintages disclosed receiving one and none went
+on to file a non-reliance 8-K. The plausible reading is that Wells notices in this population concern
+disclosure and trading conduct rather than accounting, and that a firm already in an enforcement
+process has typically resolved its financial-statement question before that point. It is reported
+because a signal that *should* work and does not is worth as much as one that does.
+
+### Calibration: fixed, and it matters for the policy claim
+
+`data/aggregates/model_calibration_fix.csv`
+
+The uncorrected model over-warns. Platt scaling — a monotone rescaling that cannot change the ranking
+— was fitted on a **three-way temporal split**: train on 2022, learn the calibration map on 2023
+which the model never saw, apply to 2024 which neither saw.
+
+| outcome | ECE before | ECE after | top decile predicted → actual |
+|---|---|---|---|
+| non-reliance | 2.41pp | **1.50pp** | 21.0% → 16.9% (actual 11.4%) |
+| any revelation | 8.52pp | **3.95pp** | 98.0% → 95.8% (actual 90.9%) |
+| price collapse | 5.29pp | **3.78pp** | 84.6% → 74.0% (actual 58.9%) |
+
+AUC is unchanged in all three, by construction. Expected calibration error falls by roughly a third
+to a half. It still over-warns, so the honest framing remains "an ordering with roughly-right levels"
+rather than a calibrated risk — but the gap between the two has closed materially.
 
 ---
 
