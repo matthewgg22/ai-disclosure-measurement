@@ -1,0 +1,10 @@
+year,group,n,median_assets_usd,median_float_usd,median_revenue_usd,pct_no_revenue,pct_revenue_under_1m,median_net_income_usd,pct_lossmaking,median_cash_usd,pct_shell,pct_big4_audited,pct_nasdaq,top_sectors
+2022-2024,ALL FILERS,14282,686310500.0,413643683.5,410921000,3.6,11.3,299826,48.4,54919000,5.2,21.1,47.2,Finance / insurance / real estate 23.8%; Manufacturing (light) 19.4%; Manufacturing (heavy) 18.7%
+2022-2024,Small tercile,4760,17818571.5,25921038.5,4689661.5,9.3,34.2,-3340212,78.6,2845965.5,12.4,9.4,48.4,Manufacturing (light) 26.3%; Manufacturing (heavy) 20.9%; Services (incl. software) 16.4%
+2022-2024,Middle tercile,4761,685683000,431100000.0,372766000,2.1,3.3,20034,49.7,64447000,3.1,30.6,59.3,Manufacturing (light) 21.7%; Finance / insurance / real estate 21.2%; Manufacturing (heavy) 19.5%
+2022-2024,Large tercile,4761,8435930000,4841177890.0,4203792500.0,0.2,0.2,266440000,16.1,383479500.0,0.0,23.3,33.8,Finance / insurance / real estate 34.5%; Manufacturing (heavy) 15.8%; Transport / utilities 11.5%
+2022-2024,0 warning signs,8436,2098086000.0,1297049793.0,1214877000,1.1,2.5,34586257.5,30.8,117924500.0,0.8,25.0,43.8,Finance / insurance / real estate 26.1%; Manufacturing (heavy) 20.4%; Manufacturing (light) 14.7%
+2022-2024,1 warning sign,4115,118375000,144533779.0,49556961.5,6.8,22.0,-1528105,65.9,21107000,14.4,17.4,49.4,Finance / insurance / real estate 24.3%; Manufacturing (light) 21.6%; Services (incl. software) 17.0%
+2022-2024,2 warning signs,1404,17857500.0,25882442.0,4796474,9.2,34.2,-9790279.0,89.4,4338418.5,4.8,12.1,56.3,Manufacturing (light) 36.0%; Manufacturing (heavy) 17.2%; Services (incl. software) 15.4%
+2022-2024,3 warning signs,296,11786500.0,10133770.0,2472150.0,12.5,38.0,-11579973.5,92.1,3631516.0,4.4,7.1,64.9,Manufacturing (light) 39.9%; Manufacturing (heavy) 18.6%; Services (incl. software) 15.2%
+2022-2024,4 warning signs,30,21899000.0,7720081.0,4206015.5,0.0,38.9,-17727000,96.6,3972000,0.0,3.3,90.0,Manufacturing (light) 40.0%; Services (incl. software) 23.3%; Finance / insurance / real estate 13.3%

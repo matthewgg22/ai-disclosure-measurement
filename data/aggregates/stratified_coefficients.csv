@@ -1,0 +1,55 @@
+year,outcome,stratum,median_assets_musd,n,events,base_rate_pct,auc_in_sample,term,label,odds_ratio,or_lo,or_hi,p,stars
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,going_concern,Going-concern doubt,1.512,1.09,2.096,0.013179,*
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,mw_alt,Material weakness (alt phrasing),1.174,0.81,1.7,0.397667,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,material_weakness,Material weakness,1.553,1.123,2.147,0.007743,**
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,a1,A1 share explosion,1.372,0.947,1.987,0.09471,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,rss,Reverse stock split,0.96,0.694,1.329,0.807648,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,atm_facility,At-the-market facility,0.97,0.63,1.493,0.889361,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,elc,Equity line of credit,1.439,0.838,2.471,0.187388,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,sepa,Standby equity purchase,0.825,0.159,4.276,0.818311,
+2022-2024,y_nonrel,1 nano,17.8,4760,360,7.56,0.6888,prefunded_solo,Pre-funded warrant (unpaired),0.932,0.596,1.456,0.755781,
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,going_concern,Going-concern doubt,2.27,1.359,3.79,0.001736,**
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,mw_alt,Material weakness (alt phrasing),2.784,1.644,4.713,0.000138,***
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,material_weakness,Material weakness,1.048,0.636,1.727,0.852791,
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,a1,A1 share explosion,1.482,0.603,3.641,0.390813,
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,rss,Reverse stock split,1.69,1.005,2.844,0.047945,*
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,atm_facility,At-the-market facility,0.74,0.405,1.352,0.327399,
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,elc,Equity line of credit,1.798,0.736,4.393,0.197682,
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,sepa,Standby equity purchase,3.362,1.338,8.45,0.009909,**
+2022-2024,y_nonrel,2 mid,685.7,4761,178,3.74,0.7683,prefunded_solo,Pre-funded warrant (unpaired),1.395,0.549,3.547,0.483948,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,going_concern,Going-concern doubt,,,,,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,mw_alt,Material weakness (alt phrasing),10.018,3.825,26.238,3e-06,***
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,material_weakness,Material weakness,1.475,0.523,4.165,0.462784,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,a1,A1 share explosion,,,,,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,rss,Reverse stock split,0.321,0.039,2.66,0.292153,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,atm_facility,At-the-market facility,0.549,0.078,3.836,0.54523,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,elc,Equity line of credit,1.203,0.33,4.378,0.779314,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,sepa,Standby equity purchase,,,,,
+2022-2024,y_nonrel,3 large,8435.9,4761,52,1.09,0.7954,prefunded_solo,Pre-funded warrant (unpaired),,,,,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,going_concern,Going-concern doubt,1.952,1.571,2.425,0.0,***
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,mw_alt,Material weakness (alt phrasing),0.971,0.725,1.3,0.841695,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,material_weakness,Material weakness,1.268,0.963,1.67,0.090653,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,a1,A1 share explosion,2.083,1.439,3.013,9.9e-05,***
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,rss,Reverse stock split,1.468,1.177,1.832,0.00066,***
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,atm_facility,At-the-market facility,1.056,0.82,1.361,0.67115,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,elc,Equity line of credit,1.756,0.952,3.238,0.071392,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,sepa,Standby equity purchase,0.877,0.417,1.846,0.729378,
+2022-2024,y_severe,1 nano,30.9,2677,1301,48.6,0.7116,prefunded_solo,Pre-funded warrant (unpaired),1.365,1.012,1.842,0.041594,*
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,going_concern,Going-concern doubt,1.882,1.377,2.571,7.2e-05,***
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,mw_alt,Material weakness (alt phrasing),1.714,1.269,2.315,0.000438,***
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,material_weakness,Material weakness,0.959,0.731,1.257,0.759212,
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,a1,A1 share explosion,1.288,0.692,2.395,0.424904,
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,rss,Reverse stock split,1.348,1.011,1.799,0.042065,*
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,atm_facility,At-the-market facility,1.452,1.097,1.922,0.009161,**
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,elc,Equity line of credit,0.706,0.336,1.485,0.358685,
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,sepa,Standby equity purchase,,,,,
+2022-2024,y_severe,2 mid,705.5,4021,912,22.68,0.6893,prefunded_solo,Pre-funded warrant (unpaired),1.21,0.754,1.943,0.430081,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,going_concern,Going-concern doubt,0.723,0.257,2.036,0.539748,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,mw_alt,Material weakness (alt phrasing),1.34,0.761,2.359,0.309938,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,material_weakness,Material weakness,1.411,0.911,2.184,0.123103,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,a1,A1 share explosion,1.0,nan,nan,nan,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,rss,Reverse stock split,1.824,1.019,3.266,0.042999,*
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,atm_facility,At-the-market facility,1.231,0.615,2.463,0.557357,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,elc,Equity line of credit,1.0,nan,nan,nan,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,sepa,Standby equity purchase,,,,,
+2022-2024,y_severe,3 large,8194.0,4086,310,7.59,0.6941,prefunded_solo,Pre-funded warrant (unpaired),,,,,

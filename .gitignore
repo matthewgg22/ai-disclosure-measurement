@@ -46,6 +46,9 @@ env/
 !data/aggregates/model_nested_fit.csv
 !data/aggregates/model_interactions.csv
 !data/aggregates/omitted_variable_bias.csv
+# Size-stratified models and the population descriptive profile (Table 1).
+!data/aggregates/stratified_coefficients.csv
+!data/aggregates/population_profile.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx

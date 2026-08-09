@@ -324,6 +324,79 @@ separates little, while for a company with a real balance sheet it is rare and s
 and lowest in the nano-cap tail.** The dilution markers show no gradient and remain the small-end
 instruments, but they are the ones that do not predict restatement.
 
+
+## The population, described
+
+`data/aggregates/population_profile.csv`
+
+Medians throughout; this population's means are decided by its right tail.
+
+| | 0 signs | 1 sign | 2 signs | 3 signs | 4 signs |
+|---|---|---|---|---|---|
+| n | 8,436 | 4,115 | 1,404 | 296 | 30 |
+| median total assets | **$2.10B** | $118.4M | $17.9M | $11.8M | $21.9M |
+| median revenue | **$1.21B** | $49.6M | $4.8M | $2.5M | $4.2M |
+| revenue under $1M | 2.5% | 22.0% | 34.2% | 38.0% | 38.9% |
+| median net income | **+$34.6M** | −$1.5M | −$9.8M | −$11.6M | −$17.7M |
+| **loss-making** | **30.8%** | 65.9% | 89.4% | 92.1% | **96.6%** |
+| Big-4 audited | 25.0% | 17.4% | 12.1% | 7.1% | **3.3%** |
+| on Nasdaq | 43.8% | 49.4% | 56.3% | 64.9% | **90.0%** |
+| leading sector | Finance/RE 26% | Finance/RE 24% | Mfg (light) 36% | Mfg (light) 40% | Mfg (light) 40% |
+
+A zero-sign issuer is a $2.1B company with $1.2B of revenue that makes money. A three-sign issuer is
+an $11.8M company with $2.5M of revenue that loses money 92% of the time. Every pooled comparison on
+this page spans that entire distance — which is the case for reading the stratified results below
+rather than the pooled ones. Three gradients are not mechanical restatements of size: **auditor
+quality falls** (Big-4 25% → 3.3%), **Nasdaq concentration rises** (44% → 90%, so the flagged tail is
+a Nasdaq phenomenon rather than an OTC one), and the **sector mix rotates** from finance and real
+estate toward light manufacturing.
+
+## Two screens, not one
+
+`data/aggregates/stratified_coefficients.csv`
+
+The same specification, estimated separately within size terciles.
+
+**Restatement — strengthens monotonically with size:**
+
+| | nano ($18M) | mid ($686M) | large ($8.4B) |
+|---|---|---|---|
+| events / n | 360 / 4,760 | 178 / 4,761 | 52 / 4,761 |
+| **Material weakness** | 1.17 | **2.78**\*\*\* | **10.02**\*\*\* |
+| Going-concern doubt | 1.51\* | **2.27**\*\* | *non-est.* |
+| dilution markers significant | **0 of 6** | 2 of 6 | **0 of 6** |
+| **in-sample AUC** | 0.689 | 0.768 | **0.795** |
+
+**Price collapse — strongest at the nano end, carried by a different family:**
+
+| | nano ($31M) | mid ($706M) | large ($8.2B) |
+|---|---|---|---|
+| events / n | 1,301 / 2,677 | 912 / 4,021 | 310 / 4,086 |
+| A1 share explosion | **2.08**\*\*\* | 1.29 | 1.00 |
+| Reverse stock split | **1.47**\*\*\* | 1.35\* | 1.82\* |
+| Pre-funded warrant | **1.36**\* | 1.21 | *non-est.* |
+| Material weakness | 0.97 | **1.71**\*\*\* | 1.34 |
+| **in-sample AUC** | **0.712** | 0.689 | 0.694 |
+
+**A material-weakness disclosure raises the odds of a later restatement tenfold at an $8.4B company
+and does nothing measurable at an $18M one.** The dilution apparatus does the reverse — it predicts
+price collapse among nano-caps and nothing among large issuers.
+
+**The mechanism is base rates, not statistics.** A material weakness at a nano-cap is close to
+ambient, so it separates almost nothing; at a company with a real balance sheet an audited
+internal-control failure is rare and sharply abnormal. Continuous dilution runs the other way: it is
+the operating mode of the nano-cap tail and essentially absent above it.
+
+So the honest statement is two claims:
+
+> **At the small end**, the dilution apparatus predicts *value destruction* — and that is where the
+> $10.5B of revelation-day loss is concentrated.
+> **At the large end**, an auditor's material-weakness finding predicts a *forced restatement* at an
+> odds ratio of ten, and discrimination is highest there (AUC 0.795).
+
+The pooled model above averages these into coefficients that describe neither segment well. That
+averaging is the most important limitation on this page, and it took stratifying to see it.
+
 ---
 
 ## Result 3 — what retracting costs
