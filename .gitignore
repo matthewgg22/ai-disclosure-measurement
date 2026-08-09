@@ -33,6 +33,12 @@ env/
 !data/aggregates/tier_a_precision.csv
 !data/aggregates/car_by_event_type.csv
 !data/aggregates/attributable_loss.csv
+# Multivariate model output. Coefficients are population-level parameters — they
+# describe the filer population, not any issuer in it.
+!data/aggregates/model_coefficients.csv
+!data/aggregates/model_marginal_effects.csv
+!data/aggregates/model_fit.csv
+!data/aggregates/model_calibration.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx

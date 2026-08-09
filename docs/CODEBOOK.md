@@ -279,3 +279,57 @@ One row per event type, plus a `UNION` row (first revelation of any type per iss
 **Quote the `UNION` row**, not a sum of the type rows: an issuer filing both a non-reliance and a
 listing notice appears in two type rows. Coverage is 52% — issuers already delisted cannot be
 priced, and those are the worst outcomes, so the figure **understates**.
+
+---
+
+# Multivariate model output
+
+Logistic models of each outcome on the individual signal surfaces plus controls. **Standard errors
+are clustered by issuer** — 14,282 issuer-vintages but only 6,192 distinct issuers, most appearing
+two or three times. `outcome` takes `y_nonrel` (8-K Item 4.02 within 20 months), `y_any` (any
+revelation), or `y_severe` (50% loss or delisting).
+
+Coefficients are population-level parameters: they describe the filer population, not any issuer in
+it.
+
+## `model_coefficients.csv`
+One row per (outcome, term).
+
+| column | unit | meaning |
+|---|---|---|
+| `term` | text | regressor; signal surfaces plus `log_assets`, `log_float`, `free_float`, `shell`, `prior_any` |
+| `coef` | log-odds | raw logistic coefficient |
+| `odds_ratio` | ratio | exp(coef) — the reported effect size |
+| `se`, `z`, `p` | — | cluster-robust standard error, z-statistic, two-sided p-value |
+| `or_lo`, `or_hi` | ratio | 95% CI on the odds ratio |
+
+Rows with empty numeric fields are **non-estimable**: the signal has a zero-outcome cell, so its MLE
+coefficient diverges. They are listed rather than dropped, because "fires on 4 issuers and none had
+the outcome" is a finding.
+
+## `model_marginal_effects.csv`
+Average marginal effects, in **percentage points**. Odds ratios are the natural scale for a logit and
+the wrong scale for a policy reader: "+2.6pp against a 4.13% base rate" is actionable in a way "odds
+ratio 2.0" is not.
+
+## `model_fit.csv`
+One row per (outcome, specification) for the nested ladder — `size alone`, `+ structure controls`,
+`+ signals (full)`.
+
+| column | meaning |
+|---|---|
+| `auc_in_sample` | AUC of that specification, in sample |
+| `joint_lr_chi2`, `joint_p` | likelihood-ratio test of the whole signal block against controls only |
+| `auc_out_of_sample` | fit on 2022+2023, scored on 2024 — **the comparison that counts** |
+| `auc_count_score_oos` | the incumbent count score on the same held-out data |
+| `brier_oos` | Brier score; lower is better calibrated |
+
+In-sample AUC always flatters a regression relative to a count score. Read the out-of-sample pair.
+These AUCs include size as a predictor and are **not** comparable to the size-stratified figures in
+`revelation_discrimination.csv`, which strip it out.
+
+## `model_calibration.csv`
+Predicted vs actual event rate by predicted-risk decile, out of sample. **The model over-warns**:
+for non-reliance the top decile predicts 19.4% and delivers 10.4%. Discrimination and calibration are
+different properties — a model can rank well and still be wrong in level. Treat the output as an
+ordering, not a probability.

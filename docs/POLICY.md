@@ -118,6 +118,40 @@ each troubled one, with financing consequences for exactly the firms least able 
 
 ---
 
+## 6. Why this belongs in a public agency, in market-failure terms
+
+The claim throughout has been that this screen's natural home is a regulator. That is not a
+preference — it follows from two standard market failures, and the empirical results supply evidence
+that both bind.
+
+**A disclosure-failure screen is a public good in the technical sense.** It is **non-rival** — one
+user's use does not diminish another's — and once published **non-excludable**. Costs of production
+are private; benefits are common. That is the free-rider configuration, and the prediction is
+under-provision by private markets.
+
+**The trading nulls are evidence the condition binds, not a disappointment.** The signal has real
+predictive content (7.5× on restatement; 4.17× lift for the manufactured-asset detector; CARs
+significant on both robust tests) and essentially no capturable private return: ruinous as a short
+(median flagged firm −60.8% but **mean +89.7%**, with one name up 55,456% erasing the book) and no
+alpha long (float-weighted +1.0%/−0.8%; trails the Russell 2000 by 8.1% and 1.9%). So the private
+return to building it is near zero while the social return is not — which is why it does not already
+exist privately. The remedy for that configuration is direct public provision.
+
+*Honest limit:* two naive strategies were tested. A lender's covenant screen, a D&O underwriting
+input, or a securities-lending borrow-pricing model were not, and could plausibly find value. The
+defensible statement is "the two obvious trading uses fail, and the failure mode is structural to the
+population," not "this has no private value."
+
+**The second failure is an externality.** A misreporting issuer does not bear the full cost of its
+misreporting: part falls on other small issuers, whose disclosures become less informative because
+investors cannot separate them. Private marginal cost of low-quality disclosure sits below social
+marginal cost, so too much is produced. [`REVELATION.md`](REVELATION.md) puts a number on one slice
+of that external cost — **$10.5B** on revelation days alone — which is the magnitude any corrective
+intervention would be trying to internalise, and the reason the measurement matters independently of
+whether a screen is ever deployed.
+
+---
+
 ### The through-line
 
 Findings 1–2 say a *vocabulary* went free and the fix is to re-price the term (guidance, narrowly
@@ -125,7 +159,8 @@ scoped). Finding 3 says a *structure* routes around an existing rule and the fix
 gloss where the prevalence justifies it. Finding 4 says a *screen works but only for triage*, which
 is an argument about who should hold it and how it should be used, not about publishing scores.
 Finding 5 says one *disclosure obligation* is doing informational work nothing else replaces, and
-the lever there is protective rather than additive — do not weaken it. In every case the market-wide
+the lever there is protective rather than additive — do not weaken it. Finding 6 says the reason a
+public body should hold any of this is a public-good and externality argument, not a preference. In every case the market-wide
 measurement is what tells a regulator whether the gap is real and growing — which is the
 contribution a public, reproducible measurement layer can make that issuer-level casework cannot.
 

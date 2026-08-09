@@ -1,0 +1,42 @@
+year,outcome,term,label,effect_pp,p
+2022-2024,y_nonrel,going_concern,Going-concern doubt,2.057,0.000224
+2022-2024,y_nonrel,material_weakness,Material weakness,2.603,0.0
+2022-2024,y_nonrel,rss,Reverse stock split,0.2,0.704688
+2022-2024,y_nonrel,elc,Equity line of credit,1.475,0.082465
+2022-2024,y_nonrel,sepa,Standby equity purchase,2.229,0.190621
+2022-2024,y_nonrel,prefunded,Pre-funded warrant + blocker,-0.391,0.801764
+2022-2024,y_nonrel,a1,A1 share explosion,0.805,0.220156
+2022-2024,y_nonrel,a3,A3 manufactured asset,1.346,0.474003
+2022-2024,y_nonrel,ramp,P8 ramp signature,-0.168,0.91469
+2022-2024,y_nonrel,log_assets,log(total assets),0.075,0.424995
+2022-2024,y_nonrel,log_float,log(public float),-0.448,0.0
+2022-2024,y_nonrel,free_float,free-float ratio,0.139,0.058525
+2022-2024,y_nonrel,shell,Shell company,2.425,0.000339
+2022-2024,y_nonrel,prior_any,Prior revelation (pre-10-K),2.678,0.0
+2022-2024,y_any,going_concern,Going-concern doubt,11.691,0.0
+2022-2024,y_any,material_weakness,Material weakness,7.505,0.0
+2022-2024,y_any,rss,Reverse stock split,6.464,0.0
+2022-2024,y_any,elc,Equity line of credit,3.776,0.064858
+2022-2024,y_any,sepa,Standby equity purchase,15.129,0.034672
+2022-2024,y_any,prefunded,Pre-funded warrant + blocker,-2.875,0.482112
+2022-2024,y_any,a1,A1 share explosion,9.958,1e-06
+2022-2024,y_any,a3,A3 manufactured asset,18.63,0.145627
+2022-2024,y_any,ramp,P8 ramp signature,0.014,0.997113
+2022-2024,y_any,log_assets,log(total assets),-2.002,0.0
+2022-2024,y_any,log_float,log(public float),-2.684,0.0
+2022-2024,y_any,free_float,free-float ratio,0.703,0.003767
+2022-2024,y_any,shell,Shell company,16.507,0.0
+2022-2024,y_any,prior_any,Prior revelation (pre-10-K),14.967,0.0
+2022-2024,y_severe,going_concern,Going-concern doubt,8.531,0.0
+2022-2024,y_severe,material_weakness,Material weakness,4.024,0.000211
+2022-2024,y_severe,rss,Reverse stock split,5.496,4e-06
+2022-2024,y_severe,elc,Equity line of credit,2.005,0.403103
+2022-2024,y_severe,sepa,Standby equity purchase,1.022,0.821623
+2022-2024,y_severe,prefunded,Pre-funded warrant + blocker,2.862,0.463042
+2022-2024,y_severe,a1,A1 share explosion,8.133,5.4e-05
+2022-2024,y_severe,ramp,P8 ramp signature,-3.673,0.354925
+2022-2024,y_severe,log_assets,log(total assets),-2.419,0.0
+2022-2024,y_severe,log_float,log(public float),-0.97,0.001364
+2022-2024,y_severe,free_float,free-float ratio,0.484,0.044787
+2022-2024,y_severe,shell,Shell company,8.26,0.000102
+2022-2024,y_severe,prior_any,Prior revelation (pre-10-K),3.867,0.000119
