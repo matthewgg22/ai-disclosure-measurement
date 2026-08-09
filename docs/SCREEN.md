@@ -244,8 +244,9 @@ issuer-level run is private (per the wall); the aggregate result is committed he
   2021; outcome = an SEC Section 12(j) delinquent-filer proceeding or trading suspension in
   2022+. Nothing from the outcome window enters the score or the size control.
 - **Result:** size-adjusted AUC **0.732**, 95% bootstrap CI **(0.578, 0.773)**, n = 8,393,
-  234 failures. Top deciles fail at ~6-7% vs 0.0% in the bottom two. Size alone is
-  anti-predictive (AUC 0.11), so this is not a size story.
+  234 failures. Top deciles fail at ~6-7% vs 0.0% in the bottom two. This is not a size story,
+  because the size control barely moves it: raw AUC 0.735 vs 0.732 size-adjusted. (`auc_size_only`
+  reads 0.11 — that means small firms fail MUCH more, not that size is irrelevant.)
 - **The paired nulls.** The same score against large-cap AAER enforcement is null (0.564, CI
   straddling 0.5): AAER targets skew large and Big-4-audited, the wrong population for this
   score, which is itself the population-match lesson. A deliberately noisy label (all Form

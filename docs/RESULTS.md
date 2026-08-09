@@ -190,8 +190,9 @@ For construction detail (denominators, phrase selection, identification), see
   fail at **~6-7%** against **0.0%** in the bottom two deciles.
 - **Why it matters:** this is the engine's claim made falsifiable, and it survived. The design
   is forward-looking (nothing after fiscal 2021 enters the score or the size control), the AUC
-  is computed within size terciles, and size alone is *anti*-predictive here (AUC 0.11), so the
-  result is not "small firms fail more" restated.
+  is computed within size terciles, and the control barely moves it — **raw 0.735 vs 0.732
+  size-adjusted** — so the result is not "small firms fail more" restated. (`auc_size_only`
+  reads 0.11; AUC is P(a failure scores higher than a survivor), so a value far BELOW 0.5 means small firms fail **much** more — size is highly informative, in the protective direction. It does NOT mean size is irrelevant; only the size-**stratified** AUC separates a score from a size proxy.)
 - **The null that makes it credible:** the same score was first run against SEC accounting
   enforcement releases (AAERs, 2016+) and came back **null**: size-adjusted AUC 0.564, CI
   (0.467, 0.649), straddling chance. AAER targets skew large and Big-4-audited, the opposite

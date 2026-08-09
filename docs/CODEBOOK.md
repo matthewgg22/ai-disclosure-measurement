@@ -142,7 +142,7 @@ through FY2021 predicts 2022+ regulatory failure. See [`docs/RESULTS.md`](RESULT
 | `n` | count | issuers in the scored universe |
 | `positives` | count | issuers hit by the outcome |
 | `base_rate_pct` | pp | `positives / n × 100` |
-| `auc_size_only` | AUC | AUC of firm size alone (a control; ~0.11 means size is *anti*-predictive) |
+| `auc_size_only` | AUC | AUC of firm size alone. **0.11 means small firms fail *much* more**, not that size is irrelevant — see the note below |
 | `auc_score_raw` | AUC | AUC of the distress score, unadjusted |
 | `auc_score_size_adj` | AUC | **headline**: AUC computed within size terciles (Mann-Whitney) |
 | `ci_lo`, `ci_hi` | AUC | 95% bootstrap CI on the size-adjusted AUC |
@@ -182,7 +182,7 @@ One row per feature year.
 | `base_rate_pct` | % | share suffering a 50% loss or delisting |
 | `auc_size_adj` | AUC | **headline**: computed within size terciles |
 | `ci_lo`, `ci_hi` | AUC | 95% bootstrap CI |
-| `auc_size_only` | AUC | size alone; ~0.23 means size is *anti*-predictive |
+| `auc_size_only` | AUC | size alone; 0.23 means small firms fail *much* more (see note under `validation_summary.csv`) |
 
 ## `forward_by_warning_signs.csv` — the ordering
 One row per (year, warning-sign count).
@@ -228,7 +228,7 @@ One row per (year, outcome, variant, sample).
 | column | unit | meaning |
 |---|---|---|
 | `auc_size_adj`, `ci_lo`, `ci_hi` | AUC | size-stratified AUC and 95% bootstrap CI |
-| `auc_size_only` | AUC | size alone; 0.19–0.33 here, so *anti*-predictive |
+| `auc_size_only` | AUC | size alone; 0.19–0.33 means small firms fail *much* more, so ~44–50% of the raw gradient is size |
 | `monotone` | 0/1 | whether incidence rises at every step |
 | `lift_top_over_bottom` | ratio | top bucket rate ÷ bottom bucket rate |
 

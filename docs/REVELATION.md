@@ -46,9 +46,32 @@ within 20 months:
 
 Size-adjusted AUC **0.606** (0.575–0.639). Monotone. **7.5× top to bottom.**
 
-**Firm size runs the other way.** Size alone scores 0.285–0.305 on these outcomes — *anti*-predictive,
-the same as it is for returns. That is the first objection to any small-cap screen and it does not
-apply here.
+### How much of this is size?
+
+Some of it. Reported here rather than argued away, because it is the first objection anyone should
+raise.
+
+The flagged firms are small — median total assets **$17.9M** at two warning signs against **$2.1B** at
+zero — and small firms fail more. So part of the raw gradient is size:
+
+| | non-reliance | listing deficiency | any revelation |
+|---|---|---|---|
+| raw AUC | 0.689 | 0.711 | 0.741 |
+| **size-adjusted (within terciles)** | **0.605** | **0.606** | **0.621** |
+| share of the raw edge that is size | 44% | 50% | 50% |
+
+**The 0.605–0.621 is what survives, and it is the figure quoted everywhere in this repo.** Its CI is
+clear of 0.5, so the screen is not only size — but it is not size-free either, and a claim that it
+were would be wrong.
+
+**A note on `auc_size_only`, which is easy to misread.** It reads 0.185–0.305 here. That does *not*
+mean size is uninformative. AUC is P(a failure scores higher than a survivor), so a value far *below*
+0.5 means small firms fail **much** more — size is highly informative, just in the protective
+direction. All "anti-predictive" legitimately means is that using size directly as a risk score
+(bigger = riskier) would perform worse than chance. It is the size-**stratified** AUC, not the sign
+of the size coefficient, that separates a screen from a size proxy. Elsewhere in this repo that
+distinction cuts the other way and favourably: F7's raw AUC is 0.735 against 0.732 size-adjusted, so
+size explains almost none of *that* result.
 
 ### What did not survive, and why it is shown
 
@@ -57,7 +80,7 @@ The raw version of this result was much larger and is **withdrawn**. Listing-def
 
 | attack | why | effect |
 |---|---|---|
-| **Size** | Nasdaq's continued-listing rules include a $1 minimum bid price, so a stock at $0.80 gets a notice almost mechanically | **Refuted.** Size alone is anti-predictive (0.285) |
+| **Size** | Nasdaq's continued-listing rules include a $1 minimum bid price, so a stock at $0.80 gets a notice almost mechanically | **Survives, but size does real work.** ~50% of the raw edge is size (0.711 → 0.606 within terciles); the size-controlled figure still clears chance decisively |
 | **Circularity** | One surface fires on "reverse stock split" — and firms reverse-split *in order to cure* a bid-price deficiency, so it may detect a notice already received | **Partly lands.** AUC 0.606 → 0.579 dropping that surface, → 0.572 dropping the whole pillar |
 | **Repeat notices** | An issuer already under a notice can receive another | **Lands hardest.** → 0.567, and combined with the surface drop → **0.550** |
 
