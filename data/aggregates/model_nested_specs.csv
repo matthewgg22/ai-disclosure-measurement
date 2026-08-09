@@ -1,0 +1,55 @@
+year,outcome,model,specification,term,label,unit,estimate,se,p,stars
+2022-2024,y_nonrel,nested_logit,bivariate,going_concern,Going-concern doubt,odds_ratio,4.1,0.405,0.0,***
+2022-2024,y_nonrel,nested_logit,+ signals,going_concern,Going-concern doubt,odds_ratio,3.397,0.379,0.0,***
+2022-2024,y_nonrel,nested_logit,+ size,going_concern,Going-concern doubt,odds_ratio,2.404,0.341,0.0,***
+2022-2024,y_nonrel,nested_logit,+ structure,going_concern,Going-concern doubt,odds_ratio,1.695,0.249,0.000321,***
+2022-2024,y_nonrel,nested_logit,+ FE (full),going_concern,Going-concern doubt,odds_ratio,1.721,0.254,0.000236,***
+2022-2024,y_nonrel,nested_logit,+ signals,mw_alt,Material weakness (alt phrasing),odds_ratio,2.247,0.327,0.0,***
+2022-2024,y_nonrel,nested_logit,+ size,mw_alt,Material weakness (alt phrasing),odds_ratio,2.302,0.33,0.0,***
+2022-2024,y_nonrel,nested_logit,+ structure,mw_alt,Material weakness (alt phrasing),odds_ratio,1.976,0.295,5e-06,***
+2022-2024,y_nonrel,nested_logit,+ FE (full),mw_alt,Material weakness (alt phrasing),odds_ratio,1.994,0.304,6e-06,***
+2022-2024,y_nonrel,nested_logit,+ signals,material_weakness,Material weakness,odds_ratio,1.533,0.208,0.001604,**
+2022-2024,y_nonrel,nested_logit,+ size,material_weakness,Material weakness,odds_ratio,1.565,0.209,0.000805,***
+2022-2024,y_nonrel,nested_logit,+ structure,material_weakness,Material weakness,odds_ratio,1.451,0.197,0.006032,**
+2022-2024,y_nonrel,nested_logit,+ FE (full),material_weakness,Material weakness,odds_ratio,1.427,0.197,0.010037,*
+2022-2024,y_nonrel,nested_logit,+ signals,a1,A1 share explosion,odds_ratio,1.332,0.23,0.09725,
+2022-2024,y_nonrel,nested_logit,+ size,a1,A1 share explosion,odds_ratio,1.206,0.212,0.286731,
+2022-2024,y_nonrel,nested_logit,+ structure,a1,A1 share explosion,odds_ratio,1.222,0.214,0.254295,
+2022-2024,y_nonrel,nested_logit,+ FE (full),a1,A1 share explosion,odds_ratio,1.263,0.221,0.181721,
+2022-2024,y_nonrel,nested_logit,+ signals,rss,Reverse stock split,odds_ratio,1.109,0.144,0.428019,
+2022-2024,y_nonrel,nested_logit,+ size,rss,Reverse stock split,odds_ratio,0.997,0.127,0.979776,
+2022-2024,y_nonrel,nested_logit,+ structure,rss,Reverse stock split,odds_ratio,1.086,0.154,0.559281,
+2022-2024,y_nonrel,nested_logit,+ FE (full),rss,Reverse stock split,odds_ratio,1.099,0.159,0.512942,
+2022-2024,y_nonrel,nested_logit,+ size,log_assets,log(total assets),odds_ratio,0.978,0.017,0.201828,
+2022-2024,y_nonrel,nested_logit,+ structure,log_assets,log(total assets),odds_ratio,0.997,0.018,0.883189,
+2022-2024,y_nonrel,nested_logit,+ FE (full),log_assets,log(total assets),odds_ratio,1.004,0.018,0.843103,
+2022-2024,y_nonrel,nested_logit,+ size,log_float,log(public float),odds_ratio,0.912,0.017,0.0,***
+2022-2024,y_nonrel,nested_logit,+ structure,log_float,log(public float),odds_ratio,0.909,0.017,0.0,***
+2022-2024,y_nonrel,nested_logit,+ FE (full),log_float,log(public float),odds_ratio,0.907,0.017,0.0,***
+2022-2024,y_nonrel,nested_logit,+ structure,shell,Shell company,odds_ratio,2.139,0.34,2e-06,***
+2022-2024,y_nonrel,nested_logit,+ FE (full),shell,Shell company,odds_ratio,1.959,0.336,9e-05,***
+2022-2024,y_nonrel,nested_logit,+ structure,prior_any,Prior revelation (pre-10-K),odds_ratio,1.813,0.217,1e-06,***
+2022-2024,y_nonrel,nested_logit,+ FE (full),prior_any,Prior revelation (pre-10-K),odds_ratio,1.962,0.249,0.0,***
+2022-2024,y_nonrel,nested_logit,+ structure,regain_compliance,Curing a listing deficiency,odds_ratio,0.96,0.151,0.796292,
+2022-2024,y_nonrel,nested_logit,+ FE (full),regain_compliance,Curing a listing deficiency,odds_ratio,1.02,0.163,0.901227,
+2022-2024,y_nonrel,nested_lpm,bivariate,going_concern,Going-concern doubt,effect_pp,6.88,0.596,0.0,***
+2022-2024,y_nonrel,nested_lpm,+ signals,going_concern,Going-concern doubt,effect_pp,5.893,0.628,0.0,***
+2022-2024,y_nonrel,nested_lpm,+ size,going_concern,Going-concern doubt,effect_pp,4.832,0.744,0.0,***
+2022-2024,y_nonrel,nested_lpm,+ structure,going_concern,Going-concern doubt,effect_pp,2.981,0.736,5.1e-05,***
+2022-2024,y_nonrel,nested_lpm,+ FE (full),going_concern,Going-concern doubt,effect_pp,3.051,0.737,3.5e-05,***
+2022-2024,y_nonrel,nested_lpm,+ signals,mw_alt,Material weakness (alt phrasing),effect_pp,5.528,1.025,0.0,***
+2022-2024,y_nonrel,nested_lpm,+ size,mw_alt,Material weakness (alt phrasing),effect_pp,5.454,1.026,0.0,***
+2022-2024,y_nonrel,nested_lpm,+ structure,mw_alt,Material weakness (alt phrasing),effect_pp,4.527,1.035,1.2e-05,***
+2022-2024,y_nonrel,nested_lpm,+ FE (full),mw_alt,Material weakness (alt phrasing),effect_pp,4.517,1.038,1.4e-05,***
+2022-2024,y_nonrel,nested_lpm,+ signals,material_weakness,Material weakness,effect_pp,2.242,0.755,0.00299,**
+2022-2024,y_nonrel,nested_lpm,+ size,material_weakness,Material weakness,effect_pp,2.228,0.758,0.003293,**
+2022-2024,y_nonrel,nested_lpm,+ structure,material_weakness,Material weakness,effect_pp,1.913,0.742,0.009867,**
+2022-2024,y_nonrel,nested_lpm,+ FE (full),material_weakness,Material weakness,effect_pp,1.854,0.748,0.01316,*
+2022-2024,y_nonrel,nested_lpm,+ signals,a1,A1 share explosion,effect_pp,1.954,1.293,0.130767,
+2022-2024,y_nonrel,nested_lpm,+ size,a1,A1 share explosion,effect_pp,1.631,1.296,0.208021,
+2022-2024,y_nonrel,nested_lpm,+ structure,a1,A1 share explosion,effect_pp,1.758,1.299,0.176078,
+2022-2024,y_nonrel,nested_lpm,+ FE (full),a1,A1 share explosion,effect_pp,1.869,1.297,0.14946,
+2022-2024,y_nonrel,nested_lpm,+ signals,rss,Reverse stock split,effect_pp,0.464,0.715,0.516004,
+2022-2024,y_nonrel,nested_lpm,+ size,rss,Reverse stock split,effect_pp,-0.069,0.715,0.9235,
+2022-2024,y_nonrel,nested_lpm,+ structure,rss,Reverse stock split,effect_pp,0.298,0.754,0.693107,
+2022-2024,y_nonrel,nested_lpm,+ FE (full),rss,Reverse stock split,effect_pp,0.342,0.764,0.654188,

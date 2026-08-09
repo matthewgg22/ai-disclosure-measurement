@@ -256,6 +256,74 @@ AUC is unchanged in all three, by construction. Expected calibration error falls
 to a half. It still over-warns, so the honest framing remains "an ordering with roughly-right levels"
 rather than a calibrated risk — but the gap between the two has closed materially.
 
+
+### Watch the coefficient move: nested specifications
+
+`data/aggregates/model_nested_specs.csv` · `model_nested_fit.csv`
+
+A single specification hides what matters. **The movement of a coefficient as controls enter is
+itself the evidence about confounding.** Linear-probability scale, so cells read as percentage points
+against a 4.13% base rate; cluster-robust SE beneath.
+
+| | (1) bivariate | (2) + signals | (3) + size | (4) + structure | (5) + FE |
+|---|---|---|---|---|---|
+| **Going-concern doubt** | **6.88**\*\*\* | 5.89\*\*\* | 4.83\*\*\* | 2.98\*\*\* | **3.05**\*\*\* |
+| | (0.60) | (0.63) | (0.74) | (0.74) | (0.74) |
+| **Material weakness** | — | **5.53**\*\*\* | 5.45\*\*\* | 4.53\*\*\* | **4.52**\*\*\* |
+| | | (1.02) | (1.03) | (1.03) | (1.04) |
+| A1 share explosion | — | 1.95 | 1.63 | 1.76 | 1.87 |
+| Reverse stock split | — | 0.46 | −0.07 | 0.30 | 0.34 |
+| Observations | 14,282 | 14,282 | 14,282 | 14,282 | 14,282 |
+| R² | 0.022 | 0.034 | 0.036 | 0.043 | 0.046 |
+
+**Going-concern doubt loses more than half its association to controls** (6.88pp → 3.05pp).
+**Material weakness barely moves** (5.53 → 4.52). They are not equally confounded, and only the
+nested view shows it. The logit agrees (going-concern 4.10 → 1.72; material weakness 2.25 → 1.99) —
+and that the linear probability model and the logit agree is itself the robustness check.
+
+### Omitted variables, signed
+
+`data/aggregates/omitted_variable_bias.csv`
+
+The controls are what EDGAR contains; the variables that would matter most are unobservable. They
+cannot be estimated, but the bias can be **signed**: bias = γ (omitted → outcome) × δ (omitted →
+included regressor). A bias sharing the true effect's sign means the estimate is overstated.
+
+| omitted variable | affects | γ | δ | bias | verdict |
+|---|---|---|---|---|---|
+| Severity of underlying distress | going-concern | + | + | **+** | **overstated** |
+| Audit quality / diligence | material weakness | + | + | **+** | **overstated** |
+| Willingness to admit error | all signals | + | 0/+ | + | overstated |
+| Litigation / D&O pressure | going-concern | + | + | **+** | **overstated** |
+| Firm age since IPO | shell flag | + | − | **−** | *understated* |
+
+Signs are reasoned, not estimated — the method when the variable is unavailable. **Four of five push
+the same way.** The second row is the sharpest form of the reporting-bias caveat below: a diligent
+auditor both finds material weaknesses and forces corrections, so the model may partly measure who
+has a thorough auditor rather than who has a problem.
+
+### The signals work better on LARGER issuers
+
+`data/aggregates/model_interactions.csv`
+
+Every coefficient assumes a signal means the same thing for a $17M shell and a $2B issuer. Testing
+that by interacting each signal with size:
+
+| signal | main effect | × size | p | reading |
+|---|---|---|---|---|
+| Going-concern doubt | 2.16 | **1.63** | 0.0001 | **strengthens as size rises** |
+| Material weakness | 2.40 | **1.56** | 0.0003 | **strengthens as size rises** |
+| A1 share explosion | 1.08 | 0.87 | 0.43 | no size dependence |
+| Reverse stock split | 1.34 | 1.27 | 0.06 | no size dependence |
+
+**This inverts the intuition the project was built on.** The screen was expected to earn its keep at
+the small end where nobody is watching; the opposite holds for the signals that predict restatement.
+The mechanism is base rates — among nano-caps a going-concern paragraph is close to ambient and
+separates little, while for a company with a real balance sheet it is rare and sharply abnormal.
+**The marginal value of this screen is highest where examination attention is already concentrated,
+and lowest in the nano-cap tail.** The dilution markers show no gradient and remain the small-end
+instruments, but they are the ones that do not predict restatement.
+
 ---
 
 ## Result 3 — what retracting costs

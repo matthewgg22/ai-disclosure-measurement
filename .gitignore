@@ -41,6 +41,11 @@ env/
 !data/aggregates/model_calibration.csv
 !data/aggregates/model_calibration_fix.csv
 !data/aggregates/headline_difference_in_proportions.csv
+# API-202 practices: nested specifications, interactions, signed omitted-variable bias.
+!data/aggregates/model_nested_specs.csv
+!data/aggregates/model_nested_fit.csv
+!data/aggregates/model_interactions.csv
+!data/aggregates/omitted_variable_bias.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx

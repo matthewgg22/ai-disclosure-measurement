@@ -1,0 +1,11 @@
+year,outcome,model,specification,n,r2
+2022-2024,y_nonrel,nested_logit,bivariate,14282,0.0545
+2022-2024,y_nonrel,nested_logit,+ signals,14282,0.0784
+2022-2024,y_nonrel,nested_logit,+ size,14282,0.0865
+2022-2024,y_nonrel,nested_logit,+ structure,14282,0.0995
+2022-2024,y_nonrel,nested_logit,+ FE (full),14282,0.1059
+2022-2024,y_nonrel,nested_lpm,bivariate,14282,0.0221
+2022-2024,y_nonrel,nested_lpm,+ signals,14282,0.0342
+2022-2024,y_nonrel,nested_lpm,+ size,14282,0.0363
+2022-2024,y_nonrel,nested_lpm,+ structure,14282,0.0434
+2022-2024,y_nonrel,nested_lpm,+ FE (full),14282,0.0455

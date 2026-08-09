@@ -1,0 +1,6 @@
+year,omitted_variable,affects_term,gamma_sign,delta_sign,bias_sign,true_effect_sign,verdict,reasoning
+2022-2024,Severity of underlying financial distress,going_concern,+,+,+,+,OVERSTATED,The going-concern coefficient partly proxies for the distress that causes both the disclosure and the restatement. It is not the effect of the paragraph.
+2022-2024,Audit quality / auditor diligence,mw_alt,+,+,+,+,OVERSTATED,This is the sharpest version of the memo's central caveat: the model may be measuring who has a thorough auditor rather than who has a problem.
+2022-2024,Management's willingness to admit error,all signals,+,0/+,+ (weak),+,"OVERSTATED, direction firm / magnitude unknown","The outcome is ADMITTING, not HAVING. Successful concealment enters the data as clean, so every coefficient describes the admitting population."
+2022-2024,Litigation / D&O insurance pressure,going_concern,+,+,+,+,OVERSTATED,
+2022-2024,Firm age / time since IPO,shell,+,-,-,+,UNDERSTATED,"The one control whose omission biases the estimate TOWARD zero — so the shell coefficient is, if anything, conservative."

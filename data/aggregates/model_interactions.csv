@@ -1,0 +1,5 @@
+year,outcome,term,label,main_or,interaction_or,p,reading
+2022-2024,y_nonrel,going_concern,Going-concern doubt,2.163,1.627,5.2e-05,effect STRENGTHENS as size rises
+2022-2024,y_nonrel,mw_alt,Material weakness (alt phrasing),2.398,1.556,0.000333,effect STRENGTHENS as size rises
+2022-2024,y_nonrel,a1,A1 share explosion,1.077,0.867,0.428209,no detectable size dependence
+2022-2024,y_nonrel,rss,Reverse stock split,1.339,1.268,0.06362,no detectable size dependence
