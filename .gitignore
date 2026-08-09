@@ -49,6 +49,8 @@ env/
 # Size-stratified models and the population descriptive profile (Table 1).
 !data/aggregates/stratified_coefficients.csv
 !data/aggregates/population_profile.csv
+!data/aggregates/attributable_loss_by_stratum.csv
+!data/aggregates/stratified_out_of_sample.csv
 
 # Generated paper artifacts (source is paper/PAPER.md + figures)
 *.docx

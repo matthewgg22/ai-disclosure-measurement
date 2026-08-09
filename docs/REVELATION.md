@@ -389,13 +389,43 @@ the operating mode of the nano-cap tail and essentially absent above it.
 
 So the honest statement is two claims:
 
-> **At the small end**, the dilution apparatus predicts *value destruction* — and that is where the
-> $10.5B of revelation-day loss is concentrated.
+> **At the small end**, the dilution apparatus predicts *value destruction*.
 > **At the large end**, an auditor's material-weakness finding predicts a *forced restatement* at an
-> odds ratio of ten, and discrimination is highest there (AUC 0.795).
+> odds ratio of ten.
 
 The pooled model above averages these into coefficients that describe neither segment well. That
 averaging is the most important limitation on this page, and it took stratifying to see it.
+
+### Both of those claims were then checked, and one was wrong
+
+`data/aggregates/attributable_loss_by_stratum.csv` · `stratified_out_of_sample.csv`
+
+**The revelation-day loss does NOT concentrate at the small end**, which an earlier version of this
+page asserted:
+
+| | issuers | float | mean CAR | attributable | share |
+|---|---|---|---|---|---|
+| nano | 924 | $83.1B | −1.43% | −$1.04B | **11.0%** |
+| **mid** | 895 | $361.9B | −1.01% | **−$4.81B** | **50.5%** |
+| large | 179 | $143.8B | **−1.81%** | −$3.67B | 38.5% |
+
+**89% of the loss is mid and large.** Attributable loss is CAR × float and float scales with size —
+the mid tercile carries $361.9B against the nano tail's $83.1B. The mean abnormal return is also
+*largest* among large issuers (−1.81%), so nano-caps do not even move more in percentage terms on
+these dates. (Total is $9.52B rather than $10.47B because tercile assignment needs XBRL assets, which
+117 issuers lack.)
+
+**The stratified AUCs shrink out of sample, and the headline one cannot be validated.** Refitting on
+2022+2023 and testing on 2024: restatement nano 0.695 → **0.642**, mid 0.767 → **0.730**, and the
+large tercile has **34 training events — too thin to split at all.** So the **0.795 figure is
+in-sample only and should not be quoted.** Price collapse: nano 0.736 → 0.650, mid 0.707 → 0.630,
+large 0.703 → 0.670 — out of sample the ordering does not favour the nano tail either.
+
+**What survives is the coefficient evidence, which is what the two-screens claim always rested on:**
+material weakness runs 1.17 → 2.78\*\*\* → 10.02\*\*\* across strata, and the dilution markers
+are significant at nano and nowhere else. What does not survive is the AUC ranking and the assertion
+about where the dollars are. The corrected dollars finding is arguably the more interesting one:
+**the segment losing most on revelation days is mid-cap, not the tail this work set out to study.**
 
 ---
 

@@ -1,0 +1,7 @@
+year,outcome,stratum,train_events,test_events,auc_in_sample,auc_out_of_sample,shrinkage,note
+2022-2024,y_nonrel,1 nano,241,119,0.6946,0.6417,0.0528,
+2022-2024,y_nonrel,2 mid,132,46,0.7666,0.7295,0.0371,
+2022-2024,y_nonrel,3 large,34,18,,,,too thin once stratified and split
+2022-2024,y_severe,1 nano,813,488,0.7359,0.65,0.0859,
+2022-2024,y_severe,2 mid,628,284,0.7072,0.6301,0.0771,
+2022-2024,y_severe,3 large,196,114,0.7028,0.6701,0.0326,
