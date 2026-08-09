@@ -523,6 +523,64 @@ both outcomes (1.18, 1.05). And due-from-related-parties — which should be amo
 available — is unusable at population scale: only 131 issuer-vintages (0.9%) tag the concept and 90%
 of those fire, making it a presence-indicator with no denominator.
 
+
+## Which signals arrive before the market moves?
+
+`data/aggregates/signal_timing.csv`
+
+Statistical strength is not the same as usefulness. A going-concern paragraph is a public document:
+by the time an auditor writes one, every holder can read it. If the carriers of a signal have already
+been repriced before it appears, the signal is confirmation — however large its coefficient.
+
+The test measures each issuer's stock return over the **twelve months ending at the 10-K filing
+date** and splits by whether the signal is present in that filing. 10,280 issuer-vintages have a
+usable series; the population median run-up to a 10-K is **−4.1%**.
+
+| signal | n | median 12m **before** the filing | vs population |
+|---|---|---|---|
+| Going-concern doubt | 1,757 | **−37.3%** | −33.2pp |
+| Material weakness | 1,042 | −17.4% | −13.3pp |
+| At-the-market facility | 978 | −28.9% | −24.7pp |
+| Reverse stock split | 1,322 | **−52.0%** | −47.9pp |
+| Pre-funded warrant | 520 | **−60.2%** | −56.0pp |
+| Equity line of credit | 290 | −11.6% | −7.5pp |
+| *— from the financial statements alone —* | | | |
+| Operating cash flow < 0 | 3,577 | −29.0% | −24.9pp |
+| Cash runway < 12 months | 1,795 | **−40.0%** | −35.9pp |
+| Revenue < $1M on >$10M assets | 305 | **−42.7%** | −38.5pp |
+| Receivables outrun revenue | 443 | −23.3% | −19.2pp |
+| **Opaque assets > 50%** | 1,081 | **−3.3%** | **+0.8pp** |
+| **Negative equity** | 1,237 | **−2.9%** | **+1.2pp** |
+| **Equity < 10% of assets** | 840 | **−4.6%** | −0.5pp |
+| Paper earnings (NI>0, OCF<0) | 577 | **+1.1%** | +5.2pp |
+
+**The "waterfall" objection is confirmed for going-concern and refuted for material weakness.** A
+firm receiving a going-concern paragraph has already lost 37% of its value in the year leading to the
+filing that carries it. Material-weakness carriers are down 17%, less than half as far. The two
+admissions are routinely discussed as one category; on this clock they are not.
+
+**The dilution markers are the purest confirmation in the study** — reverse splits, pre-funded
+warrants and share explosions all sit past −50%. They are what a collapse leaves behind.
+
+**Three signals fire before the market has moved at all, and all three are balance-sheet
+constructs.** Asset opacity, negative equity and thin equity carry pre-filing returns of −3.3%, −2.9%
+and −4.6% against a −4.1% population median. And they are not decorative: in the joint model above,
+asset opacity is significant for both outcomes (1.38 and **1.72**), thin equity for restatement
+(1.55), negative equity for price collapse (1.27). **They are the only signals here that are both
+significant with the auditor admissions in the model and genuinely ex ante.** A balance sheet that is
+majority goodwill, intangibles and "other" is unverifiable from outside *whether or not* anything has
+gone wrong yet — which is why it carries information the price does not.
+
+**The trade-off holds inside the balance sheet too.** Operating cash flow below zero is the strongest
+balance construct (2.71 for price collapse) and its carriers are already down 29%. Cash runway under
+twelve months is −40%. Strength and earliness are in tension throughout this data; asset opacity is
+the exception.
+
+**This inverts the value ranking.** Ranked by odds ratio the screen leads with going-concern doubt,
+whose carriers have already fallen 37%. Ranked by *when the information arrives* it leads with asset
+opacity, whose carriers are flat. A triage instrument wants the second ordering — and that argument
+does not depend on the balance sheet discriminating better, which it barely does.
+
 ---
 
 ## Result 3 — what retracting costs

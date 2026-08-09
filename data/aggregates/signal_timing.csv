@@ -1,0 +1,18 @@
+signal,label,source,n_carriers,median_pre_filing_return_12m,vs_population_pp,reading
+_population,All 10-K filers with a usable series,baseline,10280,-0.0413,0.0,baseline
+going_concern,Going-concern doubt,filing_text,1757,-0.373,-33.2,already well down — mostly lagging
+mw_alt,Material weakness,filing_text,1042,-0.1739,-13.3,mildly down — partly ex ante
+material_weakness,Material weakness (alt string),filing_text,1481,-0.1507,-10.9,mildly down — partly ex ante
+a1,A1 share explosion,filing_text,298,-0.6102,-56.9,ALREADY COLLAPSED — confirmation
+rss,Reverse stock split,filing_text,1322,-0.52,-47.9,ALREADY COLLAPSED — confirmation
+atm_facility,At-the-market facility,filing_text,978,-0.2886,-24.7,already well down — mostly lagging
+elc,Equity line of credit,filing_text,290,-0.1165,-7.5,mildly down — partly ex ante
+prefunded_solo,Pre-funded warrant,filing_text,520,-0.6016,-56.0,ALREADY COLLAPSED — confirmation
+ocf_negative,Operating cash flow < 0,balance_sheet,3577,-0.2901,-24.9,already well down — mostly lagging
+opacity_over_50,Opaque assets > 50%,balance_sheet,1081,-0.0333,0.8,flat going in — genuinely ex ante
+equity_thin,Equity < 10% of assets,balance_sheet,840,-0.0464,-0.5,flat going in — genuinely ex ante
+equity_negative,Negative equity,balance_sheet,1237,-0.029,1.2,flat going in — genuinely ex ante
+paper_earnings,"Paper earnings (NI>0, OCF<0)",balance_sheet,577,0.011,5.2,flat going in — genuinely ex ante
+revenue_trivial,Revenue < $1M on >$10M assets,balance_sheet,305,-0.4266,-38.5,ALREADY COLLAPSED — confirmation
+runway_under_12m,Cash runway < 12 months,balance_sheet,1795,-0.4001,-35.9,ALREADY COLLAPSED — confirmation
+dsri_over_1_5,Receivables outrun revenue,balance_sheet,443,-0.2334,-19.2,already well down — mostly lagging
